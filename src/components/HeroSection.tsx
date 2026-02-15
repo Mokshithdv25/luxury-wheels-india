@@ -23,7 +23,7 @@ const HeroSection = () => {
           <div className="flex items-center gap-2 mb-6">
             <Shield className="w-5 h-5 text-primary" />
             <span className="text-primary font-body text-sm font-semibold tracking-widest uppercase">
-              Insured & Guaranteed
+              Insured & Guaranteed • 1 to 6 Month Swaps
             </span>
           </div>
 
@@ -35,7 +35,7 @@ const HeroSection = () => {
           </h1>
 
           <p className="text-lg md:text-xl text-muted-foreground font-body leading-relaxed mb-10 max-w-lg">
-            Experience the thrill of a new supercar every weekend. Fully inspected, legally secured, and comprehensively insured swaps between verified owners.
+            Trade your luxury car with another verified owner for 1 to 6 months. Fully inspected, legally secured, and comprehensively insured — no rental fees, just pure swap.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">

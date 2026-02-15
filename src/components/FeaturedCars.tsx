@@ -13,7 +13,7 @@ const cars = [
     power: "710 HP",
     rating: 4.9,
     owner: "Rajesh M.",
-    swapValue: "₹8,500/day",
+    swapValue: "1–3 months",
   },
   {
     image: car2,
@@ -22,7 +22,7 @@ const cars = [
     power: "640 HP",
     rating: 4.8,
     owner: "Priya K.",
-    swapValue: "₹6,200/day",
+    swapValue: "1–6 months",
   },
   {
     image: car3,
@@ -31,7 +31,7 @@ const cars = [
     power: "577 HP",
     rating: 4.7,
     owner: "Arjun S.",
-    swapValue: "₹5,800/day",
+    swapValue: "2–4 months",
   },
 ];
 
@@ -87,8 +87,8 @@ const FeaturedCars = () => {
                 </div>
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-primary font-body font-bold text-lg">{car.swapValue}</span>
-                    <p className="text-muted-foreground text-xs font-body">by {car.owner}</p>
+                    <span className="text-primary font-body font-bold text-sm">{car.swapValue}</span>
+                    <p className="text-muted-foreground text-xs font-body">Owner: {car.owner}</p>
                   </div>
                   <Button size="sm" className="bg-gradient-gold text-primary-foreground font-body font-semibold hover:opacity-90">
                     View Details
