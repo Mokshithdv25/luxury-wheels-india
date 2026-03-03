@@ -1,0 +1,46 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <defs>
+    <linearGradient id="sl-gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f6e27a"/>
+      <stop offset="40%" stop-color="#f0c35b"/>
+      <stop offset="100%" stop-color="#cf9f3b"/>
+    </linearGradient>
+    <radialGradient id="sl-dark" cx="30%" cy="20%" r="80%">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </radialGradient>
+  </defs>
+
+  <rect x="32" y="32" width="448" height="448" rx="120" fill="url(#sl-dark)"/>
+  <rect x="52" y="52" width="408" height="408" rx="110" fill="none" stroke="url(#sl-gold)" stroke-width="10" opacity="0.7"/>
+
+  <!-- Monogram SL -->
+  <g transform="translate(150,150)">
+    <!-- S -->
+    <path
+      d="M120 40
+         C 90 20, 60 20, 40 35
+         C 25 47, 30 70, 52 80
+         L 110 104
+         C 140 118, 145 142, 132 158
+         C 116 176, 88 182, 60 174"
+      fill="none"
+      stroke="url(#sl-gold)"
+      stroke-width="20"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+
+    <!-- L -->
+    <path
+      d="M150 40 L150 170 L220 170"
+      fill="none"
+      stroke="url(#sl-gold)"
+      stroke-width="22"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </g>
+</svg>
+

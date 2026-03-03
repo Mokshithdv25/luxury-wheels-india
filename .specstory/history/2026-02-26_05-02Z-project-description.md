@@ -21,8 +21,6 @@ The user wants me to describe the project. I should explore the codebase to unde
 
 
 
-
-
 ---
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2">
@@ -47,8 +45,6 @@ Let me list the directory structure using a different approach - maybe list_dir 
 </details></think>
 
 ---
-
-
 
 
 
@@ -157,8 +153,6 @@ Good, I'm getting a clear picture. Let me read a couple more components to under
 
 
 
-
-
 ---
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2">
@@ -194,8 +188,6 @@ I now have a good picture. Let me also quickly check the App.tsx for routing and
 
 
 
-
-
 ---
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2">
@@ -220,7 +212,6 @@ I have a complete picture now. Let me summarize the project for the user.
 </details></think>
 
 ---
-
 
 Here’s a concise description of the project:
 
@@ -2296,6 +2287,2932 @@ I see that the previous change got reverted, probably due to a git revert. I nee
 </details>
 
 </tool-use>
+
+---
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/mokshith/Documents/luxury-wheels-india && npm run dev</summary>
+
+```bash
+cd /Users/mokshith/Documents/luxury-wheels-india && npm run dev
+```
+</details>
+</tool-use>
+
+---
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/mokshith/.cursor/projects/Users-mokshith-Documents-luxury-wheels-india/terminals/446140.txt</summary>
+
+</details>
+</tool-use>
+
+---
+
+<think><details><summary>Thought Process</summary>
+**Clarifying port usage**
+
+It looks like port 8080 is already in use, which is why the user is seeing an old version or nothing at all. The dev server is now running on port 8081, so they need to open that port instead. I could suggest they close any other processes using 8080, but it’s not strictly necessary. I just need to provide a clear and concise explanation for switching to 8081 or making adjustments.</details></think>
+
+---
+
+You’re on the wrong port.
+
+- When I started Vite, **port 8080 was already in use**, so Vite automatically moved to **`http://127.0.0.1:8081/`** (confirmed in the dev server log).
+- That means `http://127.0.0.1:8080/` is some other process (or nothing), so it won’t show the updated SwapLuxe site.
+
+Open **`http://127.0.0.1:8081/`** in the preview/browser and you should see:
+- “SwapLuxe” branding everywhere,
+- updated hero / How it works / Trust / CTA copy,
+- plus the new “future categories” strip (cars → watches → yachts → jets).
+
+---
+
+_**User**_
+
+push it to github
+
+---
+
+_**Agent (model default, mode Agent)**_
+
+<think><details><summary>Thought Process</summary>
+**Executing Git commands**
+
+I need to push to GitHub, so I’ll follow the git protocol. That means running git status, checking the diff, and looking at the log. I’ll make sure to use the Shell tool for this. After that, I can stage, commit, and push my changes. I’ll need a good commit message too. Importantly, I shouldn’t update the git config. I think I’ll run git status, git diff, and git log -5 in parallel.</details></think>
+
+---
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/mokshith/Documents/luxury-wheels-india && git status</summary>
+
+```bash
+cd /Users/mokshith/Documents/luxury-wheels-india && git status
+```
+
+```
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git restore &lt;file&gt;..." to discard changes in working directory)
+	modified:   package-lock.json
+	modified:   package.json
+	modified:   src/components/FeaturedCars.tsx
+	modified:   src/components/Footer.tsx
+	modified:   src/components/HeroSection.tsx
+	modified:   src/components/HowItWorks.tsx
+	modified:   src/components/Navbar.tsx
+	modified:   src/components/TrustSection.tsx
+	modified:   src/index.css
+	modified:   src/pages/Index.tsx
+	modified:   tailwind.config.ts
+
+Untracked files:
+  (use "git add &lt;file&gt;..." to include in what will be committed)
+	.cursorindexingignore
+	.specstory/
+	src/components/FutureCategories.tsx
+	src/components/LuxuryCTA.tsx
+	src/components/TestimonialsMarquee.tsx
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+```
+</details>
+</tool-use>
+
+---
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/mokshith/Documents/luxury-wheels-india && git diff</summary>
+
+```bash
+cd /Users/mokshith/Documents/luxury-wheels-india && git diff
+```
+
+```
+diff --git a/package-lock.json b/package-lock.json
+index cf36be2..5308132 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -95,7 +95,6 @@
+       "version": "5.2.0",
+       "resolved": "https://registry.npmjs.org/@alloc/quick-lru/-/quick-lru-5.2.0.tgz",
+       "integrity": "sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==",
+-      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": "&gt;=10"
+@@ -104,6 +103,33 @@
+         "url": "https://github.com/sponsors/sindresorhus"
+       }
+     },
++    "node_modules/@babel/code-frame": {
++      "version": "7.29.0",
++      "resolved": "https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.29.0.tgz",
++      "integrity": "sha512-9NhCeYjq9+3uxgdtp20LSiJXJvN0FeCtNGpJxuMFZ1Kv3cWUNb6DOhJwUvcVCzKGR66cw4njwM6hrJLqgOwbcw==",
++      "dev": true,
++      "license": "MIT",
++      "peer": true,
++      "dependencies": {
++        "@babel/helper-validator-identifier": "^7.28.5",
++        "js-tokens": "^4.0.0",
++        "picocolors": "^1.1.1"
++      },
++      "engines": {
++        "node": "&gt;=6.9.0"
++      }
++    },
++    "node_modules/@babel/helper-validator-identifier": {
++      "version": "7.28.5",
++      "resolved": "https://registry.npmjs.org/@babel/helper-validator-identifier/-/helper-validator-identifier-7.28.5.tgz",
++      "integrity": "sha512-qSs4ifwzKJSV39ucNjsvc6WVHs6b7S03sOh2OcHF9UHfVPqWWALUsNUVzhSBiItjRZoLHx7nIarVjqKVusUZ1Q==",
++      "dev": true,
++      "license": "MIT",
++      "peer": true,
++      "engines": {
++        "node": "&gt;=6.9.0"
++      }
++    },
+     "node_modules/@babel/runtime": {
+       "version": "7.28.2",
+       "resolved": "https://registry.npmjs.org/@babel/runtime/-/runtime-7.28.2.tgz",
+@@ -809,7 +835,6 @@
+       "version": "8.0.2",
+       "resolved": "https://registry.npmjs.org/@isaacs/cliui/-/cliui-8.0.2.tgz",
+       "integrity": "sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==",
+-      "dev": true,
+       "license": "ISC",
+       "dependencies": {
+         "string-width": "^5.1.2",
+@@ -827,7 +852,6 @@
+       "version": "0.3.5",
+       "resolved": "https://registry.npmjs.org/@jridgewell/gen-mapping/-/gen-mapping-0.3.5.tgz",
+       "integrity": "sha512-IzL8ZoEDIBRWEzlCcRhOaCupYyN5gdIK+Q6fbFdPDg6HqX6jpkItn7DFIpW9LQzXG6Df9sA7+OKnq0qlz/GaQg==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "@jridgewell/set-array": "^1.2.1",
+@@ -842,7 +866,6 @@
+       "version": "3.1.2",
+       "resolved": "https://registry.npmjs.org/@jridgewell/resolve-uri/-/resolve-uri-3.1.2.tgz",
+       "integrity": "sha512-bRISgCIjP20/tbWSPWMEi54QVPRZExkuD9lJL+UIxUKtwVJA8wW1Trb1jMs1RFXo1CBTNZ/5hpC9QvmKWdopKw==",
+-      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": "&gt;=6.0.0"
+@@ -852,7 +875,6 @@
+       "version": "1.2.1",
+       "resolved": "https://registry.npmjs.org/@jridgewell/set-array/-/set-array-1.2.1.tgz",
+       "integrity": "sha512-R8gLRTZeyp03ymzP/6Lil/28tGeGEzhx1q2k703KGWRAI1VdvPIXdG70VJc2pAMw3NA6JKL5hhFu1sJX0Mnn/A==",
+-      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": "&gt;=6.0.0"
+@@ -862,14 +884,12 @@
+       "version": "1.5.5",
+       "resolved": "https://registry.npmjs.org/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.5.5.tgz",
+       "integrity": "sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og==",
+-      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/@jridgewell/trace-mapping": {
+       "version": "0.3.25",
+       "resolved": "https://registry.npmjs.org/@jridgewell/trace-mapping/-/trace-mapping-0.3.25.tgz",
+       "integrity": "sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "@jridgewell/resolve-uri": "^3.1.0",
+@@ -880,7 +900,6 @@
+       "version": "2.1.5",
+       "resolved": "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz",
+       "integrity": "sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "@nodelib/fs.stat": "2.0.5",
+@@ -894,7 +913,6 @@
+       "version": "2.0.5",
+       "resolved": "https://registry.npmjs.org/@nodelib/fs.stat/-/fs.stat-2.0.5.tgz",
+       "integrity": "sha512-RkhPPp2zrqDAQA/2jNhnztcPAlv64XdhIp7a7454A5ovI7Bukxgt7MX7udwAu3zg1DcpPU0rz3VV1SeaqvY4+A==",
+-      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": "&gt;= 8"
+@@ -904,7 +922,6 @@
+       "version": "1.2.8",
+       "resolved": "https://registry.npmjs.org/@nodelib/fs.walk/-/fs.walk-1.2.8.tgz",
+       "integrity": "sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "@nodelib/fs.scandir": "2.1.5",
+@@ -918,7 +935,6 @@
+       "version": "0.11.0",
+       "resolved": "https://registry.npmjs.org/@pkgjs/parseargs/-/parseargs-0.11.0.tgz",
+       "integrity": "sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==",
+-      "dev": true,
+       "license": "MIT",
+       "optional": true,
+       "engines": {
+@@ -2880,6 +2896,46 @@
+         "react": "^18 || ^19"
+       }
+     },
++    "node_modules/@testing-library/dom": {
++      "version": "10.4.1",
++      "resolved": "https://registry.npmjs.org/@testing-library/dom/-/dom-10.4.1.tgz",
++      "integrity": "sha512-o4PXJQidqJl82ckFaXUeoAW+XysPLauYI43Abki5hABd853iMhitooc6znOnczgbTYmEP6U6/y1ZyKAIsvMKGg==",
++      "dev": true,
++      "license": "MIT",
++      "peer": true,
++      "dependencies": {
++        "@babel/code-frame": "^7.10.4",
++        "@babel/runtime": "^7.12.5",
++        "@types/aria-query": "^5.0.1",
++        "aria-query": "5.3.0",
++        "dom-accessibility-api": "^0.5.9",
++        "lz-string": "^1.5.0",
++        "picocolors": "1.1.1",
++        "pretty-format": "^27.0.2"
++      },
++      "engines": {
++        "node": "&gt;=18"
++      }
++    },
++    "node_modules/@testing-library/dom/node_modules/aria-query": {
++      "version": "5.3.0",
++      "resolved": "https://registry.npmjs.org/aria-query/-/aria-query-5.3.0.tgz",
++      "integrity": "sha512-b0P0sZPKtyu8HkeRAfCq0IfURZK+SuwMjY1UXGBU27wpAiTwQAIlq56IbIO+ytk/JjS1fMR14ee5WBBfKi5J6A==",
++      "dev": true,
++      "license": "Apache-2.0",
++      "peer": true,
++      "dependencies": {
++        "dequal": "^2.0.3"
++      }
++    },
++    "node_modules/@testing-library/dom/node_modules/dom-accessibility-api": {
++      "version": "0.5.16",
++      "resolved": "https://registry.npmjs.org/dom-accessibility-api/-/dom-accessibility-api-0.5.16.tgz",
++      "integrity": "sha512-X7BJ2yElsnOJ30pZF4uIIDfBEVgF4XEBxL9Bxhy6dnrm5hkzqmsWHGTiHqRiITNhMyFLyAiWndIJP7Z1NTteDg==",
++      "dev": true,
++      "license": "MIT",
++      "peer": true
++    },
+     "node_modules/@testing-library/jest-dom": {
+       "version": "6.9.1",
+       "resolved": "https://registry.npmjs.org/@testing-library/jest-dom/-/jest-dom-6.9.1.tgz",
+@@ -2938,6 +2994,14 @@
+         "node": "&gt;= 10"
+       }
+     },
++    "node_modules/@types/aria-query": {
++      "version": "5.0.4",
++      "resolved": "https://registry.npmjs.org/@types/aria-query/-/aria-query-5.0.4.tgz",
++      "integrity": "sha512-rfT93uj5s0PRL7EzccGMs3brplhcrghnDoV26NqKhCAS1hVo+WdNsPvE/yb6ilfr5hi2MEk6d5EWJTKdxg8jVw==",
++      "dev": true,
++      "license": "MIT",
++      "peer": true
++    },
+     "node_modules/@types/chai": {
+       "version": "5.2.3",
+       "resolved": "https://registry.npmjs.org/@types/chai/-/chai-5.2.3.tgz",
+@@ -3052,14 +3116,14 @@
+       "version": "15.7.13",
+       "resolved": "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.13.tgz",
+       "integrity": "sha512-hCZTSvwbzWGvhqxp/RqVqwU999pBf2vp7hzIjiYOsl8wqOmUxkQ6ddw1cV3l8811+kdUFus/q4d1Y3E3SyEifA==",
+-      "dev": true,
++      "devOptional": true,
+       "license": "MIT"
+     },
+     "node_modules/@types/react": {
+       "version": "18.3.23",
+       "resolved": "https://registry.npmjs.org/@types/react/-/react-18.3.23.tgz",
+       "integrity": "sha512-/LDXMQh55EzZQ0uVAZmKKhfENivEvWz6E+EYzh+/MCjMhNsotd+ZHhBGIjFDTi6+fz0OhQQQLbTgdQIxxCsC0w==",
+-      "dev": true,
++      "devOptional": true,
+       "license": "MIT",
+       "dependencies": {
+         "@types/prop-types": "*",
+@@ -3070,7 +3134,7 @@
+       "version": "18.3.7",
+       "resolved": "https://registry.npmjs.org/@types/react-dom/-/react-dom-18.3.7.tgz",
+       "integrity": "sha512-MEe3UeoENYVFXzoXEWsvcpg6ZvlrFNlOQ7EOsvhI3CfAXwzPfO8Qwuxd40nepsYKqyyVQnTdEfv68q91yLcKrQ==",
+-      "dev": true,
++      "devOptional": true,
+       "license": "MIT",
+       "peerDependencies": {
+         "@types/react": "^18.0.0"
+@@ -3561,7 +3625,6 @@
+       "version": "6.1.0",
+       "resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-6.1.0.tgz",
+       "integrity": "sha512-7HSX4QQb4CspciLpVFwyRe79O3xsIZDDLER21kERQ71oaPodF8jL725AgJMFAYbooIqolJoRLuM81SpeUkpkvA==",
+-      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": "&gt;=12"
+@@ -3574,7 +3637,6 @@
+       "version": "4.3.0",
+       "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-4.3.0.tgz",
+       "integrity": "sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "color-convert": "^2.0.1"
+@@ -3590,14 +3652,12 @@
+       "version": "1.3.0",
+       "resolved": "https://registry.npmjs.org/any-promise/-/any-promise-1.3.0.tgz",
+       "integrity": "sha512-7UvmKalWRt1wgjL1RrGxoSJW/0QZFIegpeGvZG9kjp8vrRu55XTHbwnqq2GpXm9uLbcuhxm3IqX9OB4MZR1b2A==",
+-      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/anymatch": {
+       "version": "3.1.3",
+       "resolved": "https://registry.npmjs.org/anymatch/-/anymatch-3.1.3.tgz",
+       "integrity": "sha512-KMReFUr0B4t+D+OBkjR3KYqvocp2XaSzO55UcB6mgQMd3KbcE+mWTyvVV7D/zsdEbNnV6acZUutkiHQXvTr1Rw==",
+-      "dev": true,
+       "license": "ISC",
+       "dependencies": {
+         "normalize-path": "^3.0.0",
+@@ -3607,11 +3667,22 @@
+         "node": "&gt;= 8"
+       }
+     },
++    "node_modules/anymatch/node_modules/picomatch": {
++      "version": "2.3.1",
++      "resolved": "https://registry.npmjs.org/picomatch/-/picomatch-2.3.1.tgz",
++      "integrity": "sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==",
++      "license": "MIT",
++      "engines": {
++        "node": "&gt;=8.6"
++      },
++      "funding": {
++        "url": "https://github.com/sponsors/jonschlinkert"
++      }
++    },
+     "node_modules/arg": {
+       "version": "5.0.2",
+       "resolved": "https://registry.npmjs.org/arg/-/arg-5.0.2.tgz",
+       "integrity": "sha512-PYjyFOLKQ9y57JvQ6QLo8dAgNqswh8M1RMJYdQduT6xbWSgK36P/Z/v+p888pM69jMMfS8Xd8F6I1kQ/I9HUGg==",
+-      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/argparse": {
+@@ -3702,14 +3773,12 @@
+       "version": "1.0.2",
+       "resolved": "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.2.tgz",
+       "integrity": "sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==",
+-      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/binary-extensions": {
+       "version": "2.3.0",
+       "resolved": "https://registry.npmjs.org/binary-extensions/-/binary-extensions-2.3.0.tgz",
+       "integrity": "sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==",
+-      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": "&gt;=8"
+@@ -3733,7 +3802,6 @@
+       "version": "3.0.3",
+       "resolved": "https://registry.npmjs.org/braces/-/braces-3.0.3.tgz",
+       "integrity": "sha512-yQbXgO/OSZVD2IsiLlro+7Hf6Q18EJrKSEsdoMzKePKXct3gvD8oLcOQdIzGupr5Fj+EDe8gO/lxc1BzfMpxvA==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "fill-range": "^7.1.1"
+@@ -3813,7 +3881,6 @@
+       "version": "2.0.1",
+       "resolved": "https://registry.npmjs.org/camelcase-css/-/camelcase-css-2.0.1.tgz",
+       "integrity": "sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==",
+-      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": "&gt;= 6"
+@@ -3888,7 +3955,6 @@
+       "version": "3.6.0",
+       "resolved": "https://registry.npmjs.org/chokidar/-/chokidar-3.6.0.tgz",
+       "integrity": "sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "anymatch": "~3.1.2",
+@@ -3913,7 +3979,6 @@
+       "version": "5.1.2",
+       "resolved": "https://registry.npmjs.org/glob-parent/-/glob-parent-5.1.2.tgz",
+       "integrity": "sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==",
+-      "dev": true,
+       "license": "ISC",
+       "dependencies": {
+         "is-glob": "^4.0.1"
+@@ -3962,7 +4027,6 @@
+       "version": "2.0.1",
+       "resolved": "https://registry.npmjs.org/color-convert/-/color-convert-2.0.1.tgz",
+       "integrity": "sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "color-name": "~1.1.4"
+@@ -3975,7 +4039,6 @@
+       "version": "1.1.4",
+       "resolved": "https://registry.npmjs.org/color-name/-/color-name-1.1.4.tgz",
+       "integrity": "sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==",
+-      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/combined-stream": {
+@@ -3995,7 +4058,6 @@
+       "version": "4.1.1",
+       "resolved": "https://registry.npmjs.org/commander/-/commander-4.1.1.tgz",
+       "integrity": "sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==",
+-      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": "&gt;= 6"
+@@ -4012,7 +4074,6 @@
+       "version": "7.0.6",
+       "resolved": "https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.6.tgz",
+       "integrity": "sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==",
+-      "dev": true,
+       "dependencies": {
+         "path-key": "^3.1.0",
+         "shebang-command": "^2.0.0",
+@@ -4033,7 +4094,6 @@
+       "version": "3.0.0",
+       "resolved": "https://registry.npmjs.org/cssesc/-/cssesc-3.0.0.tgz",
+       "integrity": "sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==",
+-      "dev": true,
+       "license": "MIT",
+       "bin": {
+         "cssesc": "bin/cssesc"
+@@ -4279,6 +4339,17 @@
+         "node": "&gt;=0.4.0"
+       }
+     },
++    "node_modules/dequal": {
++      "version": "2.0.3",
++      "resolved": "https://registry.npmjs.org/dequal/-/dequal-2.0.3.tgz",
++      "integrity": "sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==",
++      "dev": true,
++      "license": "MIT",
++      "peer": true,
++      "engines": {
++        "node": "&gt;=6"
++      }
++    },
+     "node_modules/detect-node-es": {
+       "version": "1.1.0",
+       "resolved": "https://registry.npmjs.org/detect-node-es/-/detect-node-es-1.1.0.tgz",
+@@ -4289,14 +4360,12 @@
+       "version": "1.2.2",
+       "resolved": "https://registry.npmjs.org/didyoumean/-/didyoumean-1.2.2.tgz",
+       "integrity": "sha512-gxtyfqMg7GKyhQmb056K7M3xszy/myH8w+B4RT+QXBQsvAOdc3XymqDDPHx1BgPgsdAA5SIifona89YtRATDzw==",
+-      "dev": true,
+       "license": "Apache-2.0"
+     },
+     "node_modules/dlv": {
+       "version": "1.1.3",
+       "resolved": "https://registry.npmjs.org/dlv/-/dlv-1.1.3.tgz",
+       "integrity": "sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==",
+-      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/dom-accessibility-api": {
+@@ -4349,7 +4418,6 @@
+       "version": "0.2.0",
+       "resolved": "https://registry.npmjs.org/eastasianwidth/-/eastasianwidth-0.2.0.tgz",
+       "integrity": "sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==",
+-      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/electron-to-chromium": {
+@@ -4391,7 +4459,6 @@
+       "version": "9.2.2",
+       "resolved": "https://registry.npmjs.org/emoji-regex/-/emoji-regex-9.2.2.tgz",
+       "integrity": "sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==",
+-      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/entities": {
+@@ -4785,7 +4852,6 @@
+       "version": "3.3.2",
+       "resolved": "https://registry.npmjs.org/fast-glob/-/fast-glob-3.3.2.tgz",
+       "integrity": "sha512-oX2ruAFQwf/Orj8m737Y5adxDQO0LAB7/S5MnxCdTNDd4p6BsyIVsv9JQsATbTSq8KHRpLwIHbVlUNatxd+1Ow==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "@nodelib/fs.stat": "^2.0.2",
+@@ -4802,7 +4868,6 @@
+       "version": "5.1.2",
+       "resolved": "https://registry.npmjs.org/glob-parent/-/glob-parent-5.1.2.tgz",
+       "integrity": "sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==",
+-      "dev": true,
+       "license": "ISC",
+       "dependencies": {
+         "is-glob": "^4.0.1"
+@@ -4829,7 +4894,6 @@
+       "version": "1.17.1",
+       "resolved": "https://registry.npmjs.org/fastq/-/fastq-1.17.1.tgz",
+       "integrity": "sha512-sRVD3lWVIXWg6By68ZN7vho9a1pQcN/WBFaAAsDDFzlJjvoGx0P8z7V1t72grFJfJhu3YPZBuu25f7Kaw2jN1w==",
+-      "dev": true,
+       "license": "ISC",
+       "dependencies": {
+         "reusify": "^1.0.4"
+@@ -4870,7 +4934,6 @@
+       "version": "7.1.1",
+       "resolved": "https://registry.npmjs.org/fill-range/-/fill-range-7.1.1.tgz",
+       "integrity": "sha512-YsGpe3WHLK8ZYi4tWDg2Jy3ebRz2rXowDxnld4bkQB00cc/1Zw9AWnC0i9ztDJitivtQvaI9KaLyKrc+hBW0yg==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "to-regex-range": "^5.0.1"
+@@ -4921,7 +4984,6 @@
+       "version": "3.3.0",
+       "resolved": "https://registry.npmjs.org/foreground-child/-/foreground-child-3.3.0.tgz",
+       "integrity": "sha512-Ld2g8rrAyMYFXBhEqMz8ZAHBi4J4uS1i/CxGMDnjyFWddMXLVcDp051DZfu+t7+ab7Wv6SMqpWmyFIj5UbfFvg==",
+-      "dev": true,
+       "license": "ISC",
+       "dependencies": {
+         "cross-spawn": "^7.0.0",
+@@ -4996,7 +5058,6 @@
+       "version": "2.3.3",
+       "resolved": "https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz",
+       "integrity": "sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==",
+-      "dev": true,
+       "hasInstallScript": true,
+       "license": "MIT",
+       "optional": true,
+@@ -5011,7 +5072,6 @@
+       "version": "1.1.2",
+       "resolved": "https://registry.npmjs.org/function-bind/-/function-bind-1.1.2.tgz",
+       "integrity": "sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==",
+-      "dev": true,
+       "license": "MIT",
+       "funding": {
+         "url": "https://github.com/sponsors/ljharb"
+@@ -5069,7 +5129,6 @@
+       "version": "10.4.5",
+       "resolved": "https://registry.npmjs.org/glob/-/glob-10.4.5.tgz",
+       "integrity": "sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==",
+-      "dev": true,
+       "license": "ISC",
+       "dependencies": {
+         "foreground-child": "^3.1.0",
+@@ -5090,7 +5149,6 @@
+       "version": "6.0.2",
+       "resolved": "https://registry.npmjs.org/glob-parent/-/glob-parent-6.0.2.tgz",
+       "integrity": "sha512-XxwI8EOhVQgWp6iDL+3b0r86f4d6AX6zSU55HfB4ydCEuXLXc5FcYeOu+nnGftS4TEju/11rt4KJPTMgbfmv4A==",
+-      "dev": true,
+       "license": "ISC",
+       "dependencies": {
+         "is-glob": "^4.0.3"
+@@ -5103,7 +5161,6 @@
+       "version": "2.0.2",
+       "resolved": "https://registry.npmjs.org/brace-expansion/-/brace-expansion-2.0.2.tgz",
+       "integrity": "sha512-Jt0vHyM+jmUBqojB7E1NIYadt0vI0Qxjxd2TErW94wDz+E2LAm5vKMXXwg6ZZBTHPuUlDgQHKXvjGBdfcF1ZDQ==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "balanced-match": "^1.0.0"
+@@ -5113,7 +5170,6 @@
+       "version": "9.0.5",
+       "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-9.0.5.tgz",
+       "integrity": "sha512-G6T0ZX48xgozx7587koeX9Ys2NYy6Gmv//P89sEte9V9whIapMNF4idKxnW2QtCcLiTWlb/wfCabAtAFWhhBow==",
+-      "dev": true,
+       "license": "ISC",
+       "dependencies": {
+         "brace-expansion": "^2.0.1"
+@@ -5201,7 +5257,6 @@
+       "version": "2.0.2",
+       "resolved": "https://registry.npmjs.org/hasown/-/hasown-2.0.2.tgz",
+       "integrity": "sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "function-bind": "^1.1.2"
+@@ -5344,7 +5399,6 @@
+       "version": "2.1.0",
+       "resolved": "https://registry.npmjs.org/is-binary-path/-/is-binary-path-2.1.0.tgz",
+       "integrity": "sha512-ZMERYes6pDydyuGidse7OsHxtbI7WVeUEozgR/g7rd0xUimYNlvZRE/K2MgZTjWy725IfelLeVcEM97mmtRGXw==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "binary-extensions": "^2.0.0"
+@@ -5357,7 +5411,6 @@
+       "version": "2.15.1",
+       "resolved": "https://registry.npmjs.org/is-core-module/-/is-core-module-2.15.1.tgz",
+       "integrity": "sha512-z0vtXSwucUJtANQWldhbtbt7BnL0vxiFjIdDLAatwhDYty2bad6s+rijD6Ri4YuYJubLzIJLUidCh09e1djEVQ==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "hasown": "^2.0.2"
+@@ -5373,7 +5426,6 @@
+       "version": "2.1.1",
+       "resolved": "https://registry.npmjs.org/is-extglob/-/is-extglob-2.1.1.tgz",
+       "integrity": "sha512-SbKbANkN603Vi4jEZv49LeVJMn4yGwsbzZworEoyEiutsN3nJYdbO36zfhGJ6QEDpOZIFkDtnq5JRxmvl3jsoQ==",
+-      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": "&gt;=0.10.0"
+@@ -5383,7 +5435,6 @@
+       "version": "3.0.0",
+       "resolved": "https://registry.npmjs.org/is-fullwidth-code-point/-/is-fullwidth-code-point-3.0.0.tgz",
+       "integrity": "sha512-zymm5+u+sCsSWyD9qNaejV3DFvhCKclKdizYaJUuHA83RLjb7nSuGnddCHGv0hk+KY7BMAlsWeK4Ueg6EV6XQg==",
+-      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": "&gt;=8"
+@@ -5393,7 +5444,6 @@
+       "version": "4.0.3",
+       "resolved": "https://registry.npmjs.org/is-glob/-/is-glob-4.0.3.tgz",
+       "integrity": "sha512-xelSayHH36ZgE7ZWhli7pW34hNbNl8Ojv5KVmkJD4hBdD3th8Tfk9vYasLM+mXWOZhFkgZfxhLSnrwRr4elSSg==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "is-extglob": "^2.1.1"
+@@ -5406,7 +5456,6 @@
+       "version": "7.0.0",
+       "resolved": "https://registry.npmjs.org/is-number/-/is-number-7.0.0.tgz",
+       "integrity": "sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==",
+-      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": "&gt;=0.12.0"
+@@ -5423,14 +5472,12 @@
+       "version": "2.0.0",
+       "resolved": "https://registry.npmjs.org/isexe/-/isexe-2.0.0.tgz",
+       "integrity": "sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==",
+-      "dev": true,
+       "license": "ISC"
+     },
+     "node_modules/jackspeak": {
+       "version": "3.4.3",
+       "resolved": "https://registry.npmjs.org/jackspeak/-/jackspeak-3.4.3.tgz",
+       "integrity": "sha512-OGlZQpz2yfahA/Rd1Y8Cd9SIEsqvXkLVoSw/cgwhnhFMDbsQFeZYoJJ7bIZBS9BcamUW96asq/npPWugM+RQBw==",
+-      "dev": true,
+       "license": "BlueOak-1.0.0",
+       "dependencies": {
+         "@isaacs/cliui": "^8.0.2"
+@@ -5446,7 +5493,6 @@
+       "version": "1.21.6",
+       "resolved": "https://registry.npmjs.org/jiti/-/jiti-1.21.6.tgz",
+       "integrity": "sha512-2yTgeWTWzMWkHu6Jp9NKgePDaYHbntiwvYuuJLbbN9vl7DC9DvXKOB2BC3ZZ92D3cvV/aflH0osDfwpHepQ53w==",
+-      "dev": true,
+       "license": "MIT",
+       "bin": {
+         "jiti": "bin/jiti.js"
+@@ -5566,7 +5612,6 @@
+       "version": "3.1.3",
+       "resolved": "https://registry.npmjs.org/lilconfig/-/lilconfig-3.1.3.tgz",
+       "integrity": "sha512-/vlFKAoH5Cgt3Ie+JLhRbwOsCQePABiU3tJ1egGvyQ+33R/vcwM2Zl2QR/LzjsBeItPt3oSVXapn+m4nQDvpzw==",
+-      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": "&gt;=14"
+@@ -5579,7 +5624,6 @@
+       "version": "1.2.4",
+       "resolved": "https://registry.npmjs.org/lines-and-columns/-/lines-and-columns-1.2.4.tgz",
+       "integrity": "sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==",
+-      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/locate-path": {
+@@ -6092,7 +6136,6 @@
+       "version": "10.4.3",
+       "resolved": "https://registry.npmjs.org/lru-cache/-/lru-cache-10.4.3.tgz",
+       "integrity": "sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==",
+-      "dev": true,
+       "license": "ISC"
+     },
+     "node_modules/lucide-react": {
+@@ -6103,6 +6146,17 @@
+         "react": "^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0-rc"
+       }
+     },
++    "node_modules/lz-string": {
++      "version": "1.5.0",
++      "resolved": "https://registry.npmjs.org/lz-string/-/lz-string-1.5.0.tgz",
++      "integrity": "sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==",
++      "dev": true,
++      "license": "MIT",
++      "peer": true,
++      "bin": {
++        "lz-string": "bin/bin.js"
++      }
++    },
+     "node_modules/magic-string": {
+       "version": "0.30.21",
+       "resolved": "https://registry.npmjs.org/magic-string/-/magic-string-0.30.21.tgz",
+@@ -6127,7 +6181,6 @@
+       "version": "1.4.1",
+       "resolved": "https://registry.npmjs.org/merge2/-/merge2-1.4.1.tgz",
+       "integrity": "sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==",
+-      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": "&gt;= 8"
+@@ -6137,7 +6190,6 @@
+       "version": "4.0.8",
+       "resolved": "https://registry.npmjs.org/micromatch/-/micromatch-4.0.8.tgz",
+       "integrity": "sha512-PXwfBhYu0hBCPw8Dn0E+WDYb7af3dSLVWKi3HGv84IdF4TyFoC0ysxFd0Goxw7nSv4T/PzEJQxsYsEiFCKo2BA==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "braces": "^3.0.3",
+@@ -6147,6 +6199,18 @@
+         "node": "&gt;=8.6"
+       }
+     },
++    "node_modules/micromatch/node_modules/picomatch": {
++      "version": "2.3.1",
++      "resolved": "https://registry.npmjs.org/picomatch/-/picomatch-2.3.1.tgz",
++      "integrity": "sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==",
++      "license": "MIT",
++      "engines": {
++        "node": "&gt;=8.6"
++      },
++      "funding": {
++        "url": "https://github.com/sponsors/jonschlinkert"
++      }
++    },
+     "node_modules/mime-db": {
+       "version": "1.52.0",
+       "resolved": "https://registry.npmjs.org/mime-db/-/mime-db-1.52.0.tgz",
+@@ -6197,7 +6261,6 @@
+       "version": "7.1.2",
+       "resolved": "https://registry.npmjs.org/minipass/-/minipass-7.1.2.tgz",
+       "integrity": "sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==",
+-      "dev": true,
+       "license": "ISC",
+       "engines": {
+         "node": "&gt;=16 || 14 &gt;=14.17"
+@@ -6229,7 +6292,6 @@
+       "version": "2.7.0",
+       "resolved": "https://registry.npmjs.org/mz/-/mz-2.7.0.tgz",
+       "integrity": "sha512-z81GNO7nnYMEhrGh9LeymoE4+Yr0Wn5McHIZMK5cfQCl+NDX08sCZgUc9/6MHni9IWuFLm1Z3HTCXu2z9fN62Q==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "any-promise": "^1.0.0",
+@@ -6241,7 +6303,6 @@
+       "version": "3.3.11",
+       "resolved": "https://registry.npmjs.org/nanoid/-/nanoid-3.3.11.tgz",
+       "integrity": "sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==",
+-      "dev": true,
+       "funding": [
+         {
+           "type": "github",
+@@ -6284,7 +6345,6 @@
+       "version": "3.0.0",
+       "resolved": "https://registry.npmjs.org/normalize-path/-/normalize-path-3.0.0.tgz",
+       "integrity": "sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==",
+-      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": "&gt;=0.10.0"
+@@ -6320,7 +6380,6 @@
+       "version": "3.0.0",
+       "resolved": "https://registry.npmjs.org/object-hash/-/object-hash-3.0.0.tgz",
+       "integrity": "sha512-RSn9F68PjH9HqtltsSnqYC1XXoWe9Bju5+213R98cNGttag9q9yAOTzdbsqvIa7aNm5WffBZFpWYr2aWrklWAw==",
+-      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": "&gt;= 6"
+@@ -6380,7 +6439,6 @@
+       "version": "1.0.1",
+       "resolved": "https://registry.npmjs.org/package-json-from-dist/-/package-json-from-dist-1.0.1.tgz",
+       "integrity": "sha512-UEZIS3/by4OC8vL3P2dTXRETpebLI2NiI5vIrjaD/5UtrkFX/tNbwjTSRAGC/+7CAo2pIcBaRgWmcBBHcsaCIw==",
+-      "dev": true,
+       "license": "BlueOak-1.0.0"
+     },
+     "node_modules/parent-module": {
+@@ -6423,7 +6481,6 @@
+       "version": "3.1.1",
+       "resolved": "https://registry.npmjs.org/path-key/-/path-key-3.1.1.tgz",
+       "integrity": "sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==",
+-      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": "&gt;=8"
+@@ -6433,14 +6490,12 @@
+       "version": "1.0.7",
+       "resolved": "https://registry.npmjs.org/path-parse/-/path-parse-1.0.7.tgz",
+       "integrity": "sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==",
+-      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/path-scurry": {
+       "version": "1.11.1",
+       "resolved": "https://registry.npmjs.org/path-scurry/-/path-scurry-1.11.1.tgz",
+       "integrity": "sha512-Xa4Nw17FS9ApQFJ9umLiJS4orGjm7ZzwUrwamcGQuHSzDyth9boKDaycYdDcZDuqYATXw4HFXgaqWTctW/v1HA==",
+-      "dev": true,
+       "license": "BlueOak-1.0.0",
+       "dependencies": {
+         "lru-cache": "^10.2.0",
+@@ -6474,17 +6529,16 @@
+       "version": "1.1.1",
+       "resolved": "https://registry.npmjs.org/picocolors/-/picocolors-1.1.1.tgz",
+       "integrity": "sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==",
+-      "dev": true,
+       "license": "ISC"
+     },
+     "node_modules/picomatch": {
+-      "version": "2.3.1",
+-      "resolved": "https://registry.npmjs.org/picomatch/-/picomatch-2.3.1.tgz",
+-      "integrity": "sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==",
++      "version": "4.0.3",
++      "resolved": "https://registry.npmjs.org/picomatch/-/picomatch-4.0.3.tgz",
++      "integrity": "sha512-5gTmgEY/sqK6gFXLIsQNH19lWb4ebPDLA4SdLP7dsWkIXHWlG66oPuVvXSGFPppYZz8ZDZq0dYYrbHfBCVUb1Q==",
+       "dev": true,
+       "license": "MIT",
+       "engines": {
+-        "node": "&gt;=8.6"
++        "node": "&gt;=12"
+       },
+       "funding": {
+         "url": "https://github.com/sponsors/jonschlinkert"
+@@ -6494,7 +6548,6 @@
+       "version": "2.3.0",
+       "resolved": "https://registry.npmjs.org/pify/-/pify-2.3.0.tgz",
+       "integrity": "sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==",
+-      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": "&gt;=0.10.0"
+@@ -6504,7 +6557,6 @@
+       "version": "4.0.6",
+       "resolved": "https://registry.npmjs.org/pirates/-/pirates-4.0.6.tgz",
+       "integrity": "sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==",
+-      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": "&gt;= 6"
+@@ -6514,7 +6566,6 @@
+       "version": "8.5.6",
+       "resolved": "https://registry.npmjs.org/postcss/-/postcss-8.5.6.tgz",
+       "integrity": "sha512-3Ybi1tAuwAP9s0r1UQ2J4n5Y0G05bJkpUIO0/bI9MhwmD70S5aTWbXGBwxHrelT+XM1k6dM0pk+SwNkpTRN7Pg==",
+-      "dev": true,
+       "funding": [
+         {
+           "type": "opencollective",
+@@ -6543,7 +6594,6 @@
+       "version": "15.1.0",
+       "resolved": "https://registry.npmjs.org/postcss-import/-/postcss-import-15.1.0.tgz",
+       "integrity": "sha512-hpr+J05B2FVYUAXHeK1YyI267J/dDDhMU6B6civm8hSY1jYJnBXxzKDKDswzJmtLHryrjhnDjqqp/49t8FALew==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "postcss-value-parser": "^4.0.0",
+@@ -6561,7 +6611,6 @@
+       "version": "4.0.1",
+       "resolved": "https://registry.npmjs.org/postcss-js/-/postcss-js-4.0.1.tgz",
+       "integrity": "sha512-dDLF8pEO191hJMtlHFPRa8xsizHaM82MLfNkUHdUtVEV3tgTp5oj+8qbEqYM57SLfc74KSbw//4SeJma2LRVIw==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "camelcase-css": "^2.0.1"
+@@ -6581,7 +6630,6 @@
+       "version": "4.0.2",
+       "resolved": "https://registry.npmjs.org/postcss-load-config/-/postcss-load-config-4.0.2.tgz",
+       "integrity": "sha512-bSVhyJGL00wMVoPUzAVAnbEoWyqRxkjv64tUl427SKnPrENtq6hJwUojroMz2VB+Q1edmi4IfrAPpami5VVgMQ==",
+-      "dev": true,
+       "funding": [
+         {
+           "type": "opencollective",
+@@ -6617,7 +6665,6 @@
+       "version": "6.2.0",
+       "resolved": "https://registry.npmjs.org/postcss-nested/-/postcss-nested-6.2.0.tgz",
+       "integrity": "sha512-HQbt28KulC5AJzG+cZtj9kvKB93CFCdLvog1WFLf1D+xmMvPGlBstkpTEZfK5+AN9hfJocyBFCNiqyS48bpgzQ==",
+-      "dev": true,
+       "funding": [
+         {
+           "type": "opencollective",
+@@ -6643,7 +6690,6 @@
+       "version": "6.1.2",
+       "resolved": "https://registry.npmjs.org/postcss-selector-parser/-/postcss-selector-parser-6.1.2.tgz",
+       "integrity": "sha512-Q8qQfPiZ+THO/3ZrOrO0cJJKfpYCagtMUkXbnEfmgUjwXg6z/WBeOyS9APBBPCTSiDV+s4SwQGu8yFsiMRIudg==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "cssesc": "^3.0.0",
+@@ -6657,7 +6703,6 @@
+       "version": "4.2.0",
+       "resolved": "https://registry.npmjs.org/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz",
+       "integrity": "sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==",
+-      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/prelude-ls": {
+@@ -6670,6 +6715,55 @@
+         "node": "&gt;= 0.8.0"
+       }
+     },
++    "node_modules/pretty-format": {
++      "version": "27.5.1",
++      "resolved": "https://registry.npmjs.org/pretty-format/-/pretty-format-27.5.1.tgz",
++      "integrity": "sha512-Qb1gy5OrP5+zDf2Bvnzdl3jsTf1qXVMazbvCoKhtKqVs4/YK4ozX4gKQJJVyNe+cajNPn0KoC0MC3FUmaHWEmQ==",
++      "dev": true,
++      "license": "MIT",
++      "peer": true,
++      "dependencies": {
++        "ansi-regex": "^5.0.1",
++        "ansi-styles": "^5.0.0",
++        "react-is": "^17.0.1"
++      },
++      "engines": {
++        "node": "^10.13.0 || ^12.13.0 || ^14.15.0 || &gt;=15.0.0"
++      }
++    },
++    "node_modules/pretty-format/node_modules/ansi-regex": {
++      "version": "5.0.1",
++      "resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.1.tgz",
++      "integrity": "sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==",
++      "dev": true,
++      "license": "MIT",
++      "peer": true,
++      "engines": {
++        "node": "&gt;=8"
++      }
++    },
++    "node_modules/pretty-format/node_modules/ansi-styles": {
++      "version": "5.2.0",
++      "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-5.2.0.tgz",
++      "integrity": "sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==",
++      "dev": true,
++      "license": "MIT",
++      "peer": true,
++      "engines": {
++        "node": "&gt;=10"
++      },
++      "funding": {
++        "url": "https://github.com/chalk/ansi-styles?sponsor=1"
++      }
++    },
++    "node_modules/pretty-format/node_modules/react-is": {
++      "version": "17.0.2",
++      "resolved": "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz",
++      "integrity": "sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==",
++      "dev": true,
++      "license": "MIT",
++      "peer": true
++    },
+     "node_modules/prop-types": {
+       "version": "15.8.1",
+       "resolved": "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz",
+@@ -6721,7 +6815,6 @@
+       "version": "1.2.3",
+       "resolved": "https://registry.npmjs.org/queue-microtask/-/queue-microtask-1.2.3.tgz",
+       "integrity": "sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==",
+-      "dev": true,
+       "funding": [
+         {
+           "type": "github",
+@@ -6945,7 +7038,6 @@
+       "version": "1.0.0",
+       "resolved": "https://registry.npmjs.org/read-cache/-/read-cache-1.0.0.tgz",
+       "integrity": "sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "pify": "^2.3.0"
+@@ -6955,7 +7047,6 @@
+       "version": "3.6.0",
+       "resolved": "https://registry.npmjs.org/readdirp/-/readdirp-3.6.0.tgz",
+       "integrity": "sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "picomatch": "^2.2.1"
+@@ -6964,6 +7055,18 @@
+         "node": "&gt;=8.10.0"
+       }
+     },
++    "node_modules/readdirp/node_modules/picomatch": {
++      "version": "2.3.1",
++      "resolved": "https://registry.npmjs.org/picomatch/-/picomatch-2.3.1.tgz",
++      "integrity": "sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==",
++      "license": "MIT",
++      "engines": {
++        "node": "&gt;=8.6"
++      },
++      "funding": {
++        "url": "https://github.com/sponsors/jonschlinkert"
++      }
++    },
+     "node_modules/recharts": {
+       "version": "2.15.4",
+       "resolved": "https://registry.npmjs.org/recharts/-/recharts-2.15.4.tgz",
+@@ -7021,7 +7124,6 @@
+       "version": "1.22.8",
+       "resolved": "https://registry.npmjs.org/resolve/-/resolve-1.22.8.tgz",
+       "integrity": "sha512-oKWePCxqpd6FlLvGV1VU0x7bkPmmCNolxzjMf4NczoDnQcIWrAF+cPtZn5i6n+RfD2d9i0tzpKnG6Yk168yIyw==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "is-core-module": "^2.13.0",
+@@ -7049,7 +7151,6 @@
+       "version": "1.0.4",
+       "resolved": "https://registry.npmjs.org/reusify/-/reusify-1.0.4.tgz",
+       "integrity": "sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==",
+-      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "iojs": "&gt;=1.0.0",
+@@ -7096,7 +7197,6 @@
+       "version": "1.2.0",
+       "resolved": "https://registry.npmjs.org/run-parallel/-/run-parallel-1.2.0.tgz",
+       "integrity": "sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==",
+-      "dev": true,
+       "funding": [
+         {
+           "type": "github",
+@@ -7162,7 +7262,6 @@
+       "version": "2.0.0",
+       "resolved": "https://registry.npmjs.org/shebang-command/-/shebang-command-2.0.0.tgz",
+       "integrity": "sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "shebang-regex": "^3.0.0"
+@@ -7175,7 +7274,6 @@
+       "version": "3.0.0",
+       "resolved": "https://registry.npmjs.org/shebang-regex/-/shebang-regex-3.0.0.tgz",
+       "integrity": "sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==",
+-      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": "&gt;=8"
+@@ -7192,7 +7290,6 @@
+       "version": "4.1.0",
+       "resolved": "https://registry.npmjs.org/signal-exit/-/signal-exit-4.1.0.tgz",
+       "integrity": "sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==",
+-      "dev": true,
+       "license": "ISC",
+       "engines": {
+         "node": "&gt;=14"
+@@ -7226,7 +7323,6 @@
+       "version": "1.2.1",
+       "resolved": "https://registry.npmjs.org/source-map-js/-/source-map-js-1.2.1.tgz",
+       "integrity": "sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==",
+-      "dev": true,
+       "license": "BSD-3-Clause",
+       "engines": {
+         "node": "&gt;=0.10.0"
+@@ -7250,7 +7346,6 @@
+       "version": "5.1.2",
+       "resolved": "https://registry.npmjs.org/string-width/-/string-width-5.1.2.tgz",
+       "integrity": "sha512-HnLOCR3vjcY8beoNLtcjZ5/nxn2afmME6lhrDrebokqMap+XbeW8n9TXpPDOqdGK5qcI3oT0GKTW6wC7EMiVqA==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "eastasianwidth": "^0.2.0",
+@@ -7269,7 +7364,6 @@
+       "version": "4.2.3",
+       "resolved": "https://registry.npmjs.org/string-width/-/string-width-4.2.3.tgz",
+       "integrity": "sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "emoji-regex": "^8.0.0",
+@@ -7284,7 +7378,6 @@
+       "version": "5.0.1",
+       "resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.1.tgz",
+       "integrity": "sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==",
+-      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": "&gt;=8"
+@@ -7294,14 +7387,12 @@
+       "version": "8.0.0",
+       "resolved": "https://registry.npmjs.org/emoji-regex/-/emoji-regex-8.0.0.tgz",
+       "integrity": "sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==",
+-      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/string-width-cjs/node_modules/strip-ansi": {
+       "version": "6.0.1",
+       "resolved": "https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz",
+       "integrity": "sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "ansi-regex": "^5.0.1"
+@@ -7314,7 +7405,6 @@
+       "version": "7.1.0",
+       "resolved": "https://registry.npmjs.org/strip-ansi/-/strip-ansi-7.1.0.tgz",
+       "integrity": "sha512-iq6eVVI64nQQTRYq2KtEg2d2uU7LElhTJwsH4YzIHZshxlgZms/wIc4VoDQTlG/IvVIrBKG06CrZnp0qv7hkcQ==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "ansi-regex": "^6.0.1"
+@@ -7331,7 +7421,6 @@
+       "version": "6.0.1",
+       "resolved": "https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz",
+       "integrity": "sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "ansi-regex": "^5.0.1"
+@@ -7344,7 +7433,6 @@
+       "version": "5.0.1",
+       "resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.1.tgz",
+       "integrity": "sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==",
+-      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": "&gt;=8"
+@@ -7400,7 +7488,6 @@
+       "version": "3.35.0",
+       "resolved": "https://registry.npmjs.org/sucrase/-/sucrase-3.35.0.tgz",
+       "integrity": "sha512-8EbVDiu9iN/nESwxeSxDKe0dunta1GOlHufmSSXxMD2z2/tMZpDMpvXQGsc+ajGo8y2uYUmixaSRUc/QPoQ0GA==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "@jridgewell/gen-mapping": "^0.3.2",
+@@ -7436,7 +7523,6 @@
+       "version": "1.0.0",
+       "resolved": "https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz",
+       "integrity": "sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==",
+-      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": "&gt;= 0.4"
+@@ -7466,7 +7552,6 @@
+       "version": "3.4.17",
+       "resolved": "https://registry.npmjs.org/tailwindcss/-/tailwindcss-3.4.17.tgz",
+       "integrity": "sha512-w33E2aCvSDP0tW9RZuNXadXlkHXqFzSkQew/aIa2i/Sj8fThxwovwlXHSPXTbAHwEIhBFXAedUhP2tueAKP8Og==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "@alloc/quick-lru": "^5.2.0",
+@@ -7513,7 +7598,6 @@
+       "version": "3.3.1",
+       "resolved": "https://registry.npmjs.org/thenify/-/thenify-3.3.1.tgz",
+       "integrity": "sha512-RVZSIV5IG10Hk3enotrhvz0T9em6cyHBLkH/YAZuKqd8hRkKhSfCGIcP2KUY0EPxndzANBmNllzWPwak+bheSw==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "any-promise": "^1.0.0"
+@@ -7523,7 +7607,6 @@
+       "version": "1.6.0",
+       "resolved": "https://registry.npmjs.org/thenify-all/-/thenify-all-1.6.0.tgz",
+       "integrity": "sha512-RNxQH/qI8/t3thXJDwcstUO4zeqo64+Uy/+sNVRBx4Xn2OX+OZ9oP+iJnNFqplFra2ZUVeKCSa2oVWi3T4uVmA==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "thenify": "&gt;= 3.1.0 &lt; 4"
+@@ -7569,19 +7652,6 @@
+         "url": "https://github.com/sponsors/SuperchupuDev"
+       }
+     },
+-    "node_modules/tinyglobby/node_modules/picomatch": {
+-      "version": "4.0.3",
+-      "resolved": "https://registry.npmjs.org/picomatch/-/picomatch-4.0.3.tgz",
+-      "integrity": "sha512-5gTmgEY/sqK6gFXLIsQNH19lWb4ebPDLA4SdLP7dsWkIXHWlG66oPuVvXSGFPppYZz8ZDZq0dYYrbHfBCVUb1Q==",
+-      "dev": true,
+-      "license": "MIT",
+-      "engines": {
+-        "node": "&gt;=12"
+-      },
+-      "funding": {
+-        "url": "https://github.com/sponsors/jonschlinkert"
+-      }
+-    },
+     "node_modules/tinypool": {
+       "version": "1.1.1",
+       "resolved": "https://registry.npmjs.org/tinypool/-/tinypool-1.1.1.tgz",
+@@ -7616,7 +7686,6 @@
+       "version": "5.0.1",
+       "resolved": "https://registry.npmjs.org/to-regex-range/-/to-regex-range-5.0.1.tgz",
+       "integrity": "sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "is-number": "^7.0.0"
+@@ -7671,7 +7740,6 @@
+       "version": "0.1.13",
+       "resolved": "https://registry.npmjs.org/ts-interface-checker/-/ts-interface-checker-0.1.13.tgz",
+       "integrity": "sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==",
+-      "dev": true,
+       "license": "Apache-2.0"
+     },
+     "node_modules/tslib": {
+@@ -7855,7 +7923,6 @@
+       "version": "1.0.2",
+       "resolved": "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz",
+       "integrity": "sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==",
+-      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/vaul": {
+@@ -8049,19 +8116,6 @@
+         }
+       }
+     },
+-    "node_modules/vitest/node_modules/picomatch": {
+-      "version": "4.0.3",
+-      "resolved": "https://registry.npmjs.org/picomatch/-/picomatch-4.0.3.tgz",
+-      "integrity": "sha512-5gTmgEY/sqK6gFXLIsQNH19lWb4ebPDLA4SdLP7dsWkIXHWlG66oPuVvXSGFPppYZz8ZDZq0dYYrbHfBCVUb1Q==",
+-      "dev": true,
+-      "license": "MIT",
+-      "engines": {
+-        "node": "&gt;=12"
+-      },
+-      "funding": {
+-        "url": "https://github.com/sponsors/jonschlinkert"
+-      }
+-    },
+     "node_modules/w3c-xmlserializer": {
+       "version": "4.0.0",
+       "resolved": "https://registry.npmjs.org/w3c-xmlserializer/-/w3c-xmlserializer-4.0.0.tgz",
+@@ -8127,7 +8181,6 @@
+       "version": "2.0.2",
+       "resolved": "https://registry.npmjs.org/which/-/which-2.0.2.tgz",
+       "integrity": "sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==",
+-      "dev": true,
+       "license": "ISC",
+       "dependencies": {
+         "isexe": "^2.0.0"
+@@ -8170,7 +8223,6 @@
+       "version": "8.1.0",
+       "resolved": "https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-8.1.0.tgz",
+       "integrity": "sha512-si7QWI6zUMq56bESFvagtmzMdGOtoxfR+Sez11Mobfc7tm+VkUckk9bW2UeffTGVUbOksxmSw0AA2gs8g71NCQ==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "ansi-styles": "^6.1.0",
+@@ -8189,7 +8241,6 @@
+       "version": "7.0.0",
+       "resolved": "https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-7.0.0.tgz",
+       "integrity": "sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "ansi-styles": "^4.0.0",
+@@ -8207,7 +8258,6 @@
+       "version": "5.0.1",
+       "resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.1.tgz",
+       "integrity": "sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==",
+-      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": "&gt;=8"
+@@ -8217,14 +8267,12 @@
+       "version": "8.0.0",
+       "resolved": "https://registry.npmjs.org/emoji-regex/-/emoji-regex-8.0.0.tgz",
+       "integrity": "sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==",
+-      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/wrap-ansi-cjs/node_modules/string-width": {
+       "version": "4.2.3",
+       "resolved": "https://registry.npmjs.org/string-width/-/string-width-4.2.3.tgz",
+       "integrity": "sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "emoji-regex": "^8.0.0",
+@@ -8239,7 +8287,6 @@
+       "version": "6.0.1",
+       "resolved": "https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz",
+       "integrity": "sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==",
+-      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "ansi-regex": "^5.0.1"
+@@ -8252,7 +8299,6 @@
+       "version": "6.2.1",
+       "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-6.2.1.tgz",
+       "integrity": "sha512-bN798gFfQX+viw3R7yrGWRqnrN2oRkEkUjjl4JNn4E8GxxbjtG3FbrEIIY3l8/hrwUwIeCZvi4QuOTP4MErVug==",
+-      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": "&gt;=12"
+@@ -8303,7 +8349,6 @@
+       "version": "2.6.0",
+       "resolved": "https://registry.npmjs.org/yaml/-/yaml-2.6.0.tgz",
+       "integrity": "sha512-a6ae//JvKDEra2kdi1qzCyrJW/WZCgFi8ydDV+eXExl95t+5R+ijnqHJbz9tmMh8FUjx3iv2fCQ4dclAQlO2UQ==",
+-      "dev": true,
+       "license": "ISC",
+       "bin": {
+         "yaml": "bin.mjs"
+diff --git a/package.json b/package.json
+index e074ae6..ee4048d 100644
+--- a/package.json
++++ b/package.json
+@@ -4,7 +4,7 @@
+   "version": "0.0.0",
+   "type": "module",
+   "scripts": {
+-    "dev": "vite",
++    "dev": "vite --host 127.0.0.1 --port 8080",
+     "build": "vite build",
+     "build:dev": "vite build --mode development",
+     "lint": "eslint .",
+diff --git a/src/components/FeaturedCars.tsx b/src/components/FeaturedCars.tsx
+index 2276c46..164116e 100644
+--- a/src/components/FeaturedCars.tsx
++++ b/src/components/FeaturedCars.tsx
+@@ -1,5 +1,5 @@
+ import { motion } from "framer-motion";
+-import { MapPin, Gauge, Star } from "lucide-react";
++import { MapPin, Gauge, Star, ArrowRight } from "lucide-react";
+ import { Button } from "@/components/ui/button";
+ import car1 from "@/assets/car1.jpg";
+ import car2 from "@/assets/car2.jpg";
+@@ -14,6 +14,7 @@ const cars = [
+     rating: 4.9,
+     owner: "Rajesh M.",
+     swapValue: "1–3 months",
++    badge: "Top Pick",
+   },
+   {
+     image: car2,
+@@ -23,6 +24,7 @@ const cars = [
+     rating: 4.8,
+     owner: "Priya K.",
+     swapValue: "1–6 months",
++    badge: "New",
+   },
+   {
+     image: car3,
+@@ -32,23 +34,31 @@ const cars = [
+     rating: 4.7,
+     owner: "Arjun S.",
+     swapValue: "2–4 months",
++    badge: "Verified",
+   },
+ ];
+ 
+ const FeaturedCars = () =&gt; {
+   return (
+-    &lt;section className="py-24 bg-secondary/30"&gt;
+-      &lt;div className="container"&gt;
++    &lt;section className="py-28 relative overflow-hidden"&gt;
++      {/* Background glow */}
++      &lt;div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/5 rounded-full blur-[200px] pointer-events-none" /&gt;
++
++      &lt;div className="container relative z-10"&gt;
+         &lt;motion.div
+           initial={{ opacity: 0, y: 20 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true }}
+-          className="text-center mb-16"
++          className="text-center mb-20"
+         &gt;
+-          &lt;span className="text-primary font-body text-sm font-semibold tracking-widest uppercase mb-4 block"&gt;
+-            Available Now
+-          &lt;/span&gt;
+-          &lt;h2 className="text-4xl md:text-5xl font-display font-bold"&gt;
++          &lt;div className="flex items-center justify-center gap-3 mb-6"&gt;
++            &lt;div className="h-px w-10 bg-gradient-to-r from-transparent to-primary/50" /&gt;
++            &lt;span className="text-primary font-accent text-base tracking-[0.2em] uppercase font-medium"&gt;
++              Available Now
++            &lt;/span&gt;
++            &lt;div className="h-px w-10 bg-gradient-to-l from-transparent to-primary/50" /&gt;
++          &lt;/div&gt;
++          &lt;h2 className="text-4xl md:text-6xl font-display font-bold"&gt;
+             Featured &lt;span className="text-gradient-gold"&gt;Swaps&lt;/span&gt;
+           &lt;/h2&gt;
+         &lt;/motion.div&gt;
+@@ -57,42 +67,75 @@ const FeaturedCars = () =&gt; {
+           {cars.map((car, i) =&gt; (
+             &lt;motion.div
+               key={car.name}
+-              initial={{ opacity: 0, y: 30 }}
++              initial={{ opacity: 0, y: 40 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true }}
+-              transition={{ delay: i * 0.15 }}
+-              className="group bg-card border border-border rounded-lg overflow-hidden hover:border-primary/40 transition-all"
++              transition={{ delay: i * 0.15, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
++              className="group relative"
+             &gt;
+-              &lt;div className="relative h-56 overflow-hidden"&gt;
+-                &lt;img
+-                  src={car.image}
+-                  alt={car.name}
+-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+-                /&gt;
+-                &lt;div className="absolute top-3 right-3 bg-background/80 backdrop-blur-sm rounded-md px-3 py-1 flex items-center gap-1"&gt;
+-                  &lt;Star className="w-3.5 h-3.5 text-primary fill-primary" /&gt;
+-                  &lt;span className="text-sm font-body font-semibold"&gt;{car.rating}&lt;/span&gt;
+-                &lt;/div&gt;
+-              &lt;/div&gt;
++              {/* Card with shimmer */}
++              &lt;div className="shimmer-overlay glass-card rounded-xl overflow-hidden hover:border-primary/30 transition-all duration-500 hover:shadow-gold-lg hover:-translate-y-2"&gt;
++                {/* Image */}
++                &lt;div className="relative h-60 overflow-hidden"&gt;
++                  &lt;img
++                    src={car.image}
++                    alt={car.name}
++                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
++                  /&gt;
++                  {/* Dark overlay on image */}
++                  &lt;div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" /&gt;
++
++                  {/* Rating badge */}
++                  &lt;div className="absolute top-4 right-4 glass-card rounded-full px-3 py-1.5 flex items-center gap-1.5"&gt;
++                    &lt;Star className="w-3.5 h-3.5 text-primary fill-primary" /&gt;
++                    &lt;span className="text-sm font-body font-semibold text-foreground"&gt;{car.rating}&lt;/span&gt;
++                  &lt;/div&gt;
++
++                  {/* Status badge */}
++                  &lt;div className="absolute top-4 left-4 bg-gradient-gold rounded-full px-3 py-1 text-primary-foreground text-xs font-body font-bold tracking-wider uppercase"&gt;
++                    {car.badge}
++                  &lt;/div&gt;
+ 
+-              &lt;div className="p-6"&gt;
+-                &lt;h3 className="text-xl font-display font-semibold mb-2"&gt;{car.name}&lt;/h3&gt;
+-                &lt;div className="flex items-center gap-4 text-muted-foreground font-body text-sm mb-4"&gt;
+-                  &lt;span className="flex items-center gap-1"&gt;
+-                    &lt;MapPin className="w-3.5 h-3.5" /&gt; {car.location}
+-                  &lt;/span&gt;
+-                  &lt;span className="flex items-center gap-1"&gt;
+-                    &lt;Gauge className="w-3.5 h-3.5" /&gt; {car.power}
+-                  &lt;/span&gt;
++                  {/* Car name overlay at bottom of image */}
++                  &lt;div className="absolute bottom-4 left-6"&gt;
++                    &lt;h3 className="text-2xl font-display font-bold text-foreground drop-shadow-lg"&gt;
++                      {car.name}
++                    &lt;/h3&gt;
++                  &lt;/div&gt;
+                 &lt;/div&gt;
+-                &lt;div className="flex items-center justify-between"&gt;
+-                  &lt;div&gt;
+-                    &lt;span className="text-primary font-body font-bold text-sm"&gt;{car.swapValue}&lt;/span&gt;
+-                    &lt;p className="text-muted-foreground text-xs font-body"&gt;Owner: {car.owner}&lt;/p&gt;
++
++                {/* Details */}
++                &lt;div className="p-6 pt-4"&gt;
++                  &lt;div className="flex items-center gap-3 mb-5"&gt;
++                    &lt;span className="flex items-center gap-1.5 text-muted-foreground font-body text-sm glass-card rounded-full px-3 py-1"&gt;
++                      &lt;MapPin className="w-3.5 h-3.5 text-primary" /&gt;
++                      {car.location}
++                    &lt;/span&gt;
++                    &lt;span className="flex items-center gap-1.5 text-muted-foreground font-body text-sm glass-card rounded-full px-3 py-1"&gt;
++                      &lt;Gauge className="w-3.5 h-3.5 text-primary" /&gt;
++                      {car.power}
++                    &lt;/span&gt;
++                  &lt;/div&gt;
++
++                  &lt;div className="gold-divider mb-5" /&gt;
++
++                  &lt;div className="flex items-center justify-between"&gt;
++                    &lt;div&gt;
++                      &lt;span className="text-primary font-accent font-bold text-lg"&gt;
++                        {car.swapValue}
++                      &lt;/span&gt;
++                      &lt;p className="text-muted-foreground text-xs font-body mt-0.5"&gt;
++                        Owner: {car.owner}
++                      &lt;/p&gt;
++                    &lt;/div&gt;
++                    &lt;Button
++                      size="sm"
++                      className="bg-gradient-gold text-primary-foreground font-body font-semibold hover:opacity-90 shadow-gold group/btn hover:scale-[1.03] transition-all duration-300 px-5"
++                    &gt;
++                      View Details
++                      &lt;ArrowRight className="ml-1.5 w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" /&gt;
++                    &lt;/Button&gt;
+                   &lt;/div&gt;
+-                  &lt;Button size="sm" className="bg-gradient-gold text-primary-foreground font-body font-semibold hover:opacity-90"&gt;
+-                    View Details
+-                  &lt;/Button&gt;
+                 &lt;/div&gt;
+               &lt;/div&gt;
+             &lt;/motion.div&gt;
+diff --git a/src/components/Footer.tsx b/src/components/Footer.tsx
+index 48e8334..72e4c6a 100644
+--- a/src/components/Footer.tsx
++++ b/src/components/Footer.tsx
+@@ -1,26 +1,103 @@
++import { motion } from "framer-motion";
++import { Crown, Instagram, Twitter, Linkedin, Youtube, ArrowRight } from "lucide-react";
++import { Button } from "@/components/ui/button";
++
++const footerLinks = [
++  {
++    title: "Platform",
++    links: ["Browse Cars", "List Your Car", "Pricing", "How It Works"],
++  },
++  {
++    title: "Trust",
++    links: ["Insurance Policy", "Inspection Process", "Legal Framework", "Dispute Resolution"],
++  },
++  {
++    title: "Company",
++    links: ["About Us", "Careers", "Blog", "Contact"],
++  },
++];
++
++const socials = [
++  { icon: Instagram, label: "Instagram" },
++  { icon: Twitter, label: "Twitter" },
++  { icon: Linkedin, label: "LinkedIn" },
++  { icon: Youtube, label: "YouTube" },
++];
++
+ const Footer = () =&gt; {
+   return (
+-    &lt;footer className="py-16 border-t border-border"&gt;
+-      &lt;div className="container"&gt;
+-        &lt;div className="grid grid-cols-1 md:grid-cols-4 gap-10"&gt;
+-          &lt;div className="md:col-span-1"&gt;
+-            &lt;span className="font-display text-2xl font-bold text-gradient-gold"&gt;SwapLux&lt;/span&gt;
+-            &lt;p className="text-muted-foreground font-body text-sm mt-3 leading-relaxed"&gt;
+-              India's most trusted platform for luxury car swaps. Insured, inspected, and guaranteed.
++    &lt;footer className="relative pt-20 pb-10 overflow-hidden"&gt;
++      {/* Gold gradient divider */}
++      &lt;div className="gold-divider mb-16" /&gt;
++
++      &lt;div className="container relative z-10"&gt;
++        {/* Newsletter CTA */}
++        &lt;motion.div
++          initial={{ opacity: 0, y: 20 }}
++          whileInView={{ opacity: 1, y: 0 }}
++          viewport={{ once: true }}
++          className="glass-card rounded-2xl p-8 md:p-12 mb-16 text-center"
++        &gt;
++          &lt;h3 className="text-2xl md:text-3xl font-display font-bold mb-3"&gt;
++            Stay in the &lt;span className="text-gradient-gold"&gt;Fast Lane&lt;/span&gt;
++          &lt;/h3&gt;
++          &lt;p className="text-muted-foreground font-body text-sm mb-6 max-w-md mx-auto"&gt;
++            Get exclusive access to new luxury listings, swap tips, and member-only events.
++          &lt;/p&gt;
++          &lt;div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"&gt;
++            &lt;input
++              type="email"
++              placeholder="your@email.com"
++              className="flex-1 glass-card-strong rounded-lg px-5 py-3 font-body text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all"
++            /&gt;
++            &lt;Button className="bg-gradient-gold text-primary-foreground font-body font-semibold hover:opacity-90 shadow-gold px-6"&gt;
++              Subscribe
++              &lt;ArrowRight className="ml-2 w-4 h-4" /&gt;
++            &lt;/Button&gt;
++          &lt;/div&gt;
++        &lt;/motion.div&gt;
++
++        {/* Footer grid */}
++        &lt;div className="grid grid-cols-1 md:grid-cols-5 gap-10 mb-16"&gt;
++          &lt;div className="md:col-span-2"&gt;
++            &lt;div className="flex items-center gap-2 mb-4"&gt;
++              &lt;Crown className="w-5 h-5 text-primary" /&gt;
++              &lt;span className="font-display text-2xl font-bold text-gradient-gold"&gt;
++                SwapLuxe
++              &lt;/span&gt;
++            &lt;/div&gt;
++            &lt;p className="text-muted-foreground font-body text-sm leading-relaxed mb-6 max-w-sm"&gt;
++              India’s invite‑only swap club for high‑net‑worth collectors. Fully managed condition checks, insurance,
++              and legal so you swap without the headache.
+             &lt;/p&gt;
++
++            {/* Social links with hover glow */}
++            &lt;div className="flex items-center gap-3"&gt;
++              {socials.map((social) =&gt; (
++                &lt;a
++                  key={social.label}
++                  href="#"
++                  aria-label={social.label}
++                  className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-muted-foreground hover:text-primary hover:shadow-gold transition-all duration-300 hover:border-primary/30"
++                &gt;
++                  &lt;social.icon className="w-4 h-4" /&gt;
++                &lt;/a&gt;
++              ))}
++            &lt;/div&gt;
+           &lt;/div&gt;
+ 
+-          {[
+-            { title: "Platform", links: ["Browse Cars", "List Your Car", "Pricing", "How It Works"] },
+-            { title: "Trust", links: ["Insurance Policy", "Inspection Process", "Legal Framework", "Dispute Resolution"] },
+-            { title: "Company", links: ["About Us", "Careers", "Blog", "Contact"] },
+-          ].map((col) =&gt; (
++          {footerLinks.map((col) =&gt; (
+             &lt;div key={col.title}&gt;
+-              &lt;h4 className="font-display font-semibold text-sm mb-4"&gt;{col.title}&lt;/h4&gt;
+-              &lt;ul className="space-y-2"&gt;
++              &lt;h4 className="font-display font-semibold text-sm mb-5 text-foreground tracking-wide"&gt;
++                {col.title}
++              &lt;/h4&gt;
++              &lt;ul className="space-y-3"&gt;
+                 {col.links.map((link) =&gt; (
+                   &lt;li key={link}&gt;
+-                    &lt;a href="#" className="text-muted-foreground font-body text-sm hover:text-primary transition-colors"&gt;
++                    &lt;a
++                      href="#"
++                      className="text-muted-foreground font-body text-sm hover:text-primary transition-colors duration-300 hover-underline-gold"
++                    &gt;
+                       {link}
+                     &lt;/a&gt;
+                   &lt;/li&gt;
+@@ -30,13 +107,30 @@ const Footer = () =&gt; {
+           ))}
+         &lt;/div&gt;
+ 
+-        &lt;div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"&gt;
+-          &lt;p className="text-muted-foreground font-body text-xs"&gt;
+-            © 2026 SwapLux. All rights reserved.
+-          &lt;/p&gt;
+-          &lt;div className="flex gap-6 text-muted-foreground font-body text-xs"&gt;
+-            &lt;a href="#" className="hover:text-primary transition-colors"&gt;Privacy Policy&lt;/a&gt;
+-            &lt;a href="#" className="hover:text-primary transition-colors"&gt;Terms of Service&lt;/a&gt;
++        &lt;div className="gold-divider mb-8" /&gt;
++
++        {/* Bottom bar */}
++        &lt;div className="flex flex-col md:flex-row justify-between items-center gap-4"&gt;
++          &lt;div className="flex items-center gap-3"&gt;
++            &lt;div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" /&gt;
++            &lt;p className="text-muted-foreground font-body text-xs"&gt;
++              © 2026 SwapLuxe. All rights reserved.
++            &lt;/p&gt;
++          &lt;/div&gt;
++
++          &lt;div className="flex items-center gap-6"&gt;
++            &lt;span className="text-muted-foreground/50 font-accent text-xs tracking-widest uppercase"&gt;
++              Member of Luxury Auto Alliance
++            &lt;/span&gt;
++            &lt;div className="w-px h-4 bg-border" /&gt;
++            &lt;div className="flex gap-6 text-muted-foreground font-body text-xs"&gt;
++              &lt;a href="#" className="hover:text-primary transition-colors duration-300"&gt;
++                Privacy Policy
++              &lt;/a&gt;
++              &lt;a href="#" className="hover:text-primary transition-colors duration-300"&gt;
++                Terms of Service
++              &lt;/a&gt;
++            &lt;/div&gt;
+           &lt;/div&gt;
+         &lt;/div&gt;
+       &lt;/div&gt;
+diff --git a/src/components/HeroSection.tsx b/src/components/HeroSection.tsx
+index a36ca77..0a263d2 100644
+--- a/src/components/HeroSection.tsx
++++ b/src/components/HeroSection.tsx
+@@ -1,70 +1,223 @@
+-import { motion } from "framer-motion";
+-import { ArrowRight, Shield } from "lucide-react";
++import { motion, useInView } from "framer-motion";
++import { ArrowRight, Shield, CheckCircle, Star } from "lucide-react";
+ import { Button } from "@/components/ui/button";
++import { useRef, useEffect, useState } from "react";
+ import heroCar from "@/assets/hero-car.jpg";
+ 
++const AnimatedCounter = ({ target, suffix = "" }: { target: number; suffix?: string }) =&gt; {
++  const ref = useRef&lt;HTMLSpanElement&gt;(null);
++  const isInView = useInView(ref, { once: true });
++  const [count, setCount] = useState(0);
++
++  useEffect(() =&gt; {
++    if (!isInView) return;
++    let start = 0;
++    const duration = 2000;
++    const step = target / (duration / 16);
++    const timer = setInterval(() =&gt; {
++      start += step;
++      if (start &gt;= target) {
++        setCount(target);
++        clearInterval(timer);
++      } else {
++        setCount(Math.floor(start));
++      }
++    }, 16);
++    return () =&gt; clearInterval(timer);
++  }, [isInView, target]);
++
++  return (
++    &lt;span ref={ref} className="text-3xl md:text-4xl font-display font-bold text-gradient-gold"&gt;
++      {count}{suffix}
++    &lt;/span&gt;
++  );
++};
++
++const floatingBadges = [
++  { icon: Shield, label: "Fully Insured", delay: 1.2 },
++  { icon: CheckCircle, label: "200-Point Inspected", delay: 1.5 },
++  { icon: Star, label: "Verified Owners", delay: 1.8 },
++];
++
+ const HeroSection = () =&gt; {
+   return (
+     &lt;section className="relative min-h-screen flex items-center overflow-hidden"&gt;
+-      {/* Background */}
++      {/* Background with parallax feel */}
+       &lt;div className="absolute inset-0"&gt;
+-        &lt;img src={heroCar} alt="Luxury sports car" className="w-full h-full object-cover" /&gt;
+-        &lt;div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/30" /&gt;
+-        &lt;div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50" /&gt;
++        &lt;motion.img
++          src={heroCar}
++          alt="Luxury sports car"
++          className="w-full h-full object-cover scale-110"
++          initial={{ scale: 1.2 }}
++          animate={{ scale: 1.05 }}
++          transition={{ duration: 20, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
++        /&gt;
++        &lt;div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/20" /&gt;
++        &lt;div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/60" /&gt;
++        &lt;div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" /&gt;
++      &lt;/div&gt;
++
++      {/* Subtle particle dots */}
++      &lt;div className="absolute inset-0 overflow-hidden pointer-events-none"&gt;
++        {[...Array(6)].map((_, i) =&gt; (
++          &lt;motion.div
++            key={i}
++            className="absolute w-1 h-1 rounded-full bg-primary/30"
++            style={{
++              left: &#96;${15 + i * 15}%&#96;,
++              top: &#96;${20 + (i % 3) * 25}%&#96;,
++            }}
++            animate={{
++              y: [-20, 20, -20],
++              opacity: [0.2, 0.6, 0.2],
++            }}
++            transition={{
++              duration: 4 + i,
++              repeat: Infinity,
++              ease: "easeInOut",
++              delay: i * 0.5,
++            }}
++          /&gt;
++        ))}
+       &lt;/div&gt;
+ 
+       &lt;div className="container relative z-10 py-20"&gt;
+-        &lt;motion.div
+-          initial={{ opacity: 0, y: 40 }}
+-          animate={{ opacity: 1, y: 0 }}
+-          transition={{ duration: 0.8 }}
+-          className="max-w-2xl"
+-        &gt;
+-          &lt;div className="flex items-center gap-2 mb-6"&gt;
+-            &lt;Shield className="w-5 h-5 text-primary" /&gt;
+-            &lt;span className="text-primary font-body text-sm font-semibold tracking-widest uppercase"&gt;
+-              Insured &amp; Guaranteed • 1 to 6 Month Swaps
++        &lt;div className="max-w-2xl"&gt;
++          {/* Tagline */}
++          &lt;motion.div
++            initial={{ opacity: 0, x: -30 }}
++            animate={{ opacity: 1, x: 0 }}
++            transition={{ duration: 0.6, delay: 0.2 }}
++            className="flex items-center gap-3 mb-8"
++          &gt;
++            &lt;div className="h-px w-10 bg-gradient-to-r from-primary to-transparent" /&gt;
++            &lt;span className="text-primary font-accent text-base tracking-[0.2em] uppercase font-medium"&gt;
++              SwapLuxe · India’s Invite‑Only Swap Club
+             &lt;/span&gt;
+-          &lt;/div&gt;
++          &lt;/motion.div&gt;
+ 
+-          &lt;h1 className="text-5xl md:text-7xl font-display font-bold leading-tight mb-6"&gt;
+-            Swap Your{" "}
+-            &lt;span className="text-gradient-gold"&gt;Luxury Ride&lt;/span&gt;
++          {/* Title — word-by-word stagger */}
++          &lt;h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-[0.95] mb-8"&gt;
++            {["Swap", "Your"].map((word, i) =&gt; (
++              &lt;motion.span
++                key={word}
++                initial={{ opacity: 0, y: 50 }}
++                animate={{ opacity: 1, y: 0 }}
++                transition={{ duration: 0.7, delay: 0.4 + i * 0.12 }}
++                className="inline-block mr-4"
++              &gt;
++                {word}
++              &lt;/motion.span&gt;
++            ))}
+             &lt;br /&gt;
+-            Across India
++            &lt;motion.span
++              initial={{ opacity: 0, y: 50 }}
++              animate={{ opacity: 1, y: 0 }}
++              transition={{ duration: 0.7, delay: 0.64 }}
++              className="inline-block text-gradient-gold mr-4"
++            &gt;
++              Luxury
++            &lt;/motion.span&gt;
++            &lt;motion.span
++              initial={{ opacity: 0, y: 50 }}
++              animate={{ opacity: 1, y: 0 }}
++              transition={{ duration: 0.7, delay: 0.76 }}
++              className="inline-block text-gradient-gold"
++            &gt;
++              Ride
++            &lt;/motion.span&gt;
++            &lt;br /&gt;
++            {["Across", "India"].map((word, i) =&gt; (
++              &lt;motion.span
++                key={word}
++                initial={{ opacity: 0, y: 50 }}
++                animate={{ opacity: 1, y: 0 }}
++                transition={{ duration: 0.7, delay: 0.88 + i * 0.12 }}
++                className="inline-block mr-4"
++              &gt;
++                {word}
++              &lt;/motion.span&gt;
++            ))}
+           &lt;/h1&gt;
+ 
+-          &lt;p className="text-lg md:text-xl text-muted-foreground font-body leading-relaxed mb-10 max-w-lg"&gt;
+-            Trade your luxury car with another verified owner for 1 to 6 months. Fully inspected, legally secured, and comprehensively insured — no rental fees, just pure swap.
+-          &lt;/p&gt;
++          {/* Subtitle */}
++          &lt;motion.p
++            initial={{ opacity: 0, y: 20 }}
++            animate={{ opacity: 1, y: 0 }}
++            transition={{ duration: 0.7, delay: 1.0 }}
++            className="text-lg md:text-xl text-muted-foreground font-body leading-relaxed mb-10 max-w-lg"
++          &gt;
++            Swap your luxury car with other high‑net‑worth members across India — without the usual headache.
++            We handle condition checks, insurance, and legal agreements end‑to‑end so you simply exchange keys.
++          &lt;/motion.p&gt;
+ 
+-          &lt;div className="flex flex-col sm:flex-row gap-4"&gt;
+-            &lt;Button size="lg" className="bg-gradient-gold text-primary-foreground font-body font-semibold text-base px-8 py-6 shadow-gold hover:opacity-90 transition-opacity"&gt;
++          {/* CTAs */}
++          &lt;motion.div
++            initial={{ opacity: 0, y: 20 }}
++            animate={{ opacity: 1, y: 0 }}
++            transition={{ duration: 0.6, delay: 1.1 }}
++            className="flex flex-col sm:flex-row gap-4 mb-14"
++          &gt;
++            &lt;Button
++              size="lg"
++              className="bg-gradient-gold text-primary-foreground font-body font-semibold text-base px-10 py-7 shadow-gold-lg pulse-glow hover:shadow-gold-lg hover:scale-[1.02] transition-all duration-300 tracking-wide"
++            &gt;
+               Start Swapping
+               &lt;ArrowRight className="ml-2 w-5 h-5" /&gt;
+             &lt;/Button&gt;
+-            &lt;Button size="lg" variant="outline" className="border-border text-foreground font-body text-base px-8 py-6 hover:bg-secondary"&gt;
++            &lt;Button
++              size="lg"
++              variant="outline"
++              className="border-gold-subtle text-foreground font-body text-base px-8 py-7 hover:bg-primary/5 hover:border-primary/40 transition-all duration-300 tracking-wide"
++            &gt;
+               How It Works
+             &lt;/Button&gt;
+-          &lt;/div&gt;
++          &lt;/motion.div&gt;
++
++          {/* Floating badges */}
++          &lt;motion.div
++            initial={{ opacity: 0 }}
++            animate={{ opacity: 1 }}
++            transition={{ delay: 1.3 }}
++            className="flex flex-wrap gap-3 mb-14"
++          &gt;
++            {floatingBadges.map((badge, i) =&gt; (
++              &lt;motion.div
++                key={badge.label}
++                initial={{ opacity: 0, scale: 0.8, y: 20 }}
++                animate={{ opacity: 1, scale: 1, y: 0 }}
++                transition={{ delay: badge.delay, duration: 0.5 }}
++                className="glass-card rounded-full px-4 py-2 flex items-center gap-2 text-sm font-body"
++              &gt;
++                &lt;badge.icon className="w-4 h-4 text-primary" /&gt;
++                &lt;span className="text-foreground/80"&gt;{badge.label}&lt;/span&gt;
++              &lt;/motion.div&gt;
++            ))}
++          &lt;/motion.div&gt;
+ 
+-          &lt;div className="flex items-center gap-8 mt-12 text-muted-foreground font-body text-sm"&gt;
++          {/* Animated Stats */}
++          &lt;motion.div
++            initial={{ opacity: 0, y: 20 }}
++            animate={{ opacity: 1, y: 0 }}
++            transition={{ delay: 1.5, duration: 0.6 }}
++            className="flex items-center gap-10"
++          &gt;
+             &lt;div className="flex flex-col"&gt;
+-              &lt;span className="text-2xl font-bold text-foreground"&gt;500+&lt;/span&gt;
+-              &lt;span&gt;Luxury Cars&lt;/span&gt;
++              &lt;AnimatedCounter target={500} suffix="+" /&gt;
++              &lt;span className="text-muted-foreground font-body text-sm mt-1 tracking-wide"&gt;Luxury Cars&lt;/span&gt;
+             &lt;/div&gt;
+-            &lt;div className="w-px h-10 bg-border" /&gt;
++            &lt;div className="w-px h-12 bg-gradient-to-b from-transparent via-primary/30 to-transparent" /&gt;
+             &lt;div className="flex flex-col"&gt;
+-              &lt;span className="text-2xl font-bold text-foreground"&gt;12&lt;/span&gt;
+-              &lt;span&gt;Cities&lt;/span&gt;
++              &lt;AnimatedCounter target={12} /&gt;
++              &lt;span className="text-muted-foreground font-body text-sm mt-1 tracking-wide"&gt;Cities&lt;/span&gt;
+             &lt;/div&gt;
+-            &lt;div className="w-px h-10 bg-border" /&gt;
++            &lt;div className="w-px h-12 bg-gradient-to-b from-transparent via-primary/30 to-transparent" /&gt;
+             &lt;div className="flex flex-col"&gt;
+-              &lt;span className="text-2xl font-bold text-foreground"&gt;₹0&lt;/span&gt;
+-              &lt;span&gt;Damage Liability&lt;/span&gt;
++              &lt;span className="text-3xl md:text-4xl font-display font-bold text-gradient-gold"&gt;₹0&lt;/span&gt;
++              &lt;span className="text-muted-foreground font-body text-sm mt-1 tracking-wide"&gt;Damage Liability&lt;/span&gt;
+             &lt;/div&gt;
+-          &lt;/div&gt;
+-        &lt;/motion.div&gt;
++          &lt;/motion.div&gt;
++        &lt;/div&gt;
+       &lt;/div&gt;
+     &lt;/section&gt;
+   );
+diff --git a/src/components/HowItWorks.tsx b/src/components/HowItWorks.tsx
+index 73a7d3d..270fc0a 100644
+--- a/src/components/HowItWorks.tsx
++++ b/src/components/HowItWorks.tsx
+@@ -5,67 +5,102 @@ const steps = [
+   {
+     icon: ClipboardCheck,
+     title: "List Your Car",
+-    description: "Register your luxury vehicle with photos, documents, and inspection details.",
++    description:
++      "Apply to SwapLuxe, verify your profile, and list your car with service history, documents, and preferences.",
+   },
+   {
+     icon: Search,
+-    title: "Find a Match",
+-    description: "Browse verified cars from trusted owners across 12 major Indian cities.",
++    title: "We Curate Your Match",
++    description: "Our concierge team shortlists compatible cars from within an invite‑only high‑net‑worth community.",
+   },
+   {
+     icon: ShieldCheck,
+-    title: "Inspect &amp; Insure",
+-    description: "Our certified mechanics inspect both cars. Full insurance coverage kicks in.",
++    title: "Condition, Insurance, Legal",
++    description:
++      "Independent inspections, upgraded insurance, and airtight digital agreements — all handled for you.",
+   },
+   {
+     icon: ArrowLeftRight,
+     title: "Swap &amp; Enjoy",
+-    description: "Sign the digital agreement, exchange keys, and hit the road with confidence.",
++    description:
++      "Keys change hands only after everything is cleared. You enjoy the car; we stay on‑call throughout your swap.",
+   },
+ ];
+ 
+ const HowItWorks = () =&gt; {
+   return (
+-    &lt;section className="py-24 bg-secondary/30"&gt;
+-      &lt;div className="container"&gt;
++    &lt;section className="py-28 relative overflow-hidden"&gt;
++      {/* Subtle background glow */}
++      &lt;div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px] pointer-events-none" /&gt;
++
++      &lt;div className="container relative z-10"&gt;
+         &lt;motion.div
+           initial={{ opacity: 0, y: 20 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true }}
+-          className="text-center mb-16"
++          className="text-center mb-20"
+         &gt;
+-          &lt;span className="text-primary font-body text-sm font-semibold tracking-widest uppercase mb-4 block"&gt;
+-            Simple Process
+-          &lt;/span&gt;
+-          &lt;h2 className="text-4xl md:text-5xl font-display font-bold"&gt;
++          &lt;div className="flex items-center justify-center gap-3 mb-6"&gt;
++            &lt;div className="h-px w-10 bg-gradient-to-r from-transparent to-primary/50" /&gt;
++            &lt;span className="text-primary font-accent text-base tracking-[0.2em] uppercase font-medium"&gt;
++              Simple Process
++            &lt;/span&gt;
++            &lt;div className="h-px w-10 bg-gradient-to-l from-transparent to-primary/50" /&gt;
++          &lt;/div&gt;
++          &lt;h2 className="text-4xl md:text-6xl font-display font-bold"&gt;
+             How It &lt;span className="text-gradient-gold"&gt;Works&lt;/span&gt;
+           &lt;/h2&gt;
+         &lt;/motion.div&gt;
+ 
+-        &lt;div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"&gt;
+-          {steps.map((step, i) =&gt; (
++        &lt;div className="relative"&gt;
++          {/* Connecting line (desktop only) */}
++          &lt;div className="hidden lg:block absolute top-[3.5rem] left-[12%] right-[12%] h-px"&gt;
+             &lt;motion.div
+-              key={step.title}
+-              initial={{ opacity: 0, y: 30 }}
+-              whileInView={{ opacity: 1, y: 0 }}
++              initial={{ scaleX: 0 }}
++              whileInView={{ scaleX: 1 }}
+               viewport={{ once: true }}
+-              transition={{ delay: i * 0.15 }}
+-              className="relative group"
+-            &gt;
+-              &lt;div className="bg-card border border-border rounded-lg p-8 h-full hover:border-primary/40 transition-colors"&gt;
+-                &lt;div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-6"&gt;
+-                  &lt;step.icon className="w-7 h-7 text-primary" /&gt;
++              transition={{ duration: 1.5, delay: 0.3, ease: "easeInOut" }}
++              className="w-full h-full origin-left"
++              style={{
++                background: "linear-gradient(90deg, hsl(43 85% 58% / 0.4), hsl(43 85% 58% / 0.15), hsl(43 85% 58% / 0.4))",
++              }}
++            /&gt;
++          &lt;/div&gt;
++
++          &lt;div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"&gt;
++            {steps.map((step, i) =&gt; (
++              &lt;motion.div
++                key={step.title}
++                initial={{ opacity: 0, y: 40 }}
++                whileInView={{ opacity: 1, y: 0 }}
++                viewport={{ once: true }}
++                transition={{ delay: i * 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
++                className="relative group"
++              &gt;
++                &lt;div className="glass-card rounded-xl p-8 h-full hover:border-primary/30 transition-all duration-500 hover:shadow-gold hover:-translate-y-1"&gt;
++                  {/* Step number badge */}
++                  &lt;div className="relative w-16 h-16 mb-6"&gt;
++                    &lt;div className="absolute inset-0 rounded-full bg-gradient-gold opacity-10 group-hover:opacity-20 transition-opacity duration-500" /&gt;
++                    &lt;div className="absolute inset-[2px] rounded-full bg-card flex items-center justify-center"&gt;
++                      &lt;step.icon className="w-7 h-7 text-primary group-hover:scale-110 transition-transform duration-300" /&gt;
++                    &lt;/div&gt;
++                    {/* Ring glow on hover */}
++                    &lt;div className="absolute inset-0 rounded-full border border-primary/0 group-hover:border-primary/30 transition-all duration-500" /&gt;
++                  &lt;/div&gt;
++
++                  &lt;span className="text-primary/60 font-accent text-xs font-bold tracking-[0.3em] uppercase"&gt;
++                    Step {String(i + 1).padStart(2, "0")}
++                  &lt;/span&gt;
++                  &lt;h3 className="text-xl font-display font-semibold mt-2 mb-3 group-hover:text-gradient-gold transition-colors duration-300"&gt;
++                    {step.title}
++                  &lt;/h3&gt;
++                  &lt;p className="text-muted-foreground font-body text-sm leading-relaxed"&gt;
++                    {step.description}
++                  &lt;/p&gt;
+                 &lt;/div&gt;
+-                &lt;span className="text-muted-foreground font-body text-xs font-bold tracking-widest uppercase"&gt;
+-                  Step {i + 1}
+-                &lt;/span&gt;
+-                &lt;h3 className="text-xl font-display font-semibold mt-2 mb-3"&gt;{step.title}&lt;/h3&gt;
+-                &lt;p className="text-muted-foreground font-body text-sm leading-relaxed"&gt;
+-                  {step.description}
+-                &lt;/p&gt;
+-              &lt;/div&gt;
+-            &lt;/motion.div&gt;
+-          ))}
++              &lt;/motion.div&gt;
++            ))}
++          &lt;/div&gt;
+         &lt;/div&gt;
+       &lt;/div&gt;
+     &lt;/section&gt;
+diff --git a/src/components/Navbar.tsx b/src/components/Navbar.tsx
+index 3a39992..0bc3914 100644
+--- a/src/components/Navbar.tsx
++++ b/src/components/Navbar.tsx
+@@ -1,48 +1,122 @@
+-import { useState } from "react";
++import { useState, useEffect } from "react";
++import { motion, AnimatePresence } from "framer-motion";
+ import { Button } from "@/components/ui/button";
+-import { Menu, X } from "lucide-react";
++import { Menu, X, Crown } from "lucide-react";
++
++const navLinks = [
++  { label: "How It Works", href: "#how" },
++  { label: "Trust &amp; Safety", href: "#trust" },
++  { label: "Browse Cars", href: "#cars" },
++];
+ 
+ const Navbar = () =&gt; {
+   const [open, setOpen] = useState(false);
++  const [scrolled, setScrolled] = useState(false);
++
++  useEffect(() =&gt; {
++    const handleScroll = () =&gt; setScrolled(window.scrollY &gt; 50);
++    window.addEventListener("scroll", handleScroll);
++    return () =&gt; window.removeEventListener("scroll", handleScroll);
++  }, []);
+ 
+   return (
+-    &lt;nav className="fixed top-0 left-0 right-0 z-50 bg-background/60 backdrop-blur-xl border-b border-border/50"&gt;
+-      &lt;div className="container flex items-center justify-between h-16"&gt;
+-        &lt;a href="/" className="font-display text-2xl font-bold text-gradient-gold"&gt;
+-          SwapLux
++    &lt;motion.nav
++      initial={{ y: -100 }}
++      animate={{ y: 0 }}
++      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
++      className={&#96;fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
++          ? "glass-nav border-b border-gold-subtle/30 shadow-luxury py-2"
++          : "bg-transparent py-4"
++        }&#96;}
++    &gt;
++      &lt;div className="container flex items-center justify-between"&gt;
++        &lt;a href="/" className="flex items-center gap-2 group"&gt;
++          &lt;Crown className="w-6 h-6 text-primary transition-transform group-hover:rotate-12 duration-300" /&gt;
++          &lt;span className="font-display text-2xl font-bold text-gradient-gold"&gt;
++            SwapLuxe
++          &lt;/span&gt;
+         &lt;/a&gt;
+ 
+-        &lt;div className="hidden md:flex items-center gap-8 font-body text-sm text-muted-foreground"&gt;
+-          &lt;a href="#how" className="hover:text-foreground transition-colors"&gt;How It Works&lt;/a&gt;
+-          &lt;a href="#trust" className="hover:text-foreground transition-colors"&gt;Trust &amp; Safety&lt;/a&gt;
+-          &lt;a href="#cars" className="hover:text-foreground transition-colors"&gt;Browse Cars&lt;/a&gt;
++        &lt;div className="hidden md:flex items-center gap-10"&gt;
++          {navLinks.map((link, i) =&gt; (
++            &lt;motion.a
++              key={link.href}
++              href={link.href}
++              initial={{ opacity: 0, y: -10 }}
++              animate={{ opacity: 1, y: 0 }}
++              transition={{ delay: 0.3 + i * 0.1 }}
++              className="hover-underline-gold font-body text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 tracking-wide"
++            &gt;
++              {link.label}
++            &lt;/motion.a&gt;
++          ))}
+         &lt;/div&gt;
+ 
+         &lt;div className="hidden md:flex items-center gap-3"&gt;
+-          &lt;Button variant="ghost" className="font-body text-sm text-muted-foreground hover:text-foreground"&gt;
+-            Sign In
+-          &lt;/Button&gt;
+-          &lt;Button size="sm" className="bg-gradient-gold text-primary-foreground font-body font-semibold hover:opacity-90"&gt;
+-            Get Started
+-          &lt;/Button&gt;
++          &lt;motion.div
++            initial={{ opacity: 0 }}
++            animate={{ opacity: 1 }}
++            transition={{ delay: 0.6 }}
++          &gt;
++            &lt;Button
++              variant="ghost"
++              className="font-body text-sm text-muted-foreground hover:text-foreground hover:bg-white/5 tracking-wide"
++            &gt;
++              Sign In
++            &lt;/Button&gt;
++          &lt;/motion.div&gt;
++          &lt;motion.div
++            initial={{ opacity: 0, scale: 0.9 }}
++            animate={{ opacity: 1, scale: 1 }}
++            transition={{ delay: 0.7 }}
++          &gt;
++            &lt;Button
++              size="sm"
++              className="bg-gradient-gold text-primary-foreground font-body font-semibold hover:opacity-90 shadow-gold tracking-wide px-6"
++            &gt;
++              Get Started
++            &lt;/Button&gt;
++          &lt;/motion.div&gt;
+         &lt;/div&gt;
+ 
+-        &lt;button className="md:hidden text-foreground" onClick={() =&gt; setOpen(!open)}&gt;
++        &lt;button
++          className="md:hidden text-foreground p-2"
++          onClick={() =&gt; setOpen(!open)}
++        &gt;
+           {open ? &lt;X className="w-6 h-6" /&gt; : &lt;Menu className="w-6 h-6" /&gt;}
+         &lt;/button&gt;
+       &lt;/div&gt;
+ 
+-      {open &amp;&amp; (
+-        &lt;div className="md:hidden bg-background border-t border-border p-6 flex flex-col gap-4 font-body"&gt;
+-          &lt;a href="#how" className="text-muted-foreground hover:text-foreground"&gt;How It Works&lt;/a&gt;
+-          &lt;a href="#trust" className="text-muted-foreground hover:text-foreground"&gt;Trust &amp; Safety&lt;/a&gt;
+-          &lt;a href="#cars" className="text-muted-foreground hover:text-foreground"&gt;Browse Cars&lt;/a&gt;
+-          &lt;Button className="bg-gradient-gold text-primary-foreground font-semibold hover:opacity-90 mt-2"&gt;
+-            Get Started
+-          &lt;/Button&gt;
+-        &lt;/div&gt;
+-      )}
+-    &lt;/nav&gt;
++      &lt;AnimatePresence&gt;
++        {open &amp;&amp; (
++          &lt;motion.div
++            initial={{ opacity: 0, height: 0 }}
++            animate={{ opacity: 1, height: "auto" }}
++            exit={{ opacity: 0, height: 0 }}
++            className="md:hidden glass-card-strong border-t border-gold-subtle/20 overflow-hidden"
++          &gt;
++            &lt;div className="p-6 flex flex-col gap-4 font-body"&gt;
++              {navLinks.map((link, i) =&gt; (
++                &lt;motion.a
++                  key={link.href}
++                  href={link.href}
++                  initial={{ opacity: 0, x: -20 }}
++                  animate={{ opacity: 1, x: 0 }}
++                  transition={{ delay: i * 0.1 }}
++                  className="text-muted-foreground hover:text-foreground transition-colors tracking-wide"
++                  onClick={() =&gt; setOpen(false)}
++                &gt;
++                  {link.label}
++                &lt;/motion.a&gt;
++              ))}
++              &lt;Button className="bg-gradient-gold text-primary-foreground font-semibold hover:opacity-90 mt-2 shadow-gold"&gt;
++                Get Started
++              &lt;/Button&gt;
++            &lt;/div&gt;
++          &lt;/motion.div&gt;
++        )}
++      &lt;/AnimatePresence&gt;
++    &lt;/motion.nav&gt;
+   );
+ };
+ 
+diff --git a/src/components/TrustSection.tsx b/src/components/TrustSection.tsx
+index 01f6f4d..0fc2789 100644
+--- a/src/components/TrustSection.tsx
++++ b/src/components/TrustSection.tsx
+@@ -1,51 +1,132 @@
+ import { motion } from "framer-motion";
+ import { Shield, FileCheck, Eye, Banknote, Scale, HeartHandshake } from "lucide-react";
++import { useRef, useCallback } from "react";
+ 
+ const badges = [
+-  { icon: Shield, title: "Comprehensive Insurance", desc: "Every swap is backed by full bumper-to-bumper insurance coverage." },
+-  { icon: Eye, title: "200-Point Inspection", desc: "Certified mechanics perform thorough inspections before every swap." },
+-  { icon: FileCheck, title: "Legal Agreements", desc: "Digital contracts with Aadhaar e-sign, legally binding and court-admissible." },
+-  { icon: Banknote, title: "Security Deposit", desc: "Refundable deposits protect both parties against unforeseen damages." },
+-  { icon: Scale, title: "Dispute Resolution", desc: "Dedicated arbitration panel for quick and fair conflict resolution." },
+-  { icon: HeartHandshake, title: "Verified Community", desc: "Every member is KYC-verified with background checks and references." },
++  {
++    icon: Shield,
++    title: "Fully Managed Risk",
++    desc: "Comprehensive insurance, usage restrictions, and clear responsibilities so you never worry about 'what if'.",
++  },
++  {
++    icon: Eye,
++    title: "Condition Guaranteed",
++    desc: "Independent 200‑point inspections and pre‑swap reports for every vehicle in the club.",
++  },
++  {
++    icon: FileCheck,
++    title: "Tight Legal Framework",
++    desc: "Custom swap agreements, Aadhaar e‑sign, and compliant documentation built for Indian regulations.",
++  },
++  {
++    icon: Banknote,
++    title: "Aligned Incentives",
++    desc: "Smart security deposits and clear penalty slabs to keep everyone honest and protected.",
++  },
++  {
++    icon: Scale,
++    title: "White‑Glove Resolution",
++    desc: "Concierge support and structured arbitration for the rare case something does go wrong.",
++  },
++  {
++    icon: HeartHandshake,
++    title: "Invite‑Only HNI Circle",
++    desc: "KYC, income, and reference checks so you swap only within a trusted, high‑net‑worth community.",
++  },
+ ];
+ 
++const SpotlightCard = ({
++  badge,
++  i,
++  isLarge,
++}: {
++  badge: (typeof badges)[0];
++  i: number;
++  isLarge: boolean;
++}) =&gt; {
++  const cardRef = useRef&lt;HTMLDivElement&gt;(null);
++
++  const handleMouseMove = useCallback((e: React.MouseEvent&lt;HTMLDivElement&gt;) =&gt; {
++    const card = cardRef.current;
++    if (!card) return;
++    const rect = card.getBoundingClientRect();
++    card.style.setProperty("--mouse-x", &#96;${e.clientX - rect.left}px&#96;);
++    card.style.setProperty("--mouse-y", &#96;${e.clientY - rect.top}px&#96;);
++  }, []);
++
++  return (
++    &lt;motion.div
++      ref={cardRef}
++      onMouseMove={handleMouseMove}
++      initial={{ opacity: 0, y: 30 }}
++      whileInView={{ opacity: 1, y: 0 }}
++      viewport={{ once: true }}
++      transition={{ delay: i * 0.1, duration: 0.5 }}
++      className={&#96;spotlight-hover glass-card rounded-xl ${isLarge ? "p-8 md:p-10" : "p-6 md:p-8"
++        } hover:border-primary/25 transition-all duration-500 hover:shadow-gold hover:-translate-y-1 group&#96;}
++    &gt;
++      &lt;div className="relative z-10 flex gap-5"&gt;
++        &lt;div
++          className={&#96;${isLarge ? "w-14 h-14" : "w-12 h-12"
++            } rounded-full bg-gradient-gold/10 flex items-center justify-center shrink-0 group-hover:bg-gradient-gold/20 transition-all duration-500&#96;}
++        &gt;
++          &lt;badge.icon
++            className={&#96;${isLarge ? "w-7 h-7" : "w-6 h-6"
++              } text-primary group-hover:scale-110 transition-transform duration-300&#96;}
++          /&gt;
++        &lt;/div&gt;
++        &lt;div&gt;
++          &lt;h3
++            className={&#96;font-display font-semibold ${isLarge ? "text-xl md:text-2xl" : "text-lg"
++              } mb-2&#96;}
++          &gt;
++            {badge.title}
++          &lt;/h3&gt;
++          &lt;p className="text-muted-foreground font-body text-sm leading-relaxed"&gt;
++            {badge.desc}
++          &lt;/p&gt;
++        &lt;/div&gt;
++      &lt;/div&gt;
++    &lt;/motion.div&gt;
++  );
++};
++
+ const TrustSection = () =&gt; {
+   return (
+-    &lt;section className="py-24"&gt;
+-      &lt;div className="container"&gt;
++    &lt;section className="py-28 relative overflow-hidden"&gt;
++      {/* Background accent */}
++      &lt;div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/3 rounded-full blur-[200px] pointer-events-none" /&gt;
++
++      &lt;div className="container relative z-10"&gt;
+         &lt;motion.div
+           initial={{ opacity: 0, y: 20 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true }}
+-          className="text-center mb-16"
++          className="text-center mb-20"
+         &gt;
+-          &lt;span className="text-primary font-body text-sm font-semibold tracking-widest uppercase mb-4 block"&gt;
+-            Your Safety, Our Promise
+-          &lt;/span&gt;
+-          &lt;h2 className="text-4xl md:text-5xl font-display font-bold"&gt;
++          &lt;div className="flex items-center justify-center gap-3 mb-6"&gt;
++            &lt;div className="h-px w-10 bg-gradient-to-r from-transparent to-primary/50" /&gt;
++            &lt;span className="text-primary font-accent text-base tracking-[0.2em] uppercase font-medium"&gt;
++              Your Safety, Our Promise
++            &lt;/span&gt;
++            &lt;div className="h-px w-10 bg-gradient-to-l from-transparent to-primary/50" /&gt;
++          &lt;/div&gt;
++          &lt;h2 className="text-4xl md:text-6xl font-display font-bold"&gt;
+             Built on &lt;span className="text-gradient-gold"&gt;Trust&lt;/span&gt;
+           &lt;/h2&gt;
+         &lt;/motion.div&gt;
+ 
+-        &lt;div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"&gt;
+-          {badges.map((badge, i) =&gt; (
+-            &lt;motion.div
+-              key={badge.title}
+-              initial={{ opacity: 0, y: 20 }}
+-              whileInView={{ opacity: 1, y: 0 }}
+-              viewport={{ once: true }}
+-              transition={{ delay: i * 0.1 }}
+-              className="flex gap-5 p-6 rounded-lg border border-border bg-card/50 hover:border-primary/30 transition-colors"
+-            &gt;
+-              &lt;div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0"&gt;
+-                &lt;badge.icon className="w-6 h-6 text-primary" /&gt;
+-              &lt;/div&gt;
+-              &lt;div&gt;
+-                &lt;h3 className="font-display font-semibold text-lg mb-1"&gt;{badge.title}&lt;/h3&gt;
+-                &lt;p className="text-muted-foreground font-body text-sm leading-relaxed"&gt;{badge.desc}&lt;/p&gt;
+-              &lt;/div&gt;
+-            &lt;/motion.div&gt;
++        {/* Bento grid */}
++        &lt;div className="grid grid-cols-1 md:grid-cols-2 gap-5"&gt;
++          {/* First two large */}
++          {badges.slice(0, 2).map((badge, i) =&gt; (
++            &lt;SpotlightCard key={badge.title} badge={badge} i={i} isLarge={true} /&gt;
++          ))}
++        &lt;/div&gt;
++        &lt;div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-5"&gt;
++          {/* Last four smaller */}
++          {badges.slice(2).map((badge, i) =&gt; (
++            &lt;SpotlightCard key={badge.title} badge={badge} i={i + 2} isLarge={false} /&gt;
+           ))}
+         &lt;/div&gt;
+       &lt;/div&gt;
+diff --git a/src/index.css b/src/index.css
+index 6370840..494bb70 100644
+--- a/src/index.css
++++ b/src/index.css
+@@ -1,4 +1,4 @@
+-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=DM+Sans:wght@300;400;500;600;700&amp;display=swap');
++@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=DM+Sans:wght@300;400;500;600;700&amp;family=Cormorant+Garamond:wght@300;400;500;600;700&amp;display=swap');
+ 
+ @tailwind base;
+ @tailwind components;
+@@ -6,50 +6,53 @@
+ 
+ @layer base {
+   :root {
+-    --background: 220 15% 6%;
+-    --foreground: 40 20% 95%;
++    --background: 220 18% 5%;
++    --foreground: 40 25% 96%;
+ 
+-    --card: 220 15% 10%;
+-    --card-foreground: 40 20% 95%;
++    --card: 220 16% 9%;
++    --card-foreground: 40 25% 96%;
+ 
+-    --popover: 220 15% 10%;
+-    --popover-foreground: 40 20% 95%;
++    --popover: 220 16% 9%;
++    --popover-foreground: 40 25% 96%;
+ 
+-    --primary: 43 80% 55%;
+-    --primary-foreground: 220 15% 6%;
++    --primary: 43 85% 58%;
++    --primary-foreground: 220 18% 5%;
+ 
+-    --secondary: 220 12% 16%;
+-    --secondary-foreground: 40 20% 90%;
++    --secondary: 220 14% 14%;
++    --secondary-foreground: 40 20% 92%;
+ 
+-    --muted: 220 12% 14%;
+-    --muted-foreground: 220 10% 55%;
++    --muted: 220 14% 12%;
++    --muted-foreground: 220 10% 50%;
+ 
+-    --accent: 43 80% 55%;
+-    --accent-foreground: 220 15% 6%;
++    --accent: 43 85% 58%;
++    --accent-foreground: 220 18% 5%;
+ 
+     --destructive: 0 84.2% 60.2%;
+     --destructive-foreground: 210 40% 98%;
+ 
+-    --border: 220 12% 18%;
+-    --input: 220 12% 18%;
+-    --ring: 43 80% 55%;
++    --border: 220 14% 16%;
++    --input: 220 14% 16%;
++    --ring: 43 85% 58%;
+ 
+     --radius: 0.75rem;
+ 
+-    --gold-glow: 43 90% 60%;
+-    --gold-muted: 43 40% 30%;
++    --gold-glow: 43 95% 62%;
++    --gold-muted: 43 40% 28%;
++    --champagne: 38 50% 75%;
++    --amber-deep: 30 90% 40%;
+ 
+-    --sidebar-background: 220 15% 8%;
+-    --sidebar-foreground: 40 20% 95%;
+-    --sidebar-primary: 43 80% 55%;
+-    --sidebar-primary-foreground: 220 15% 6%;
+-    --sidebar-accent: 220 12% 14%;
+-    --sidebar-accent-foreground: 40 20% 90%;
+-    --sidebar-border: 220 12% 18%;
+-    --sidebar-ring: 43 80% 55%;
++    --sidebar-background: 220 18% 7%;
++    --sidebar-foreground: 40 25% 96%;
++    --sidebar-primary: 43 85% 58%;
++    --sidebar-primary-foreground: 220 18% 5%;
++    --sidebar-accent: 220 14% 12%;
++    --sidebar-accent-foreground: 40 20% 92%;
++    --sidebar-border: 220 14% 16%;
++    --sidebar-ring: 43 85% 58%;
+ 
+     --font-display: 'Playfair Display', serif;
+     --font-body: 'DM Sans', sans-serif;
++    --font-accent: 'Cormorant Garamond', serif;
+   }
+ }
+ 
+@@ -61,30 +64,243 @@
+   body {
+     @apply bg-background text-foreground;
+     font-family: var(--font-body);
++    overflow-x: hidden;
+   }
+ 
+   h1, h2, h3, h4, h5, h6 {
+     font-family: var(--font-display);
+   }
++
++  ::selection {
++    background: hsl(43 85% 58% / 0.3);
++    color: hsl(40 25% 96%);
++  }
+ }
+ 
+ @layer utilities {
++  /* Gold Gradients */
+   .text-gradient-gold {
+-    background: linear-gradient(135deg, hsl(43 80% 55%), hsl(43 90% 70%));
++    background: linear-gradient(135deg, hsl(43 85% 58%), hsl(38 90% 72%), hsl(43 85% 58%));
++    background-size: 200% auto;
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     background-clip: text;
++    animation: shimmer-text 4s ease-in-out infinite;
+   }
+ 
+   .bg-gradient-gold {
+-    background: linear-gradient(135deg, hsl(43 80% 55%), hsl(35 85% 45%));
++    background: linear-gradient(135deg, hsl(43 85% 58%), hsl(35 90% 48%), hsl(30 85% 42%));
++  }
++
++  .bg-gradient-gold-hover {
++    background: linear-gradient(135deg, hsl(43 90% 64%), hsl(35 90% 52%), hsl(30 85% 46%));
+   }
+ 
++  /* Shadows */
+   .shadow-gold {
+-    box-shadow: 0 0 30px -5px hsl(43 80% 55% / 0.3);
++    box-shadow: 0 0 40px -5px hsl(43 85% 58% / 0.25);
++  }
++
++  .shadow-gold-lg {
++    box-shadow: 0 0 60px -10px hsl(43 85% 58% / 0.35), 0 0 100px -20px hsl(43 85% 58% / 0.15);
++  }
++
++  .shadow-luxury {
++    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.5), 0 0 1px 0 hsl(43 40% 28% / 0.3);
+   }
+ 
+   .border-gold-subtle {
+-    border-color: hsl(43 40% 30%);
++    border-color: hsl(43 40% 28%);
++  }
++
++  /* Glassmorphism */
++  .glass-card {
++    background: hsl(220 16% 9% / 0.6);
++    backdrop-filter: blur(20px) saturate(1.5);
++    -webkit-backdrop-filter: blur(20px) saturate(1.5);
++    border: 1px solid hsl(43 40% 28% / 0.2);
++  }
++
++  .glass-card-strong {
++    background: hsl(220 16% 9% / 0.8);
++    backdrop-filter: blur(30px) saturate(1.8);
++    -webkit-backdrop-filter: blur(30px) saturate(1.8);
++    border: 1px solid hsl(43 40% 28% / 0.25);
++  }
++
++  .glass-nav {
++    background: hsl(220 18% 5% / 0.5);
++    backdrop-filter: blur(24px) saturate(1.6);
++    -webkit-backdrop-filter: blur(24px) saturate(1.6);
++  }
++
++  /* Glow Border */
++  .glow-border {
++    position: relative;
++  }
++  .glow-border::before {
++    content: '';
++    position: absolute;
++    inset: -1px;
++    border-radius: inherit;
++    background: linear-gradient(135deg, hsl(43 85% 58% / 0.4), transparent 50%, hsl(43 85% 58% / 0.2));
++    z-index: -1;
++    opacity: 0;
++    transition: opacity 0.5s ease;
++  }
++  .glow-border:hover::before {
++    opacity: 1;
++  }
++
++  /* Shimmer effect */
++  .shimmer-overlay {
++    position: relative;
++    overflow: hidden;
++  }
++  .shimmer-overlay::after {
++    content: '';
++    position: absolute;
++    top: 0;
++    left: -100%;
++    width: 50%;
++    height: 100%;
++    background: linear-gradient(
++      90deg,
++      transparent,
++      hsl(43 85% 58% / 0.08),
++      transparent
++    );
++    transition: left 0.8s ease;
++  }
++  .shimmer-overlay:hover::after {
++    left: 150%;
++  }
++
++  /* Spotlight hover */
++  .spotlight-hover {
++    position: relative;
++    overflow: hidden;
++  }
++  .spotlight-hover::before {
++    content: '';
++    position: absolute;
++    top: var(--mouse-y, 50%);
++    left: var(--mouse-x, 50%);
++    width: 300px;
++    height: 300px;
++    background: radial-gradient(circle, hsl(43 85% 58% / 0.08) 0%, transparent 70%);
++    transform: translate(-50%, -50%);
++    opacity: 0;
++    transition: opacity 0.3s ease;
++    pointer-events: none;
++    z-index: 1;
++  }
++  .spotlight-hover:hover::before {
++    opacity: 1;
++  }
++
++  /* Film grain overlay */
++  .grain-overlay {
++    position: relative;
+   }
++  .grain-overlay::after {
++    content: '';
++    position: fixed;
++    top: -50%;
++    left: -50%;
++    width: 200%;
++    height: 200%;
++    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
++    pointer-events: none;
++    z-index: 9999;
++    opacity: 0.4;
++    animation: grain 8s steps(10) infinite;
++  }
++
++  /* Gold line divider */
++  .gold-divider {
++    height: 1px;
++    background: linear-gradient(90deg, transparent, hsl(43 85% 58% / 0.5), hsl(38 90% 72% / 0.3), transparent);
++  }
++
++  /* Animated underline */
++  .hover-underline-gold {
++    position: relative;
++  }
++  .hover-underline-gold::after {
++    content: '';
++    position: absolute;
++    bottom: -4px;
++    left: 50%;
++    width: 0;
++    height: 1px;
++    background: linear-gradient(90deg, hsl(43 85% 58%), hsl(38 90% 72%));
++    transition: all 0.3s ease;
++    transform: translateX(-50%);
++  }
++  .hover-underline-gold:hover::after {
++    width: 100%;
++  }
++
++  /* Pulse glow for CTA */
++  .pulse-glow {
++    animation: pulse-glow 2.5s ease-in-out infinite;
++  }
++}
++
++@keyframes shimmer-text {
++  0%, 100% { background-position: 0% center; }
++  50% { background-position: 200% center; }
++}
++
++@keyframes pulse-glow {
++  0%, 100% {
++    box-shadow: 0 0 20px -5px hsl(43 85% 58% / 0.3);
++  }
++  50% {
++    box-shadow: 0 0 40px -5px hsl(43 85% 58% / 0.5), 0 0 80px -20px hsl(43 85% 58% / 0.2);
++  }
++}
++
++@keyframes grain {
++  0%, 100% { transform: translate(0, 0); }
++  10% { transform: translate(-5%, -10%); }
++  20% { transform: translate(-15%, 5%); }
++  30% { transform: translate(7%, -15%); }
++  40% { transform: translate(-5%, 15%); }
++  50% { transform: translate(-15%, 10%); }
++  60% { transform: translate(15%, 0%); }
++  70% { transform: translate(0%, 10%); }
++  80% { transform: translate(3%, -15%); }
++  90% { transform: translate(-10%, 10%); }
++}
++
++@keyframes float {
++  0%, 100% { transform: translateY(0px); }
++  50% { transform: translateY(-10px); }
++}
++
++@keyframes marquee {
++  0% { transform: translateX(0); }
++  100% { transform: translateX(-50%); }
++}
++
++/* Smooth scroll */
++html {
++  scroll-behavior: smooth;
++}
++
++/* Custom scrollbar */
++::-webkit-scrollbar {
++  width: 6px;
++}
++::-webkit-scrollbar-track {
++  background: hsl(220 18% 5%);
++}
++::-webkit-scrollbar-thumb {
++  background: hsl(43 40% 28%);
++  border-radius: 3px;
++}
++::-webkit-scrollbar-thumb:hover {
++  background: hsl(43 85% 58% / 0.5);
+ }
+diff --git a/src/pages/Index.tsx b/src/pages/Index.tsx
+index 204e605..9ee3c47 100644
+--- a/src/pages/Index.tsx
++++ b/src/pages/Index.tsx
+@@ -3,16 +3,22 @@ import HeroSection from "@/components/HeroSection";
+ import HowItWorks from "@/components/HowItWorks";
+ import TrustSection from "@/components/TrustSection";
+ import FeaturedCars from "@/components/FeaturedCars";
++import TestimonialsMarquee from "@/components/TestimonialsMarquee";
++import LuxuryCTA from "@/components/LuxuryCTA";
++import FutureCategories from "@/components/FutureCategories";
+ import Footer from "@/components/Footer";
+ 
+ const Index = () =&gt; {
+   return (
+-    &lt;div className="min-h-screen bg-background"&gt;
++    &lt;div className="min-h-screen bg-background grain-overlay"&gt;
+       &lt;Navbar /&gt;
+       &lt;HeroSection /&gt;
+       &lt;div id="how"&gt;&lt;HowItWorks /&gt;&lt;/div&gt;
+       &lt;div id="trust"&gt;&lt;TrustSection /&gt;&lt;/div&gt;
+       &lt;div id="cars"&gt;&lt;FeaturedCars /&gt;&lt;/div&gt;
++      &lt;TestimonialsMarquee /&gt;
++      &lt;FutureCategories /&gt;
++      &lt;LuxuryCTA /&gt;
+       &lt;Footer /&gt;
+     &lt;/div&gt;
+   );
+diff --git a/tailwind.config.ts b/tailwind.config.ts
+index 168caac..522871e 100644
+--- a/tailwind.config.ts
++++ b/tailwind.config.ts
+@@ -16,6 +16,7 @@ export default {
+       fontFamily: {
+         display: ['Playfair Display', 'serif'],
+         body: ['DM Sans', 'sans-serif'],
++        accent: ['Cormorant Garamond', 'serif'],
+       },
+       colors: {
+         border: "hsl(var(--border))",
+
+```
+</details>
+</tool-use>
+
+---
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/mokshith/Documents/luxury-wheels-india && git log -5 --oneline</summary>
+
+```bash
+cd /Users/mokshith/Documents/luxury-wheels-india && git log -5 --oneline
+```
+
+```
+def56b0 Connect to Supabase project
+1622262 Update swap durations and copy
+8004b31 Changes
+4cd81f4 Added luxury car swap UI
+7726e2f Changes
+
+```
+</details>
+</tool-use>
+
+---
+
+<think><details><summary>Thought Process</summary>
+**Considering app changes for commit**
+
+I need to commit all app changes, but I should probably exclude .cursorindexingignore and .specstory unless the user specifically wants them included. While these files might not pose a risk, there are guidelines regarding .env-like secrets. I think I can include .cursorindexingignore but maybe skip .specstory since its directory contents are unknown. Let me make a quick list of what will be included or excluded to clarify my options!</details></think>
+
+---
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/mokshith/Documents/luxury-wheels-india && ls .specstory</summary>
+
+```bash
+cd /Users/mokshith/Documents/luxury-wheels-india && ls .specstory
+```
+
+```
+history
+
+```
+</details>
+</tool-use>
+
+---
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/mokshith/Documents/luxury-wheels-india && ls .specstory/history</summary>
+
+```bash
+cd /Users/mokshith/Documents/luxury-wheels-india && ls .specstory/history
+```
+
+```
+2026-02-26_05-02Z-project-description.md
+
+```
+</details>
+</tool-use>
+
+---
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/mokshith/Documents/luxury-wheels-india && git add package.json package-lock.json src/components/*.tsx src/pages/*.tsx src/index.css tailwind.config.ts .cursorindexingignore .specstory</summary>
+
+```bash
+cd /Users/mokshith/Documents/luxury-wheels-india && git add package.json package-lock.json src/components/*.tsx src/pages/*.tsx src/index.css tailwind.config.ts .cursorindexingignore .specstory
+```
+</details>
+</tool-use>
+
+---
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/mokshith/Documents/luxury-wheels-india && git commit --trailer "Made-with: Cursor" -m "Refine SwapLuxe UX, filters, and branding"</summary>
+
+```bash
+cd /Users/mokshith/Documents/luxury-wheels-india && git commit --trailer "Made-with: Cursor" -m "Refine SwapLuxe UX, filters, and branding"
+```
+
+```
+[main 8cf1186] Refine SwapLuxe UX, filters, and branding
+ Committer: Mokshith &lt;mokshith@mac.dhcp.asu.edu&gt;
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 17 files changed, 3733 insertions(+), 370 deletions(-)
+ create mode 100644 .cursorindexingignore
+ create mode 100644 .specstory/.gitignore
+ create mode 100644 .specstory/history/2026-02-26_05-02Z-project-description.md
+ create mode 100644 src/components/FutureCategories.tsx
+ create mode 100644 src/components/LuxuryCTA.tsx
+ create mode 100644 src/components/TestimonialsMarquee.tsx
+
+```
+</details>
+</tool-use>
+
+---
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/mokshith/Documents/luxury-wheels-india && git push origin main</summary>
+
+```bash
+cd /Users/mokshith/Documents/luxury-wheels-india && git push origin main
+```
+
+```
+To https://github.com/Mokshithdv25/luxury-wheels-india.git
+   def56b0..8cf1186  main -&gt; main
+
+```
+</details>
+</tool-use>
+
+---
+
+All changes are now pushed to GitHub.
+
+- **Branch**: `main`
+- **Latest commit**: `Refine SwapLuxe UX, filters, and branding`
+- Included updates: date-range + account filters, analytics page, SwapLuxe branding and UVP copy, future categories (cars → watches → yachts → jets), and dev-server tweaks.
+
+---
+
+_**User**_
+
+where did you push it? which repo
+
+---
+
+_**Agent (model default, mode Agent)**_
+
+<think><details><summary>Thought Process</summary>
+**Providing concise git information**
+
+I need to give a clear answer regarding the git push output. The remote URL is https://github.com/Mokshithdv25/luxury-wheels-india.git, and I should specifically mention that it's linked to the main branch. It's important to present this succinctly for clarity, ensuring the user understands the relevant information without any fluff. This will help streamline their understanding of the repository and its main branch usage.</details></think>
+
+---
+
+**Repo and branch**
+
+- **Repository**: `github.com/Mokshithdv25/luxury-wheels-india`  
+  (remote URL: `https://github.com/Mokshithdv25/luxury-wheels-india.git`)
+- **Branch**: `main` (pushed `Refine SwapLuxe UX, filters, and branding`).
 
 ---
 
