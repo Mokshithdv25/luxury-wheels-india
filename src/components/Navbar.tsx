@@ -1,48 +1,122 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Crown } from "lucide-react";
+
+const navLinks = [
+  { label: "How It Works", href: "#how" },
+  { label: "Trust & Safety", href: "#trust" },
+  { label: "Browse Cars", href: "#cars" },
+];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/60 backdrop-blur-xl border-b border-border/50">
-      <div className="container flex items-center justify-between h-16">
-        <a href="/" className="font-display text-2xl font-bold text-gradient-gold">
-          SwapLux
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
+          ? "glass-nav border-b border-gold-subtle/30 shadow-luxury py-2"
+          : "bg-transparent py-4"
+        }`}
+    >
+      <div className="container flex items-center justify-between">
+        <a href="/" className="flex items-center gap-2 group">
+          <Crown className="w-6 h-6 text-primary transition-transform group-hover:rotate-12 duration-300" />
+          <span className="font-display text-2xl font-bold text-gradient-gold">
+            SwapLuxe
+          </span>
         </a>
 
-        <div className="hidden md:flex items-center gap-8 font-body text-sm text-muted-foreground">
-          <a href="#how" className="hover:text-foreground transition-colors">How It Works</a>
-          <a href="#trust" className="hover:text-foreground transition-colors">Trust & Safety</a>
-          <a href="#cars" className="hover:text-foreground transition-colors">Browse Cars</a>
+        <div className="hidden md:flex items-center gap-10">
+          {navLinks.map((link, i) => (
+            <motion.a
+              key={link.href}
+              href={link.href}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 + i * 0.1 }}
+              className="hover-underline-gold font-body text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 tracking-wide"
+            >
+              {link.label}
+            </motion.a>
+          ))}
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-          <Button variant="ghost" className="font-body text-sm text-muted-foreground hover:text-foreground">
-            Sign In
-          </Button>
-          <Button size="sm" className="bg-gradient-gold text-primary-foreground font-body font-semibold hover:opacity-90">
-            Get Started
-          </Button>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+          >
+            <Button
+              variant="ghost"
+              className="font-body text-sm text-muted-foreground hover:text-foreground hover:bg-white/5 tracking-wide"
+            >
+              Sign In
+            </Button>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.7 }}
+          >
+            <Button
+              size="sm"
+              className="bg-gradient-gold text-primary-foreground font-body font-semibold hover:opacity-90 shadow-gold tracking-wide px-6"
+            >
+              Get Started
+            </Button>
+          </motion.div>
         </div>
 
-        <button className="md:hidden text-foreground" onClick={() => setOpen(!open)}>
+        <button
+          className="md:hidden text-foreground p-2"
+          onClick={() => setOpen(!open)}
+        >
           {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
-      {open && (
-        <div className="md:hidden bg-background border-t border-border p-6 flex flex-col gap-4 font-body">
-          <a href="#how" className="text-muted-foreground hover:text-foreground">How It Works</a>
-          <a href="#trust" className="text-muted-foreground hover:text-foreground">Trust & Safety</a>
-          <a href="#cars" className="text-muted-foreground hover:text-foreground">Browse Cars</a>
-          <Button className="bg-gradient-gold text-primary-foreground font-semibold hover:opacity-90 mt-2">
-            Get Started
-          </Button>
-        </div>
-      )}
-    </nav>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden glass-card-strong border-t border-gold-subtle/20 overflow-hidden"
+          >
+            <div className="p-6 flex flex-col gap-4 font-body">
+              {navLinks.map((link, i) => (
+                <motion.a
+                  key={link.href}
+                  href={link.href}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  className="text-muted-foreground hover:text-foreground transition-colors tracking-wide"
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </motion.a>
+              ))}
+              <Button className="bg-gradient-gold text-primary-foreground font-semibold hover:opacity-90 mt-2 shadow-gold">
+                Get Started
+              </Button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
   );
 };
 
