@@ -1,19 +1,34 @@
 import { motion } from "framer-motion";
 import { Crown, Instagram, Twitter, Linkedin, Youtube, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const footerLinks = [
   {
     title: "Platform",
-    links: ["Browse Cars", "List Your Car", "Pricing", "How It Works"],
+    links: [
+      { label: "Apply to Join", href: "/apply" },
+      { label: "Browse Cars", href: "#cars" },
+      { label: "How It Works", href: "#how" },
+    ],
   },
   {
     title: "Trust",
-    links: ["Insurance Policy", "Inspection Process", "Legal Framework", "Dispute Resolution"],
+    links: [
+      { label: "Insurance Policy", href: "#" },
+      { label: "Inspection Process", href: "#" },
+      { label: "Legal Framework", href: "#" },
+      { label: "Dispute Resolution", href: "#" },
+    ],
   },
   {
     title: "Company",
-    links: ["About Us", "Careers", "Blog", "Contact"],
+    links: [
+      { label: "About Us", href: "#" },
+      { label: "Careers", href: "#" },
+      { label: "Blog", href: "#" },
+      { label: "Contact", href: "#" },
+    ],
   },
 ];
 
@@ -92,16 +107,25 @@ const Footer = () => {
                 {col.title}
               </h4>
               <ul className="space-y-3">
-                {col.links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      className="text-muted-foreground font-body text-sm hover:text-primary transition-colors duration-300 hover-underline-gold"
-                    >
-                      {link}
-                    </a>
-                  </li>
-                ))}
+                {col.links.map((link) => {
+                  const href = link.href;
+                  const label = link.label;
+                  const className =
+                    "text-muted-foreground font-body text-sm hover:text-primary transition-colors duration-300 hover-underline-gold";
+                  return (
+                    <li key={label}>
+                      {href.startsWith("/") ? (
+                        <Link to={href} className={className}>
+                          {label}
+                        </Link>
+                      ) : (
+                        <a href={href} className={className}>
+                          {label}
+                        </a>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}

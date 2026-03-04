@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const LuxuryCTA = () => {
@@ -68,13 +69,15 @@ const LuxuryCTA = () => {
                         transition={{ delay: 0.6, duration: 0.5 }}
                         className="flex flex-col sm:flex-row gap-4 justify-center"
                     >
-                        <Button
-                            size="lg"
-                            className="bg-gradient-gold text-primary-foreground font-body font-semibold text-base px-12 py-7 shadow-gold-lg pulse-glow hover:scale-[1.03] transition-all duration-300 tracking-wide"
-                        >
-                            Join SwapLux
-                            <ArrowRight className="ml-2 w-5 h-5" />
-                        </Button>
+                        <Link to="/apply">
+                            <Button
+                                size="lg"
+                                className="bg-gradient-gold text-primary-foreground font-body font-semibold text-base px-12 py-7 shadow-gold-lg pulse-glow hover:scale-[1.03] transition-all duration-300 tracking-wide"
+                            >
+                                Join SwapLuxe
+                                <ArrowRight className="ml-2 w-5 h-5" />
+                            </Button>
+                        </Link>
                         <Button
                             size="lg"
                             variant="outline"

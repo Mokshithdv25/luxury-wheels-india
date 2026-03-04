@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { ArrowRight, Shield, CheckCircle, Star } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useRef, useEffect, useState } from "react";
 import heroCar from "@/assets/hero-car.jpg";
@@ -158,20 +159,24 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 1.1 }}
             className="flex flex-col sm:flex-row gap-4 mb-14"
           >
-            <Button
-              size="lg"
-              className="bg-gradient-gold text-primary-foreground font-body font-semibold text-base px-10 py-7 shadow-gold-lg pulse-glow hover:shadow-gold-lg hover:scale-[1.02] transition-all duration-300 tracking-wide"
-            >
-              Start Swapping
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-gold-subtle text-foreground font-body text-base px-8 py-7 hover:bg-primary/5 hover:border-primary/40 transition-all duration-300 tracking-wide"
-            >
-              How It Works
-            </Button>
+            <Link to="/apply">
+              <Button
+                size="lg"
+                className="bg-gradient-gold text-primary-foreground font-body font-semibold text-base px-10 py-7 shadow-gold-lg pulse-glow hover:shadow-gold-lg hover:scale-[1.02] transition-all duration-300 tracking-wide"
+              >
+                Start Swapping
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+            </Link>
+            <a href="#how">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-gold-subtle text-foreground font-body text-base px-8 py-7 hover:bg-primary/5 hover:border-primary/40 transition-all duration-300 tracking-wide"
+              >
+                How It Works
+              </Button>
+            </a>
           </motion.div>
 
           {/* Floating badges */}
