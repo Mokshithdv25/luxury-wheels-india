@@ -148,8 +148,8 @@ const HeroSection = () => {
             transition={{ duration: 0.7, delay: 1.0 }}
             className="text-lg md:text-xl text-muted-foreground font-body leading-relaxed mb-10 max-w-lg"
           >
-            Swap your luxury car with other high‑net‑worth members across India — without the usual headache.
-            We handle condition checks, insurance, and legal agreements end‑to‑end so you simply exchange keys.
+            A private circle of high‑net‑worth collectors across India. We handle condition checks, insurance, and legal
+            agreements end‑to‑end — you simply request an invite and we curate the right swaps for you.
           </motion.p>
 
           {/* CTAs */}
@@ -164,7 +164,7 @@ const HeroSection = () => {
                 size="lg"
                 className="bg-gradient-gold text-primary-foreground font-body font-semibold text-base px-10 py-7 shadow-gold-lg pulse-glow hover:shadow-gold-lg hover:scale-[1.02] transition-all duration-300 tracking-wide"
               >
-                Start Swapping
+                Request Invite
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>

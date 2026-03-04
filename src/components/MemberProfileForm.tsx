@@ -123,11 +123,10 @@ export const MemberProfileForm = () => {
 
   return (
     <div className="glass-card rounded-2xl p-6 md:p-8 space-y-6">
-      <div>
-        <h2 className="text-2xl md:text-3xl font-display font-bold mb-2">Tell us about yourself</h2>
+      <div className="space-y-1">
+        <h2 className="text-2xl md:text-3xl font-display font-bold">Your membership profile</h2>
         <p className="text-sm md:text-base text-muted-foreground">
-          This helps SwapLuxe curate the right matches inside our invite‑only club. Your information stays private with
-          our team.
+          Only the SwapLuxe team sees this information. We use it solely to review fit and curate potential swaps.
         </p>
       </div>
 

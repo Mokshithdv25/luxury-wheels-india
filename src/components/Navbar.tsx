@@ -76,7 +76,7 @@ const Navbar = () => {
                 size="sm"
                 className="bg-gradient-gold text-primary-foreground font-body font-semibold hover:opacity-90 shadow-gold tracking-wide px-6"
               >
-                Get Started
+                Request Invite
               </Button>
             </Link>
           </motion.div>
@@ -114,7 +114,7 @@ const Navbar = () => {
               ))}
               <Link to="/apply" onClick={() => setOpen(false)}>
                 <Button className="bg-gradient-gold text-primary-foreground font-semibold hover:opacity-90 mt-2 shadow-gold w-full">
-                  Get Started
+                  Request Invite
                 </Button>
               </Link>
             </div>
