@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 const navLinks = [
   { label: "How It Works", href: "#how" },
   { label: "Trust & Safety", href: "#trust" },
-  { label: "Browse Cars", href: "#cars" },
 ];
 
 const Navbar = () => {

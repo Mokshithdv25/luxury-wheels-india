@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { CarFront, Watch, Ship, Plane } from "lucide-react";
+import { CarFront, Watch, Ship, Plane, Building2 } from "lucide-react";
 
 const items = [
   {
@@ -8,25 +8,30 @@ const items = [
     caption: "Live now across India",
   },
   {
-    icon: Watch,
-    label: "Haute Horlogerie",
-    caption: "Collector watches coming soon",
+    icon: Building2,
+    label: "Villas & Retreats",
+    caption: "Signature homes and villas — coming soon",
   },
   {
     icon: Ship,
     label: "Yachts",
-    caption: "Curated marinas & crews",
+    caption: "Curated marinas and crews — coming soon",
+  },
+  {
+    icon: Watch,
+    label: "Watches & Horology",
+    caption: "Collector watches and trading — coming soon",
   },
   {
     icon: Plane,
     label: "Jets",
-    caption: "Private aviation partnerships",
+    caption: "Private aviation partnerships — coming soon",
   },
 ];
 
 const FutureCategories = () => {
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section className="py-20 relative overflow-hidden" id="future">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
       <div className="container relative z-10">
         <motion.div

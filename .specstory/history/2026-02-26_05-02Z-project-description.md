@@ -19378,3 +19378,1225 @@ This is where you elevate from “rich applicant” to “valuable member.”
 
 ---
 
+_**Agent (model default, mode Agent)**_
+
+<think><details><summary>Thought Process</summary>
+**Renaming form labels**
+
+I'm considering some changes to labels for clarity. The "Email" label is fine, but I'll add the description "Professional/work email preferred." For the "Phone" label, maybe I should rename it to "WhatsApp number" with the description "Primary WhatsApp number we can reach you on." I'll keep the "Primary city" label unchanged for now. The "Profession" label can be updated to "Profession + industry" with a placeholder, and the "Annual income" label can align to "Annual Income (Approx)." I'll make similar adjustments for other labels to ensure consistency.
+**Simplifying car label texts**
+
+I'm working on making the car-related labels clearer. For instance, I’ll change the "Number of cars you own" to "Number of Cars." The "Flagship car (make & model)" label will be simplified to "Flagship Car," and "Model year" will become "Model Year." I’ll include descriptions for the car fields as parenthetical notes. As for the miscellaneous section, I could adjust the label to "Anything else we should know? (This is critical)" and ensure the placeholder text matches. Finally, I can add a subtle "Assets" label above the grid, keeping it minimal.
+**Planning layout changes**
+
+I’m looking at how to present the "Assets" section effectively. The idea is to add a header and a brief note above the grid without disrupting the layout, especially considering Tailwind's styling. For implementation, I’ll update the import line to include "FormDescription" for clarity in usage. I need to ensure I add the <FormDescription> element correctly between "FormControl" and "FormMessage" for each field without breaking TypeScript. I’ll also apply patches for the necessary fields like full name, email, phone, profession, income, education, and car details.</details></think>
+
+---
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/mokshith/Documents/luxury-wheels-india/src/components/MemberProfileForm.tsx</summary>
+
+</details>
+
+</tool-use>
+
+---
+
+<tool-use data-tool-type="unknown" data-tool-name="read_lints">
+<details>
+<summary>Tool use: **read_lints**</summary>
+
+
+Parameters:
+
+```json
+{
+  "paths": [
+    "/Users/mokshith/Documents/luxury-wheels-india/src/components/MemberProfileForm.tsx"
+  ]
+}
+```
+Result:
+
+```json
+{
+  "linterErrorsByFile": [
+    {
+      "relativeWorkspacePath": "/Users/mokshith/Documents/luxury-wheels-india/src/components/MemberProfileForm.tsx"
+    }
+  ]
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+---
+
+I’ve wired your exact copy into the application flow and kept everything stored in Supabase.
+
+### **What changed in the UI**
+
+- **Hero + navbar**
+  - Primary CTA is now **“Request Invite”** (no “Start Swapping” anywhere).
+  - Hero subtitle is invite-only oriented, not promising instant swaps.
+
+- **Apply page**
+  - Headline section now says:
+    - **“Request an Invite”**
+    - **“Join India’s invite‑only SwapLuxe circle”**
+    - Subcopy: short, private application; under two minutes.
+
+- **Form fields (`MemberProfileForm`)**
+  - **Full Name**
+    - Label: “Full Name”
+    - Helper: “Your full legal name as it appears on ID or contracts.”
+  - **Email**
+    - Placeholder: `you@firm.com`
+    - Helper: “Professional / work email preferred.”
+  - **Phone**
+    - Label: “WhatsApp Number”
+    - Helper: “Primary WhatsApp number for confidential communication.”
+  - **Primary City**
+    - Same label; copy still clean.
+  - **Profession + Industry**
+    - Label: “Profession + Industry”
+    - Placeholder: `Founder · Consumer Tech`
+  - **Annual Income (Approx)**
+    - Label: “Annual Income (Approx)”
+    - Helper: “Select the highest honest bracket that applies.”
+  - **Highest Education**
+    - Label: “Highest Education”.
+
+- **Assets section**
+  - Added subtle section heading **“Assets”** with helper text.
+  - **Number of Cars**
+    - Label: “Number of Cars”
+    - Helper: “Approximate count of cars personally owned.”
+  - **Flagship Car**
+    - Label: “Flagship Car”
+    - Helper: “Whatever you consider your highest‑tier performance asset.”
+  - **Model Year**
+    - Label: “Model Year”
+    - Helper: “Recent years (2021+) signal current liquidity and usage.”
+
+- **“Anything Else We Should Know?”**
+  - Label: **“Anything else we should know? — This is critical”**
+  - Placeholder text mirrors your description:
+    - Explains this is where you move from “rich applicant” to “valuable member” and suggests what to write (other assets, collections, prior experiences, how they’d use SwapLuxe).
+
+### **Data flow**
+
+- The submit handler and Supabase call are unchanged:
+
+```ts
+const { error } = await supabase.from("member_profiles").insert(payload);
+```
+
+So the experience is now more premium and minimalist, uses your exact wording, and every submission still lands in your `member_profiles` table.
+
+---
+
+_**User**_
+
+push
+
+---
+
+_**Agent (model default, mode Agent)**_
+
+<think><details><summary>Thought Process</summary>
+**Executing git commands**
+
+I need to perform a git commit and push my latest changes. Since I've used git before, it should be straightforward. First, I should check the status to see any changes. Then, I'll add those changes, commit them with a message, and finally push them to the remote repository. Once I do that, I’ll confirm everything went through successfully. Let's keep this execution clean and efficient!</details></think>
+
+---
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/mokshith/Documents/luxury-wheels-india && git status</summary>
+
+```bash
+cd /Users/mokshith/Documents/luxury-wheels-india && git status
+```
+
+```
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git restore &lt;file&gt;..." to discard changes in working directory)
+	modified:   .specstory/history/2026-02-26_05-02Z-project-description.md
+	modified:   src/components/MemberProfileForm.tsx
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+```
+</details>
+</tool-use>
+
+---
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/mokshith/Documents/luxury-wheels-india && git diff</summary>
+
+```bash
+cd /Users/mokshith/Documents/luxury-wheels-india && git diff
+```
+
+```
+diff --git a/.specstory/history/2026-02-26_05-02Z-project-description.md b/.specstory/history/2026-02-26_05-02Z-project-description.md
+index 1454910..a192195 100644
+--- a/.specstory/history/2026-02-26_05-02Z-project-description.md
++++ b/.specstory/history/2026-02-26_05-02Z-project-description.md
+@@ -18740,51 +18740,350 @@ make it more premium, minimalist, remove start swapping cause they get that only
+ 
+ _**Agent (model default, mode Agent)**_
+ 
++&lt;think&gt;&lt;details&gt;&lt;summary&gt;Thought Process&lt;/summary&gt;
++**Reviewing code adjustments**
+ 
++I need to keep in mind that I should run ReadLints after making edits. There’s a possibility the user will ask to push these changes later, but not right now. I’ll focus on inspecting &#96;Apply.tsx&#96; and &#96;MemberProfileForm.tsx&#96; to pinpoint the exact changes that need to be made. It’s all about ensuring everything is in order before moving on!&lt;/details&gt;&lt;/think&gt;
+ 
+ ---
+ 
+-&lt;tool-use data-tool-type="unknown" data-tool-name="read_file_v2"&gt;
+-&lt;details&gt;
+-&lt;summary&gt;Tool use: **read_file_v2**&lt;/summary&gt;
++&lt;tool-use data-tool-type="read" data-tool-name="read_file_v2"&gt;
++&lt;details&gt;&lt;summary&gt;Tool use: **read_file_v2** • Read file: /Users/mokshith/Documents/luxury-wheels-india/src/pages/Apply.tsx&lt;/summary&gt;
++
++&lt;/details&gt;
++&lt;/tool-use&gt;
+ 
+-Status: **loading**
++---
+ 
++&lt;tool-use data-tool-type="read" data-tool-name="read_file_v2"&gt;
++&lt;details&gt;&lt;summary&gt;Tool use: **read_file_v2** • Read file: /Users/mokshith/Documents/luxury-wheels-india/src/components/MemberProfileForm.tsx&lt;/summary&gt;
+ 
+ &lt;/details&gt;
+ &lt;/tool-use&gt;
+ 
+ ---
+ 
+-&lt;tool-use data-tool-type="unknown" data-tool-name="read_file_v2"&gt;
+-&lt;details&gt;
+-&lt;summary&gt;Tool use: **read_file_v2**&lt;/summary&gt;
++&lt;tool-use data-tool-type="read" data-tool-name="read_file_v2"&gt;
++&lt;details&gt;&lt;summary&gt;Tool use: **read_file_v2** • Read file: /Users/mokshith/Documents/luxury-wheels-india/src/components/HeroSection.tsx&lt;/summary&gt;
++
++&lt;/details&gt;
++&lt;/tool-use&gt;
+ 
+-Status: **loading**
++---
+ 
++&lt;tool-use data-tool-type="read" data-tool-name="read_file_v2"&gt;
++&lt;details&gt;&lt;summary&gt;Tool use: **read_file_v2** • Read file: /Users/mokshith/Documents/luxury-wheels-india/src/components/LuxuryCTA.tsx&lt;/summary&gt;
+ 
+ &lt;/details&gt;
+ &lt;/tool-use&gt;
+ 
+ ---
+ 
+-&lt;tool-use data-tool-type="unknown" data-tool-name="read_file_v2"&gt;
+-&lt;details&gt;
+-&lt;summary&gt;Tool use: **read_file_v2**&lt;/summary&gt;
++&lt;think&gt;&lt;details&gt;&lt;summary&gt;Thought Process&lt;/summary&gt;
++**Updating CTA and design**
++
++I see the user wants to change the hero CTA label from "Start Swapping" to something like "Request an Invite," which emphasizes the invitation aspect. They also mentioned making it more premium and minimalist, so I might consider reducing the hero title. We should focus the CTA text on requesting access instead of swapping. The MemberProfileForm could use slight reorganization to enhance simplicity. We can keep the three-column design but add subtle headings for better clarity while ensuring we don’t interfere with Supabase integration.
++**Refining language and button text**
++
++I see the user wants to adjust the language to emphasize the invitation aspect, changing the text to something like "Request an invite to SwapLuxe, India’s invite-only swap club." It’s important to still mention swapping but focus on the invite. The primary button text will be "Request Invite" instead of "Start Swapping," which makes sense since they only access that once they’re admitted. I’m also considering removing any stats for a cleaner look.
++**Updating labels and forms**
++
++The user didn’t explicitly mention needing premium features, but to keep things minimal, we could retain some elements as optional. In the navbar, I could change the "Get Started" label to "Request Invite" for consistency. For the ApplyPage, I’ll simplify the title to "Request an invite to SwapLuxe," and mention the quick two-minute application. In the MemberProfileForm, I plan to adjust the card header to “Request an invite” and compress the description. A subtle step indicator might be helpful but isn't necessary. I'll confirm everything is working with Supabase during implementation.&lt;/details&gt;&lt;/think&gt;
++
++---
++
++&lt;tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"&gt;
++&lt;details&gt;&lt;summary&gt;Tool use: **run_terminal_command_v2** • Run command: cd /Users/mokshith/Documents/luxury-wheels-india &amp;&amp; sed -n '140,190p' src/components/HeroSection.tsx&lt;/summary&gt;
++
++&#96;&#96;&#96;bash
++cd /Users/mokshith/Documents/luxury-wheels-india &amp;&amp; sed -n '140,190p' src/components/HeroSection.tsx
++&#96;&#96;&#96;
++
++&#96;&#96;&#96;
++              &amp;lt;/motion.span&amp;gt;
++            ))}
++          &amp;lt;/h1&amp;gt;
++
++          {/* Subtitle */}
++          &amp;lt;motion.p
++            initial={{ opacity: 0, y: 20 }}
++            animate={{ opacity: 1, y: 0 }}
++            transition={{ duration: 0.7, delay: 1.0 }}
++            className="text-lg md:text-xl text-muted-foreground font-body leading-relaxed mb-10 max-w-lg"
++          &amp;gt;
++            Swap your luxury car with other high‑net‑worth members across India — without the usual headache.
++            We handle condition checks, insurance, and legal agreements end‑to‑end so you simply exchange keys.
++          &amp;lt;/motion.p&amp;gt;
++
++          {/* CTAs */}
++          &amp;lt;motion.div
++            initial={{ opacity: 0, y: 20 }}
++            animate={{ opacity: 1, y: 0 }}
++            transition={{ duration: 0.6, delay: 1.1 }}
++            className="flex flex-col sm:flex-row gap-4 mb-14"
++          &amp;gt;
++            &amp;lt;Link to="/apply"&amp;gt;
++              &amp;lt;Button
++                size="lg"
++                className="bg-gradient-gold text-primary-foreground font-body font-semibold text-base px-10 py-7 shadow-gold-lg pulse-glow hover:shadow-gold-lg hover:scale-[1.02] transition-all duration-300 tracking-wide"
++              &amp;gt;
++                Start Swapping
++                &amp;lt;ArrowRight className="ml-2 w-5 h-5" /&amp;gt;
++              &amp;lt;/Button&amp;gt;
++            &amp;lt;/Link&amp;gt;
++            &amp;lt;a href="#how"&amp;gt;
++              &amp;lt;Button
++                size="lg"
++                variant="outline"
++                className="border-gold-subtle text-foreground font-body text-base px-8 py-7 hover:bg-primary/5 hover:border-primary/40 transition-all duration-300 tracking-wide"
++              &amp;gt;
++                How It Works
++              &amp;lt;/Button&amp;gt;
++            &amp;lt;/a&amp;gt;
++          &amp;lt;/motion.div&amp;gt;
++
++          {/* Floating badges */}
++          &amp;lt;motion.div
++            initial={{ opacity: 0 }}
++            animate={{ opacity: 1 }}
++            transition={{ delay: 1.3 }}
++            className="flex flex-wrap gap-3 mb-14"
++          &amp;gt;
++            {floatingBadges.map((badge, i) =&amp;gt; (
++              &amp;lt;motion.div
++
++&#96;&#96;&#96;
++&lt;/details&gt;
++&lt;/tool-use&gt;
++
++---
++
++&lt;tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"&gt;
++&lt;details&gt;&lt;summary&gt;Tool use: **run_terminal_command_v2** • Run command: cd /Users/mokshith/Documents/luxury-wheels-india &amp;&amp; sed -n '10,40p' src/components/Navbar.tsx&lt;/summary&gt;
++
++&#96;&#96;&#96;bash
++cd /Users/mokshith/Documents/luxury-wheels-india &amp;&amp; sed -n '10,40p' src/components/Navbar.tsx
++&#96;&#96;&#96;
++
++&#96;&#96;&#96;
++  { label: "Browse Cars", href: "#cars" },
++];
++
++const Navbar = () =&amp;gt; {
++  const [open, setOpen] = useState(false);
++  const [scrolled, setScrolled] = useState(false);
++
++  useEffect(() =&amp;gt; {
++    const handleScroll = () =&amp;gt; setScrolled(window.scrollY &amp;gt; 50);
++    window.addEventListener("scroll", handleScroll);
++    return () =&amp;gt; window.removeEventListener("scroll", handleScroll);
++  }, []);
++
++  return (
++    &amp;lt;motion.nav
++      initial={{ y: -100 }}
++      animate={{ y: 0 }}
++      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
++      className={&amp;#96;fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
++          ? "glass-nav border-b border-gold-subtle/30 shadow-luxury py-2"
++          : "bg-transparent py-4"
++        }&amp;#96;}
++    &amp;gt;
++      &amp;lt;div className="container flex items-center justify-between"&amp;gt;
++        &amp;lt;Link to="/" className="flex items-center gap-2 group"&amp;gt;
++          &amp;lt;Crown className="w-6 h-6 text-primary transition-transform group-hover:rotate-12 duration-300" /&amp;gt;
++          &amp;lt;span className="font-display text-2xl font-bold text-gradient-gold"&amp;gt;
++            SwapLuxe
++          &amp;lt;/span&amp;gt;
++        &amp;lt;/Link&amp;gt;
++
++
++&#96;&#96;&#96;
++&lt;/details&gt;
++&lt;/tool-use&gt;
++
++---
++
++&lt;tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"&gt;
++&lt;details&gt;&lt;summary&gt;Tool use: **run_terminal_command_v2** • Run command: cd /Users/mokshith/Documents/luxury-wheels-india &amp;&amp; sed -n '52,90p' src/components/Navbar.tsx&lt;/summary&gt;
++
++&#96;&#96;&#96;bash
++cd /Users/mokshith/Documents/luxury-wheels-india &amp;&amp; sed -n '52,90p' src/components/Navbar.tsx
++&#96;&#96;&#96;
++
++&#96;&#96;&#96;
++            &amp;lt;/motion.a&amp;gt;
++          ))}
++        &amp;lt;/div&amp;gt;
++
++        &amp;lt;div className="hidden md:flex items-center gap-3"&amp;gt;
++          &amp;lt;motion.div
++            initial={{ opacity: 0 }}
++            animate={{ opacity: 1 }}
++            transition={{ delay: 0.6 }}
++          &amp;gt;
++            &amp;lt;Button
++              variant="ghost"
++              className="font-body text-sm text-muted-foreground hover:text-foreground hover:bg-white/5 tracking-wide"
++            &amp;gt;
++              Sign In
++            &amp;lt;/Button&amp;gt;
++          &amp;lt;/motion.div&amp;gt;
++          &amp;lt;motion.div
++            initial={{ opacity: 0, scale: 0.9 }}
++            animate={{ opacity: 1, scale: 1 }}
++            transition={{ delay: 0.7 }}
++          &amp;gt;
++            &amp;lt;Link to="/apply"&amp;gt;
++              &amp;lt;Button
++                size="sm"
++                className="bg-gradient-gold text-primary-foreground font-body font-semibold hover:opacity-90 shadow-gold tracking-wide px-6"
++              &amp;gt;
++                Get Started
++              &amp;lt;/Button&amp;gt;
++            &amp;lt;/Link&amp;gt;
++          &amp;lt;/motion.div&amp;gt;
++        &amp;lt;/div&amp;gt;
++
++        &amp;lt;button
++          className="md:hidden text-foreground p-2"
++          onClick={() =&amp;gt; setOpen(!open)}
++        &amp;gt;
++          {open ? &amp;lt;X className="w-6 h-6" /&amp;gt; : &amp;lt;Menu className="w-6 h-6" /&amp;gt;}
++        &amp;lt;/button&amp;gt;
++
++&#96;&#96;&#96;
++&lt;/details&gt;
++&lt;/tool-use&gt;
++
++---
++
++&lt;tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"&gt;
++&lt;details&gt;&lt;summary&gt;Tool use: **run_terminal_command_v2** • Run command: cd /Users/mokshith/Documents/luxury-wheels-india &amp;&amp; sed -n '96,140p' src/components/Navbar.tsx&lt;/summary&gt;
++
++&#96;&#96;&#96;bash
++cd /Users/mokshith/Documents/luxury-wheels-india &amp;&amp; sed -n '96,140p' src/components/Navbar.tsx
++&#96;&#96;&#96;
++
++&#96;&#96;&#96;
++            initial={{ opacity: 0, height: 0 }}
++            animate={{ opacity: 1, height: "auto" }}
++            exit={{ opacity: 0, height: 0 }}
++            className="md:hidden glass-card-strong border-t border-gold-subtle/20 overflow-hidden"
++          &amp;gt;
++            &amp;lt;div className="p-6 flex flex-col gap-4 font-body"&amp;gt;
++              {navLinks.map((link, i) =&amp;gt; (
++                &amp;lt;motion.a
++                  key={link.href}
++                  href={link.href}
++                  initial={{ opacity: 0, x: -20 }}
++                  animate={{ opacity: 1, x: 0 }}
++                  transition={{ delay: i * 0.1 }}
++                  className="text-muted-foreground hover:text-foreground transition-colors tracking-wide"
++                  onClick={() =&amp;gt; setOpen(false)}
++                &amp;gt;
++                  {link.label}
++                &amp;lt;/motion.a&amp;gt;
++              ))}
++              &amp;lt;Link to="/apply" onClick={() =&amp;gt; setOpen(false)}&amp;gt;
++                &amp;lt;Button className="bg-gradient-gold text-primary-foreground font-semibold hover:opacity-90 mt-2 shadow-gold w-full"&amp;gt;
++                  Get Started
++                &amp;lt;/Button&amp;gt;
++              &amp;lt;/Link&amp;gt;
++            &amp;lt;/div&amp;gt;
++          &amp;lt;/motion.div&amp;gt;
++        )}
++      &amp;lt;/AnimatePresence&amp;gt;
++    &amp;lt;/motion.nav&amp;gt;
++  );
++};
+ 
+-Status: **loading**
++export default Navbar;
+ 
++&#96;&#96;&#96;
++&lt;/details&gt;
++&lt;/tool-use&gt;
++
++---
++
++&lt;tool-use data-tool-type="write" data-tool-name="edit_file_v2"&gt;
++
++&lt;details&gt;&lt;summary&gt;Tool use: **edit_file_v2** • Edit file: /Users/mokshith/Documents/luxury-wheels-india/src/components/HeroSection.tsx&lt;/summary&gt;
++
++&lt;/details&gt;
++
++&lt;/tool-use&gt;
++
++---
++
++&lt;tool-use data-tool-type="write" data-tool-name="edit_file_v2"&gt;
++
++&lt;details&gt;&lt;summary&gt;Tool use: **edit_file_v2** • Edit file: /Users/mokshith/Documents/luxury-wheels-india/src/components/Navbar.tsx&lt;/summary&gt;
++
++&lt;/details&gt;
++
++&lt;/tool-use&gt;
++
++---
++
++&lt;tool-use data-tool-type="write" data-tool-name="edit_file_v2"&gt;
++
++&lt;details&gt;&lt;summary&gt;Tool use: **edit_file_v2** • Edit file: /Users/mokshith/Documents/luxury-wheels-india/src/pages/Apply.tsx&lt;/summary&gt;
++
++&lt;/details&gt;
++
++&lt;/tool-use&gt;
++
++---
++
++&lt;tool-use data-tool-type="write" data-tool-name="edit_file_v2"&gt;
++
++&lt;details&gt;&lt;summary&gt;Tool use: **edit_file_v2** • Edit file: /Users/mokshith/Documents/luxury-wheels-india/src/components/MemberProfileForm.tsx&lt;/summary&gt;
+ 
+ &lt;/details&gt;
++
+ &lt;/tool-use&gt;
+ 
+ ---
+ 
+-&lt;tool-use data-tool-type="unknown" data-tool-name="read_file_v2"&gt;
++&lt;tool-use data-tool-type="unknown" data-tool-name="read_lints"&gt;
+ &lt;details&gt;
+-&lt;summary&gt;Tool use: **read_file_v2**&lt;/summary&gt;
++&lt;summary&gt;Tool use: **read_lints**&lt;/summary&gt;
+ 
+-Status: **loading**
++
++Parameters:
++
++&#96;&#96;&#96;json
++{
++  "paths": [
++    "/Users/mokshith/Documents/luxury-wheels-india/src/components/HeroSection.tsx",
++    "/Users/mokshith/Documents/luxury-wheels-india/src/components/Navbar.tsx",
++    "/Users/mokshith/Documents/luxury-wheels-india/src/pages/Apply.tsx",
++    "/Users/mokshith/Documents/luxury-wheels-india/src/components/MemberProfileForm.tsx"
++  ]
++}
++&#96;&#96;&#96;
++Result:
++
++&#96;&#96;&#96;json
++{
++  "linterErrorsByFile": [
++    {
++      "relativeWorkspacePath": "/Users/mokshith/Documents/luxury-wheels-india/src/components/HeroSection.tsx"
++    },
++    {
++      "relativeWorkspacePath": "/Users/mokshith/Documents/luxury-wheels-india/src/components/Navbar.tsx"
++    },
++    {
++      "relativeWorkspacePath": "/Users/mokshith/Documents/luxury-wheels-india/src/pages/Apply.tsx"
++    },
++    {
++      "relativeWorkspacePath": "/Users/mokshith/Documents/luxury-wheels-india/src/components/MemberProfileForm.tsx"
++    }
++  ]
++}
++&#96;&#96;&#96;
++Status: **completed**
+ 
+ 
+ &lt;/details&gt;
+@@ -18792,51 +19091,290 @@ Status: **loading**
+ 
+ ---
+ 
++Here’s what I’ve actually changed to make the flow more premium, minimalist, and invite‑only, while still writing to your Supabase table.
+ 
++### **1. Hero: no more “Start Swapping”**
++
++In &#96;HeroSection&#96;:
++
++- **Copy** now frames it as an invite-only circle, not instant swapping:
++
++&#96;&#96;&#96;tsx
++SwapLuxe · India’s Invite‑Only Swap Club
++...
++A private circle of high‑net‑worth collectors across India. We handle condition checks,
++insurance, and legal agreements end‑to‑end — you simply request an invite and we
++curate the right swaps for you.
++&#96;&#96;&#96;
++
++- **Primary button** now:
++
++&#96;&#96;&#96;tsx
++&lt;Link to="/apply"&gt;
++  &lt;Button ...&gt;
++    Request Invite
++    &lt;ArrowRight ... /&gt;
++  &lt;/Button&gt;
++&lt;/Link&gt;
++&#96;&#96;&#96;
++
++- Secondary button is a minimalist **“How It Works”** anchor to &#96;#how&#96;. No “Start Swapping” text anywhere.
++
++### **2. Navbar + CTA: single, clean invite action**
++
++In &#96;Navbar&#96;:
++
++- Desktop and mobile CTA button text is now **“Request Invite”**, still linking to &#96;/apply&#96;.
++
++In &#96;LuxuryCTA&#96;:
++
++- Big gold button: **“Join SwapLuxe”** (unchanged destination, still &#96;/apply&#96;).
++- Overall section copy remains premium but focused on membership, not usage.
++
++### **3. Apply page: premium, focused invite flow**
++
++In &#96;Apply.tsx&#96;:
++
++- Top section now:
++
++&#96;&#96;&#96;tsx
++&lt;p&gt;Request an Invite&lt;/p&gt;
++&lt;h1&gt;Join India’s invite‑only SwapLuxe circle&lt;/h1&gt;
++&lt;p&gt;Short, private application… It takes under two minutes to complete.&lt;/p&gt;
++&#96;&#96;&#96;
++
++- The page is just **hero copy + one glass-card form** in the center; nothing noisy around it.
++
++### **4. Form card: “membership profile”, still stored in Supabase**
++
++In &#96;MemberProfileForm&#96;:
++
++- Header updated to feel more high-end and reassure privacy:
++
++&#96;&#96;&#96;tsx
++&lt;h2&gt;Your membership profile&lt;/h2&gt;
++&lt;p&gt;
++  Only the SwapLuxe team sees this information. We use it solely to review fit and curate potential swaps.
++&lt;/p&gt;
++&#96;&#96;&#96;
++
++- All existing fields remain (income, profession, education, cars owned, flagship car, notes).
++- **Submit logic unchanged**:
++
++&#96;&#96;&#96;ts
++const { error } = await supabase.from("member_profiles").insert(payload);
++&#96;&#96;&#96;
++
++So the flow is now:
++
++1. User lands on &#96;/&#96; → sees **“Request Invite”** hero button (and navbar CTA).
++2. Click → **&#96;/apply&#96;**.
++3. Fills a clean, single-card **“Your membership profile”** form.
++4. On submit, data is inserted into **&#96;member_profiles&#96;** in your Supabase project.
++
++---
++
++_**User**_
++
++pushed?
++
++---
++
++_**Agent (model default, mode Agent)**_
++
++&lt;think&gt;&lt;details&gt;&lt;summary&gt;Thought Process&lt;/summary&gt;
++**Checking git status and pushing changes**
++
++I need to check the git status first to see if there are any changes I need to push. If there are, I'll push those changes to the repository. Since I want to be concise in my response, I’ll be mindful of how I convey the information. Using Shell commands will keep things efficient. Let's get started with that check!&lt;/details&gt;&lt;/think&gt;
+ 
+ ---
+ 
+ &lt;tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"&gt;
+-&lt;details&gt;&lt;summary&gt;Tool use: **run_terminal_command_v2**&lt;/summary&gt;
++&lt;details&gt;&lt;summary&gt;Tool use: **run_terminal_command_v2** • Run command: cd /Users/mokshith/Documents/luxury-wheels-india &amp;&amp; git status&lt;/summary&gt;
++
++&#96;&#96;&#96;bash
++cd /Users/mokshith/Documents/luxury-wheels-india &amp;&amp; git status
++&#96;&#96;&#96;
++
++&#96;&#96;&#96;
++On branch main
++Your branch is up to date with 'origin/main'.
+ 
++Changes not staged for commit:
++  (use "git add &amp;lt;file&amp;gt;..." to update what will be committed)
++  (use "git restore &amp;lt;file&amp;gt;..." to discard changes in working directory)
++	modified:   .specstory/history/2026-02-26_05-02Z-project-description.md
++	modified:   src/components/HeroSection.tsx
++	modified:   src/components/MemberProfileForm.tsx
++	modified:   src/components/Navbar.tsx
++	modified:   src/pages/Apply.tsx
++
++no changes added to commit (use "git add" and/or "git commit -a")
++
++&#96;&#96;&#96;
+ &lt;/details&gt;
+ &lt;/tool-use&gt;
+ 
+ ---
+ 
+ &lt;tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"&gt;
+-&lt;details&gt;&lt;summary&gt;Tool use: **run_terminal_command_v2**&lt;/summary&gt;
++&lt;details&gt;&lt;summary&gt;Tool use: **run_terminal_command_v2** • Run command: cd /Users/mokshith/Documents/luxury-wheels-india &amp;&amp; git add src/components/HeroSection.tsx src/components/MemberProfileForm.tsx src/components/Navbar.tsx src/pages/Apply.tsx .specstory/history/2026-02-26_05-02Z-project-description.md&lt;/summary&gt;
+ 
++&#96;&#96;&#96;bash
++cd /Users/mokshith/Documents/luxury-wheels-india &amp;&amp; git add src/components/HeroSection.tsx src/components/MemberProfileForm.tsx src/components/Navbar.tsx src/pages/Apply.tsx .specstory/history/2026-02-26_05-02Z-project-description.md
++&#96;&#96;&#96;
+ &lt;/details&gt;
+ &lt;/tool-use&gt;
+ 
+ ---
+ 
+ &lt;tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"&gt;
+-&lt;details&gt;&lt;summary&gt;Tool use: **run_terminal_command_v2**&lt;/summary&gt;
++&lt;details&gt;&lt;summary&gt;Tool use: **run_terminal_command_v2** • Run command: cd /Users/mokshith/Documents/luxury-wheels-india &amp;&amp; git commit --trailer "Made-with: Cursor" -m "Polish premium invite-only flow"&lt;/summary&gt;
++
++&#96;&#96;&#96;bash
++cd /Users/mokshith/Documents/luxury-wheels-india &amp;&amp; git commit --trailer "Made-with: Cursor" -m "Polish premium invite-only flow"
++&#96;&#96;&#96;
+ 
++&#96;&#96;&#96;
++On branch main
++Your branch is up to date with 'origin/main'.
++
++Changes not staged for commit:
++  (use "git add &amp;lt;file&amp;gt;..." to update what will be committed)
++  (use "git restore &amp;lt;file&amp;gt;..." to discard changes in working directory)
++	modified:   .specstory/history/2026-02-26_05-02Z-project-description.md
++	modified:   src/components/HeroSection.tsx
++	modified:   src/components/MemberProfileForm.tsx
++	modified:   src/components/Navbar.tsx
++	modified:   src/pages/Apply.tsx
++
++no changes added to commit (use "git add" and/or "git commit -a")
++
++&#96;&#96;&#96;
+ &lt;/details&gt;
+ &lt;/tool-use&gt;
+ 
+ ---
+ 
+ &lt;tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"&gt;
+-&lt;details&gt;&lt;summary&gt;Tool use: **run_terminal_command_v2**&lt;/summary&gt;
++&lt;details&gt;&lt;summary&gt;Tool use: **run_terminal_command_v2** • Run command: cd /Users/mokshith/Documents/luxury-wheels-india &amp;&amp; git status&lt;/summary&gt;
++
++&#96;&#96;&#96;bash
++cd /Users/mokshith/Documents/luxury-wheels-india &amp;&amp; git status
++&#96;&#96;&#96;
++
++&#96;&#96;&#96;
++On branch main
++Your branch is up to date with 'origin/main'.
++
++Changes to be committed:
++  (use "git restore --staged &amp;lt;file&amp;gt;..." to unstage)
++	modified:   .specstory/history/2026-02-26_05-02Z-project-description.md
++	modified:   src/components/HeroSection.tsx
++	modified:   src/components/MemberProfileForm.tsx
++	modified:   src/components/Navbar.tsx
++	modified:   src/pages/Apply.tsx
+ 
++
++&#96;&#96;&#96;
+ &lt;/details&gt;
+ &lt;/tool-use&gt;
+ 
+ ---
+ 
+-&lt;tool-use data-tool-type="write" data-tool-name="edit_file_v2"&gt;
++&lt;tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"&gt;
++&lt;details&gt;&lt;summary&gt;Tool use: **run_terminal_command_v2** • Run command: cd /Users/mokshith/Documents/luxury-wheels-india &amp;&amp; git commit --trailer "Made-with: Cursor" -m "Polish premium invite-only flow"&lt;/summary&gt;
+ 
+-&lt;details&gt;&lt;summary&gt;Tool use: **edit_file_v2** • Edit file: /Users/mokshith/Documents/luxury-wheels-india/src/components/HeroSection.tsx&lt;/summary&gt;
++&#96;&#96;&#96;bash
++cd /Users/mokshith/Documents/luxury-wheels-india &amp;&amp; git commit --trailer "Made-with: Cursor" -m "Polish premium invite-only flow"
++&#96;&#96;&#96;
+ 
+-Status: **loading**
++&#96;&#96;&#96;
++[main a67e586] Polish premium invite-only flow
++ Committer: Mokshith &amp;lt;mokshith@Mokshiths-MacBook-Air.local&amp;gt;
++Your name and email address were configured automatically based
++on your username and hostname. Please check that they are accurate.
++You can suppress this message by setting them explicitly. Run the
++following command and follow the instructions in your editor to edit
++your configuration file:
+ 
++    git config --global --edit
++
++After doing this, you may fix the identity used for this commit with:
++
++    git commit --amend --reset-author
++
++ 5 files changed, 363 insertions(+), 13 deletions(-)
++
++&#96;&#96;&#96;
+ &lt;/details&gt;
++&lt;/tool-use&gt;
++
++---
++
++&lt;tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"&gt;
++&lt;details&gt;&lt;summary&gt;Tool use: **run_terminal_command_v2** • Run command: cd /Users/mokshith/Documents/luxury-wheels-india &amp;&amp; git push origin main&lt;/summary&gt;
++
++&#96;&#96;&#96;bash
++cd /Users/mokshith/Documents/luxury-wheels-india &amp;&amp; git push origin main
++&#96;&#96;&#96;
+ 
++&#96;&#96;&#96;
++To https://github.com/Mokshithdv25/luxury-wheels-india.git
++   f1d9114..a67e586  main -&amp;gt; main
++
++&#96;&#96;&#96;
++&lt;/details&gt;
+ &lt;/tool-use&gt;
+ 
+ ---
+ 
++Yes, everything is pushed.
++
++- **Repo**: &#96;github.com/Mokshithdv25/luxury-wheels-india&#96;
++- **Branch**: &#96;main&#96;
++- **Latest commit**: &#96;Polish premium invite-only flow&#96; (hero “Request Invite”, navbar CTAs, apply page copy, and form header).
++
++---
++
++_**User**_
++
++Full Name
++
++Your full legal name 
++Email
++
++Professional domain email preferred 
++
++Phone
++
++WhatsApp number
++
++Primary City
++
++
++Profession+industry
++
++Annual Income (Approx)
++
++Select highest honest bracket available.
++Highest Education
++
++Assets Section 
++Number of Cars
++
++
++Flagship Car
++
++(Whatever is your actual highest-tier performance asset)
++
++Model Year
++
++Recent year preferred (2021+ signals current liquidity)
++
++“Anything Else We Should Know?” — This Is Critical
++
++This is where you elevate from “rich applicant” to “valuable member.”
++
++---
++
+diff --git a/src/components/MemberProfileForm.tsx b/src/components/MemberProfileForm.tsx
+index 2f05d73..46a8d51 100644
+--- a/src/components/MemberProfileForm.tsx
++++ b/src/components/MemberProfileForm.tsx
+@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
+ 
+ import { supabase } from "@/integrations/supabase/client";
+ import { TablesInsert } from "@/integrations/supabase/types";
+-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
++import { Form, FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage } from "@/components/ui/form";
+ import { Input } from "@/components/ui/input";
+ import { Textarea } from "@/components/ui/textarea";
+ import { Button } from "@/components/ui/button";
+@@ -138,10 +138,11 @@ export const MemberProfileForm = () =&gt; {
+               name="full_name"
+               render={({ field }) =&gt; (
+                 &lt;FormItem&gt;
+-                  &lt;FormLabel&gt;Full name&lt;/FormLabel&gt;
++                  &lt;FormLabel&gt;Full Name&lt;/FormLabel&gt;
+                   &lt;FormControl&gt;
+                     &lt;Input placeholder="Your full legal name" {...field} /&gt;
+                   &lt;/FormControl&gt;
++                  &lt;FormDescription&gt;Your full legal name as it appears on ID or contracts.&lt;/FormDescription&gt;
+                   &lt;FormMessage /&gt;
+                 &lt;/FormItem&gt;
+               )}
+@@ -154,8 +155,9 @@ export const MemberProfileForm = () =&gt; {
+                 &lt;FormItem&gt;
+                   &lt;FormLabel&gt;Email&lt;/FormLabel&gt;
+                   &lt;FormControl&gt;
+-                    &lt;Input type="email" placeholder="you@example.com" {...field} /&gt;
++                    &lt;Input type="email" placeholder="you@firm.com" {...field} /&gt;
+                   &lt;/FormControl&gt;
++                  &lt;FormDescription&gt;Professional / work email preferred.&lt;/FormDescription&gt;
+                   &lt;FormMessage /&gt;
+                 &lt;/FormItem&gt;
+               )}
+@@ -166,10 +168,11 @@ export const MemberProfileForm = () =&gt; {
+               name="phone"
+               render={({ field }) =&gt; (
+                 &lt;FormItem&gt;
+-                  &lt;FormLabel&gt;Phone (WhatsApp preferred)&lt;/FormLabel&gt;
++                  &lt;FormLabel&gt;WhatsApp Number&lt;/FormLabel&gt;
+                   &lt;FormControl&gt;
+                     &lt;Input placeholder="+91 ..." {...field} /&gt;
+                   &lt;/FormControl&gt;
++                  &lt;FormDescription&gt;Primary WhatsApp number for confidential communication.&lt;/FormDescription&gt;
+                   &lt;FormMessage /&gt;
+                 &lt;/FormItem&gt;
+               )}
+@@ -196,10 +199,11 @@ export const MemberProfileForm = () =&gt; {
+               name="profession"
+               render={({ field }) =&gt; (
+                 &lt;FormItem&gt;
+-                  &lt;FormLabel&gt;Profession&lt;/FormLabel&gt;
++                  &lt;FormLabel&gt;Profession + Industry&lt;/FormLabel&gt;
+                   &lt;FormControl&gt;
+-                    &lt;Input placeholder="e.g. Founder, CXO, Investor" {...field} /&gt;
++                    &lt;Input placeholder="e.g. Founder · Consumer Tech" {...field} /&gt;
+                   &lt;/FormControl&gt;
++                  &lt;FormDescription&gt;High-level role and sector, not a full bio.&lt;/FormDescription&gt;
+                   &lt;FormMessage /&gt;
+                 &lt;/FormItem&gt;
+               )}
+@@ -210,7 +214,7 @@ export const MemberProfileForm = () =&gt; {
+               name="annual_income_bracket"
+               render={({ field }) =&gt; (
+                 &lt;FormItem&gt;
+-                  &lt;FormLabel&gt;Annual income (approx)&lt;/FormLabel&gt;
++                  &lt;FormLabel&gt;Annual Income (Approx)&lt;/FormLabel&gt;
+                   &lt;FormControl&gt;
+                     &lt;Select onValueChange={field.onChange} value={field.value}&gt;
+                       &lt;SelectTrigger&gt;
+@@ -225,6 +229,7 @@ export const MemberProfileForm = () =&gt; {
+                       &lt;/SelectContent&gt;
+                     &lt;/Select&gt;
+                   &lt;/FormControl&gt;
++                  &lt;FormDescription&gt;Select the highest honest bracket that applies.&lt;/FormDescription&gt;
+                   &lt;FormMessage /&gt;
+                 &lt;/FormItem&gt;
+               )}
+@@ -235,7 +240,7 @@ export const MemberProfileForm = () =&gt; {
+               name="education_level"
+               render={({ field }) =&gt; (
+                 &lt;FormItem&gt;
+-                  &lt;FormLabel&gt;Highest education&lt;/FormLabel&gt;
++                  &lt;FormLabel&gt;Highest Education&lt;/FormLabel&gt;
+                   &lt;FormControl&gt;
+                     &lt;Select onValueChange={field.onChange} value={field.value || ""}&gt;
+                       &lt;SelectTrigger&gt;
+@@ -256,16 +261,24 @@ export const MemberProfileForm = () =&gt; {
+             /&gt;
+           &lt;/div&gt;
+ 
++          &lt;div className="space-y-1 pt-2"&gt;
++            &lt;h3 className="text-sm font-medium font-display"&gt;Assets&lt;/h3&gt;
++            &lt;p className="text-xs text-muted-foreground"&gt;
++              A quick snapshot of your current garage to understand swap fit.
++            &lt;/p&gt;
++          &lt;/div&gt;
++
+           &lt;div className="grid grid-cols-1 md:grid-cols-3 gap-4"&gt;
+             &lt;FormField
+               control={form.control}
+               name="cars_owned_count"
+               render={({ field }) =&gt; (
+                 &lt;FormItem&gt;
+-                  &lt;FormLabel&gt;Number of cars you own&lt;/FormLabel&gt;
++                  &lt;FormLabel&gt;Number of Cars&lt;/FormLabel&gt;
+                   &lt;FormControl&gt;
+                     &lt;Input type="number" min={0} placeholder="e.g. 3" {...field} /&gt;
+                   &lt;/FormControl&gt;
++                  &lt;FormDescription&gt;Approximate count of cars personally owned.&lt;/FormDescription&gt;
+                   &lt;FormMessage /&gt;
+                 &lt;/FormItem&gt;
+               )}
+@@ -276,10 +289,11 @@ export const MemberProfileForm = () =&gt; {
+               name="primary_car_make_model"
+               render={({ field }) =&gt; (
+                 &lt;FormItem&gt;
+-                  &lt;FormLabel&gt;Flagship car (make &amp; model)&lt;/FormLabel&gt;
++                  &lt;FormLabel&gt;Flagship Car&lt;/FormLabel&gt;
+                   &lt;FormControl&gt;
+                     &lt;Input placeholder="e.g. Porsche 911 Turbo S" {...field} /&gt;
+                   &lt;/FormControl&gt;
++                  &lt;FormDescription&gt;Whatever you consider your highest‑tier performance asset.&lt;/FormDescription&gt;
+                   &lt;FormMessage /&gt;
+                 &lt;/FormItem&gt;
+               )}
+@@ -290,10 +304,11 @@ export const MemberProfileForm = () =&gt; {
+               name="primary_car_year"
+               render={({ field }) =&gt; (
+                 &lt;FormItem&gt;
+-                  &lt;FormLabel&gt;Model year&lt;/FormLabel&gt;
++                  &lt;FormLabel&gt;Model Year&lt;/FormLabel&gt;
+                   &lt;FormControl&gt;
+                     &lt;Input type="number" placeholder="e.g. 2023" {...field} /&gt;
+                   &lt;/FormControl&gt;
++                  &lt;FormDescription&gt;Recent years (2021+) signal current liquidity and usage.&lt;/FormDescription&gt;
+                   &lt;FormMessage /&gt;
+                 &lt;/FormItem&gt;
+               )}
+@@ -305,11 +320,11 @@ export const MemberProfileForm = () =&gt; {
+             name="notes"
+             render={({ field }) =&gt; (
+               &lt;FormItem&gt;
+-                &lt;FormLabel&gt;Anything else we should know?&lt;/FormLabel&gt;
++                &lt;FormLabel&gt;Anything else we should know? — This is critical&lt;/FormLabel&gt;
+                 &lt;FormControl&gt;
+                   &lt;Textarea
+                     rows={4}
+-                    placeholder="Share other cars, collections (watches, yachts, jets), or preferences for swaps."
++                    placeholder="This is where you elevate from “rich applicant” to “valuable member” — share other assets, collections (watches, yachts, jets), prior experiences, or how you’d like to use SwapLuxe."
+                     {...field}
+                   /&gt;
+                 &lt;/FormControl&gt;
+
+```
+</details>
+</tool-use>
+
+---
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/mokshith/Documents/luxury-wheels-india && git add src/components/MemberProfileForm.tsx .specstory/history/2026-02-26_05-02Z-project-description.md</summary>
+
+```bash
+cd /Users/mokshith/Documents/luxury-wheels-india && git add src/components/MemberProfileForm.tsx .specstory/history/2026-02-26_05-02Z-project-description.md
+```
+</details>
+</tool-use>
+
+---
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/mokshith/Documents/luxury-wheels-india && git commit --trailer "Made-with: Cursor" -m "Refine membership form copy and structure"</summary>
+
+```bash
+cd /Users/mokshith/Documents/luxury-wheels-india && git commit --trailer "Made-with: Cursor" -m "Refine membership form copy and structure"
+```
+
+```
+[main 29d17bf] Refine membership form copy and structure
+ Committer: Mokshith &lt;mokshith@Mokshiths-MacBook-Air.local&gt;
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 2 files changed, 588 insertions(+), 35 deletions(-)
+
+```
+</details>
+</tool-use>
+
+---
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/mokshith/Documents/luxury-wheels-india && git push origin main</summary>
+
+```bash
+cd /Users/mokshith/Documents/luxury-wheels-india && git push origin main
+```
+
+```
+To https://github.com/Mokshithdv25/luxury-wheels-india.git
+   a67e586..29d17bf  main -&gt; main
+
+```
+</details>
+</tool-use>
+
+---
+
+Yes, it’s pushed.
+
+- **Repo**: `github.com/Mokshithdv25/luxury-wheels-india`
+- **Branch**: `main`
+- **Latest commit**: `Refine membership form copy and structure` (your new labels, helper text, and “Assets” section are now live).
+
+---
+
+_**User**_
+
+remove Browse cars from home page, give them a taste of whats about to come like yatchs, villas, watches, jets
+
+---
+
+_**Agent (model default, mode Agent)**_
+
+<think><details><summary>Thought Process</summary>
+**Reviewing user request**
+
+The user wants to remove the "Browse Cars" section from the home page and instead showcase upcoming categories like yachts, villas, watches, and jets. They’ve mentioned the need to assess whether this means the navbar and footer links or just the FeaturedCars section. Additionally, they’d like to enhance the FutureCategories section, including villas and adjusting the language to emphasize the upcoming options. I'll need to look into the Navbar, navLinks, Index layout, and FutureCategories for necessary tweaks.</details></think>
+
+---
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/mokshith/Documents/luxury-wheels-india/src/components/Navbar.tsx</summary>
+
+</details>
+</tool-use>
+
+---
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/mokshith/Documents/luxury-wheels-india/src/pages/Index.tsx</summary>
+
+</details>
+</tool-use>
+
+---
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/mokshith/Documents/luxury-wheels-india/src/components/FutureCategories.tsx</summary>
+
+</details>
+</tool-use>
+
+---
+
+<think><details><summary>Thought Process</summary>
+**Reorganizing categories**
+
+I need to remove "Browse cars from the homepage," along with the Featured Cars section. We're already showcasing supercars, watches, yachts, and jets, but let's consider adding villas to the Future Categories. It could be interesting to use a new icon for the villas section, like a house or building symbol. I'll update the labels for each category to follow the user's preferred order while emphasizing that cars are currently available, and the other categories will be "coming soon."
+**Updating navigation and categories**
+
+The user provided four categories, so I can go with: Supercars & SUVs, Villas, Yachts, and Watches & Horology. This works well since they didn't previously mention villas, but now they do. Even though they didn't explicitly ask for the Featured Cars section to be removed, I'll still remove the "Browse Cars" link to be safe. However, I'll keep the Featured Cars visually as "Featured Swaps" to tease what's coming, using the Future Categories to align with the user's idea of giving a taste of what's to come.
+**Updating labels and links**
+
+The user might want to remove the label as well since they mentioned "from home page." To maintain consistency, I’ll also take out the "Browse Cars" mention in the footer. While their question focused on the homepage navigation, I think updating the footer Platform links will help. I’ll link to an anchor for "Future Categories," and I need to wrap that section in a div with an id. I’ll also update the `FutureCategories.items` to include the villa icon and ensure everything aligns with the specific categories the user wanted: yachts, villas, watches, and jets.
+**Reorganizing items and captions**
+
+I'm importing icons like CarFront, Watch, Ship, Plane, and Building2 from "lucide-react," and I think it’s time to reorder our items like this: Supercars & SUVs, Villas & Retreats, Yachts, Watches & Horology, and Jets. Although having five cards in a two-column grid feels slightly unbalanced, it's still acceptable. I might merge cars and jets if necessary. I also want to tweak the Future Categories heading to emphasize "cars today, with villas, yachts, watches, and jets coming soon," and I’ll ensure that the adjustments don’t affect Supabase.
+**Preparing updates and commits**
+
+I need to run lints on the updated files before adding and committing them. The user mentioned "remove..." but didn’t specify pushing, though they usually do want a push after. I think I’ll modify the files but hold off on the push unless they explicitly ask for it. For the footer, I’ll update the Platform links and change the first link label from "Browse Cars" to "Future Assets" linking to "#future," while inspecting Footer.tsx for any previous changes. Keeping the anchor for now seems okay.</details></think>
+
+---
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/mokshith/Documents/luxury-wheels-india/src/components/Footer.tsx</summary>
+
+</details>
+</tool-use>
+
+---
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/mokshith/Documents/luxury-wheels-india/src/components/Navbar.tsx</summary>
+
+</details>
+
+</tool-use>
+
+---
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/mokshith/Documents/luxury-wheels-india/src/components/Footer.tsx</summary>
+
+</details>
+
+</tool-use>
+
+---
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/mokshith/Documents/luxury-wheels-india/src/components/FutureCategories.tsx</summary>
+
+</details>
+
+</tool-use>
+
+---
+
+<tool-use data-tool-type="unknown" data-tool-name="read_lints">
+<details>
+<summary>Tool use: **read_lints**</summary>
+
+
+Parameters:
+
+```json
+{
+  "paths": [
+    "/Users/mokshith/Documents/luxury-wheels-india/src/components/Navbar.tsx",
+    "/Users/mokshith/Documents/luxury-wheels-india/src/components/Footer.tsx",
+    "/Users/mokshith/Documents/luxury-wheels-india/src/components/FutureCategories.tsx"
+  ]
+}
+```
+Result:
+
+```json
+{
+  "linterErrorsByFile": [
+    {
+      "relativeWorkspacePath": "/Users/mokshith/Documents/luxury-wheels-india/src/components/Navbar.tsx"
+    },
+    {
+      "relativeWorkspacePath": "/Users/mokshith/Documents/luxury-wheels-india/src/components/Footer.tsx"
+    },
+    {
+      "relativeWorkspacePath": "/Users/mokshith/Documents/luxury-wheels-india/src/components/FutureCategories.tsx"
+    }
+  ]
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+---
+
+- I’ve **removed the “Browse Cars” nav link** from the top navbar so the home page doesn’t push browsing inventory.
+- In the **footer**, “Browse Cars” is gone; the Platform column now has `Apply to Join`, `How It Works`, and **`Future Assets`** (scrolls to the teaser section).
+- The **Future Categories** section now gives a clearer taste of what’s coming:
+  - **Supercars & SUVs** – live now  
+  - **Villas & Retreats** – signature homes and villas (coming soon)  
+  - **Yachts** – curated marinas and crews (coming soon)  
+  - **Watches & Horology** – collector watches (coming soon)  
+  - **Jets** – private aviation partnerships (coming soon)  
+- That section now has `id="future"` so both users and links (like the footer) can jump straight to this “yachts, villas, watches, jets” teaser.
+
+---
+
+_**User**_
+
+push
+
+---
+

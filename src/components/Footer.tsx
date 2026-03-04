@@ -8,8 +8,8 @@ const footerLinks = [
     title: "Platform",
     links: [
       { label: "Apply to Join", href: "/apply" },
-      { label: "Browse Cars", href: "#cars" },
       { label: "How It Works", href: "#how" },
+      { label: "Future Assets", href: "#future" },
     ],
   },
   {
