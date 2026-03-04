@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { supabase } from "@/integrations/supabase/client";
 import { TablesInsert } from "@/integrations/supabase/types";
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
+import { Form, FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -138,10 +138,11 @@ export const MemberProfileForm = () => {
               name="full_name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Full name</FormLabel>
+                  <FormLabel>Full Name</FormLabel>
                   <FormControl>
                     <Input placeholder="Your full legal name" {...field} />
                   </FormControl>
+                  <FormDescription>Your full legal name as it appears on ID or contracts.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -154,8 +155,9 @@ export const MemberProfileForm = () => {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input type="email" placeholder="you@example.com" {...field} />
+                    <Input type="email" placeholder="you@firm.com" {...field} />
                   </FormControl>
+                  <FormDescription>Professional / work email preferred.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -166,10 +168,11 @@ export const MemberProfileForm = () => {
               name="phone"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Phone (WhatsApp preferred)</FormLabel>
+                  <FormLabel>WhatsApp Number</FormLabel>
                   <FormControl>
                     <Input placeholder="+91 ..." {...field} />
                   </FormControl>
+                  <FormDescription>Primary WhatsApp number for confidential communication.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -196,10 +199,11 @@ export const MemberProfileForm = () => {
               name="profession"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Profession</FormLabel>
+                  <FormLabel>Profession + Industry</FormLabel>
                   <FormControl>
-                    <Input placeholder="e.g. Founder, CXO, Investor" {...field} />
+                    <Input placeholder="e.g. Founder · Consumer Tech" {...field} />
                   </FormControl>
+                  <FormDescription>High-level role and sector, not a full bio.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -210,7 +214,7 @@ export const MemberProfileForm = () => {
               name="annual_income_bracket"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Annual income (approx)</FormLabel>
+                  <FormLabel>Annual Income (Approx)</FormLabel>
                   <FormControl>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <SelectTrigger>
@@ -225,6 +229,7 @@ export const MemberProfileForm = () => {
                       </SelectContent>
                     </Select>
                   </FormControl>
+                  <FormDescription>Select the highest honest bracket that applies.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -235,7 +240,7 @@ export const MemberProfileForm = () => {
               name="education_level"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Highest education</FormLabel>
+                  <FormLabel>Highest Education</FormLabel>
                   <FormControl>
                     <Select onValueChange={field.onChange} value={field.value || ""}>
                       <SelectTrigger>
@@ -256,16 +261,24 @@ export const MemberProfileForm = () => {
             />
           </div>
 
+          <div className="space-y-1 pt-2">
+            <h3 className="text-sm font-medium font-display">Assets</h3>
+            <p className="text-xs text-muted-foreground">
+              A quick snapshot of your current garage to understand swap fit.
+            </p>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <FormField
               control={form.control}
               name="cars_owned_count"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Number of cars you own</FormLabel>
+                  <FormLabel>Number of Cars</FormLabel>
                   <FormControl>
                     <Input type="number" min={0} placeholder="e.g. 3" {...field} />
                   </FormControl>
+                  <FormDescription>Approximate count of cars personally owned.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -276,10 +289,11 @@ export const MemberProfileForm = () => {
               name="primary_car_make_model"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Flagship car (make & model)</FormLabel>
+                  <FormLabel>Flagship Car</FormLabel>
                   <FormControl>
                     <Input placeholder="e.g. Porsche 911 Turbo S" {...field} />
                   </FormControl>
+                  <FormDescription>Whatever you consider your highest‑tier performance asset.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -290,10 +304,11 @@ export const MemberProfileForm = () => {
               name="primary_car_year"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Model year</FormLabel>
+                  <FormLabel>Model Year</FormLabel>
                   <FormControl>
                     <Input type="number" placeholder="e.g. 2023" {...field} />
                   </FormControl>
+                  <FormDescription>Recent years (2021+) signal current liquidity and usage.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -305,11 +320,11 @@ export const MemberProfileForm = () => {
             name="notes"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Anything else we should know?</FormLabel>
+                <FormLabel>Anything else we should know? — This is critical</FormLabel>
                 <FormControl>
                   <Textarea
                     rows={4}
-                    placeholder="Share other cars, collections (watches, yachts, jets), or preferences for swaps."
+                    placeholder="This is where you elevate from “rich applicant” to “valuable member” — share other assets, collections (watches, yachts, jets), prior experiences, or how you’d like to use SwapLuxe."
                     {...field}
                   />
                 </FormControl>
