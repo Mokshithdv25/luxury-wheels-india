@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Crown } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const navLinks = [
   { label: "How It Works", href: "#how" },
@@ -30,12 +31,12 @@ const Navbar = () => {
         }`}
     >
       <div className="container flex items-center justify-between">
-        <a href="/" className="flex items-center gap-2 group">
+        <Link to="/" className="flex items-center gap-2 group">
           <Crown className="w-6 h-6 text-primary transition-transform group-hover:rotate-12 duration-300" />
           <span className="font-display text-2xl font-bold text-gradient-gold">
             SwapLuxe
           </span>
-        </a>
+        </Link>
 
         <div className="hidden md:flex items-center gap-10">
           {navLinks.map((link, i) => (
@@ -70,12 +71,14 @@ const Navbar = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.7 }}
           >
-            <Button
-              size="sm"
-              className="bg-gradient-gold text-primary-foreground font-body font-semibold hover:opacity-90 shadow-gold tracking-wide px-6"
-            >
-              Get Started
-            </Button>
+            <Link to="/apply">
+              <Button
+                size="sm"
+                className="bg-gradient-gold text-primary-foreground font-body font-semibold hover:opacity-90 shadow-gold tracking-wide px-6"
+              >
+                Get Started
+              </Button>
+            </Link>
           </motion.div>
         </div>
 
@@ -109,9 +112,11 @@ const Navbar = () => {
                   {link.label}
                 </motion.a>
               ))}
-              <Button className="bg-gradient-gold text-primary-foreground font-semibold hover:opacity-90 mt-2 shadow-gold">
-                Get Started
-              </Button>
+              <Link to="/apply" onClick={() => setOpen(false)}>
+                <Button className="bg-gradient-gold text-primary-foreground font-semibold hover:opacity-90 mt-2 shadow-gold w-full">
+                  Get Started
+                </Button>
+              </Link>
             </div>
           </motion.div>
         )}

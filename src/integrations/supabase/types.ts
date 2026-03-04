@@ -14,7 +14,51 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      member_profiles: {
+        Row: {
+          id: string;
+          created_at: string | null;
+          full_name: string;
+          email: string;
+          phone: string | null;
+          profession: string | null;
+          annual_income_bracket: string | null;
+          education_level: string | null;
+          primary_city: string | null;
+          cars_owned_count: number | null;
+          cars: Json | null;
+          notes: string | null;
+        };
+        Insert: {
+          id?: string;
+          created_at?: string | null;
+          full_name: string;
+          email: string;
+          phone?: string | null;
+          profession?: string | null;
+          annual_income_bracket?: string | null;
+          education_level?: string | null;
+          primary_city?: string | null;
+          cars_owned_count?: number | null;
+          cars?: Json | null;
+          notes?: string | null;
+        };
+        Update: {
+          id?: string;
+          created_at?: string | null;
+          full_name?: string;
+          email?: string;
+          phone?: string | null;
+          profession?: string | null;
+          annual_income_bracket?: string | null;
+          education_level?: string | null;
+          primary_city?: string | null;
+          cars_owned_count?: number | null;
+          cars?: Json | null;
+          notes?: string | null;
+        };
+        Relationships: [];
+      };
     }
     Views: {
       [_ in never]: never
