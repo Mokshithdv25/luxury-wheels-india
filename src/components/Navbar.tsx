@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Crown } from "lucide-react";
+import { Menu, X, Crown, KeyRound } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const navLinks = [
@@ -25,8 +25,8 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-          ? "glass-nav border-b border-gold-subtle/30 shadow-luxury py-2"
-          : "bg-transparent py-4"
+        ? "glass-nav border-b border-gold-subtle/30 shadow-luxury py-2"
+        : "bg-transparent py-4"
         }`}
     >
       <div className="container flex items-center justify-between">
@@ -58,12 +58,15 @@ const Navbar = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
           >
-            <Button
-              variant="ghost"
-              className="font-body text-sm text-muted-foreground hover:text-foreground hover:bg-white/5 tracking-wide"
+            <a
+              href="https://members.swapluxe.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 font-body text-sm text-muted-foreground hover:text-primary transition-colors duration-300 tracking-[0.12em] uppercase hover-underline-gold group"
             >
-              Sign In
-            </Button>
+              <KeyRound className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
+              Members
+            </a>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -111,6 +114,16 @@ const Navbar = () => {
                   {link.label}
                 </motion.a>
               ))}
+              <a
+                href="https://members.swapluxe.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors tracking-[0.12em] uppercase font-body"
+              >
+                <KeyRound className="w-4 h-4 opacity-60" />
+                Members Portal
+              </a>
               <Link to="/apply" onClick={() => setOpen(false)}>
                 <Button className="bg-gradient-gold text-primary-foreground font-semibold hover:opacity-90 mt-2 shadow-gold w-full">
                   Request Invite
