@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Menu, X, Crown, KeyRound } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const navLinks = [
   { label: "Vision", href: "#vision" },
@@ -14,6 +13,8 @@ const navLinks = [
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -21,14 +22,30 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setOpen(false);
+    if (location.pathname !== "/") {
+      // Navigate home first, then scroll after the page loads
+      navigate("/");
+      setTimeout(() => {
+        const el = document.querySelector(href);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 300);
+    } else {
+      const el = document.querySelector(href);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-        ? "glass-nav border-b border-gold-subtle/30 shadow-luxury py-2"
-        : "bg-transparent py-4"
+          ? "glass-nav border-b border-gold-subtle/30 shadow-luxury py-2"
+          : "bg-transparent py-4"
         }`}
     >
       <div className="container flex items-center justify-between">
@@ -39,21 +56,24 @@ const Navbar = () => {
           </span>
         </Link>
 
+        {/* Desktop nav links */}
         <div className="hidden md:flex items-center gap-10">
           {navLinks.map((link, i) => (
             <motion.a
               key={link.href}
               href={link.href}
+              onClick={(e) => handleAnchorClick(e, link.href)}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 + i * 0.1 }}
-              className="hover-underline-gold font-body text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 tracking-wide"
+              className="hover-underline-gold font-body text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 tracking-wide cursor-pointer"
             >
               {link.label}
             </motion.a>
           ))}
         </div>
 
+        {/* Desktop right: Members only */}
         <div className="hidden md:flex items-center gap-3">
           <motion.div
             initial={{ opacity: 0 }}
@@ -70,22 +90,9 @@ const Navbar = () => {
               Members
             </a>
           </motion.div>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.7 }}
-          >
-            <Link to="/apply">
-              <Button
-                size="sm"
-                className="bg-gradient-gold text-primary-foreground font-body font-semibold hover:opacity-90 shadow-gold tracking-wide px-6"
-              >
-                Request Invite
-              </Button>
-            </Link>
-          </motion.div>
         </div>
 
+        {/* Mobile hamburger */}
         <button
           className="md:hidden text-foreground p-2"
           onClick={() => setOpen(!open)}
@@ -94,6 +101,7 @@ const Navbar = () => {
         </button>
       </div>
 
+      {/* Mobile drawer */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -107,11 +115,11 @@ const Navbar = () => {
                 <motion.a
                   key={link.href}
                   href={link.href}
+                  onClick={(e) => handleAnchorClick(e, link.href)}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.1 }}
-                  className="text-muted-foreground hover:text-foreground transition-colors tracking-wide"
-                  onClick={() => setOpen(false)}
+                  className="text-muted-foreground hover:text-foreground transition-colors tracking-wide cursor-pointer"
                 >
                   {link.label}
                 </motion.a>
@@ -126,11 +134,6 @@ const Navbar = () => {
                 <KeyRound className="w-4 h-4 opacity-60" />
                 Members Portal
               </a>
-              <Link to="/apply" onClick={() => setOpen(false)}>
-                <Button className="bg-gradient-gold text-primary-foreground font-semibold hover:opacity-90 mt-2 shadow-gold w-full">
-                  Request Invite
-                </Button>
-              </Link>
             </div>
           </motion.div>
         )}

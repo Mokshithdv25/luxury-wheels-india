@@ -6,7 +6,6 @@ import TrustSection from "@/components/TrustSection";
 import FeaturedCars from "@/components/FeaturedCars";
 import TestimonialsMarquee from "@/components/TestimonialsMarquee";
 import FutureCategories from "@/components/FutureCategories";
-import LuxuryCTA from "@/components/LuxuryCTA";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -19,8 +18,7 @@ const Index = () => {
       <div id="trust"><TrustSection /></div>
       <div id="cars"><FeaturedCars /></div>
       <TestimonialsMarquee />
-      <FutureCategories />
-      <LuxuryCTA />
+      <div id="future"><FutureCategories /></div>
       <Footer />
     </div>
   );
