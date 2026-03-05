@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Crown, Instagram, Twitter, Linkedin, Youtube, ArrowRight } from "lucide-react";
+import { Crown, Instagram, Twitter, Linkedin, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
@@ -46,31 +46,6 @@ const Footer = () => {
       <div className="gold-divider mb-16" />
 
       <div className="container relative z-10">
-        {/* Newsletter CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="glass-card rounded-2xl p-8 md:p-12 mb-16 text-center"
-        >
-          <h3 className="text-2xl md:text-3xl font-display font-bold mb-3">
-            Stay in the <span className="text-gradient-gold">Fast Lane</span>
-          </h3>
-          <p className="text-muted-foreground font-body text-sm mb-6 max-w-md mx-auto">
-            Get exclusive access to new luxury listings, swap tips, and member-only events.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="your@email.com"
-              className="flex-1 glass-card-strong rounded-lg px-5 py-3 font-body text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all"
-            />
-            <Button className="bg-gradient-gold text-primary-foreground font-body font-semibold hover:opacity-90 shadow-gold px-6">
-              Subscribe
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
-          </div>
-        </motion.div>
 
         {/* Footer grid */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-10 mb-16">
