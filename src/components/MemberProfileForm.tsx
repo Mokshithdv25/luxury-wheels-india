@@ -92,13 +92,17 @@ export const MemberProfileForm = () => {
         notes: values.notes || null,
       };
 
-      const { error } = await supabase.from("member_profiles").insert(payload);
+      const { error } = await supabase
+        .from("member_profiles")
+        .upsert(payload, { onConflict: "email" });
 
       if (error) {
-        console.error(error);
         toast({
           title: "Something went wrong",
-          description: "We couldn’t save your profile. Please try again in a moment.",
+          description:
+            error.message === "duplicate key value violates unique constraint \"member_profiles_email_key\""
+              ? "You’ve already applied with this email. If you need to update details, submit the form again and we’ll overwrite your existing profile."
+              : "We couldn’t save your profile. Please try again in a moment.",
           variant: "destructive",
         });
         return;
