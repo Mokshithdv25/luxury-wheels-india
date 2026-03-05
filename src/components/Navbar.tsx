@@ -5,8 +5,10 @@ import { Menu, X, Crown, KeyRound } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const navLinks = [
+  { label: "Vision", href: "#vision" },
   { label: "How It Works", href: "#how" },
   { label: "Trust & Safety", href: "#trust" },
+  { label: "Assets", href: "#future" },
 ];
 
 const Navbar = () => {
