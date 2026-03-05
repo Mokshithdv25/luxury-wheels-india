@@ -1,10 +1,18 @@
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "./types";
 
-// Read Supabase credentials from Vite env vars.
-// These must be set in both local `.env` and Vercel project settings.
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string;
-const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
+// Prefer Vite-style env vars, but gracefully fall back to NEXT_PUBLIC_ and bare names.
+const SUPABASE_URL =
+  (import.meta.env.VITE_SUPABASE_URL as string | undefined) ||
+  (import.meta.env.NEXT_PUBLIC_SUPABASE_URL as string | undefined) ||
+  (import.meta.env.SUPABASE_URL as string | undefined) ||
+  "";
+
+const SUPABASE_ANON_KEY =
+  (import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined) ||
+  (import.meta.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string | undefined) ||
+  (import.meta.env.SUPABASE_ANON_KEY as string | undefined) ||
+  "";
 
 export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_ANON_KEY, {
   auth: {
