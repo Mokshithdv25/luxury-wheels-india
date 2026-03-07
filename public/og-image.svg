@@ -1,0 +1,18 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="og-gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f6e27a"/>
+      <stop offset="50%" stop-color="#f0c35b"/>
+      <stop offset="100%" stop-color="#cf9f3b"/>
+    </linearGradient>
+    <linearGradient id="og-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#og-bg)"/>
+  <rect x="1" y="1" width="1198" height="628" fill="none" stroke="url(#og-gold)" stroke-width="2" opacity="0.4" rx="8"/>
+  <text x="600" y="280" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="700" fill="url(#og-gold)">SwapLuxe</text>
+  <text x="600" y="360" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="28" fill="rgba(255,255,255,0.85)">Indias Invite-Only Luxury Swap Club</text>
+  <text x="600" y="420" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="rgba(255,255,255,0.5)">Cars · Watches · Yachts · Jets</text>
+</svg>
